@@ -1,0 +1,102 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales Executive</title>
+  </head>
+  <body>
+    <form action="">
+      <table>
+        <tbody>
+          <tr>
+            <td>Name :</td>
+            <td>
+              <input type="text" name="sales_name" id="sales_name" required />
+            </td>
+          </tr>
+          <tr>
+            <td>Date :</td>
+            <td>
+              <input
+                type="date"
+                name="current_date"
+                id="current_date"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Email :</td>
+            <td><input type="email" name="sales_email" id="sales_email" /></td>
+          </tr>
+          <tr>
+            <td>Password :</td>
+            <td>
+              <input
+                type="password"
+                name="sales_password"
+                id="sales_password"
+                required
+                minlength="6"
+                maxlength="12"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>ID :</td>
+            <td>
+              <input
+                type="text"
+                name="sales_id"
+                id="sales_id"
+                minlength="5"
+                maxlength="35"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Contact :</td>
+            <td>
+              <input
+                type="tel"
+                name="sales_contact"
+                id="sales_contact"
+                required
+              />
+            </td>
+          </tr>
+          <tr>
+            <td>Role :</td>
+            <td>
+              <select name="role" id="role" required>
+                <option value="supervisor">Supervisor</option>
+                <option value="customer">Customer</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>Supervisor :</td>
+            <td>
+              <input type="text" name="supervisor" id="supervisor" required />
+            </td>
+          </tr>
+          <tr>
+            <td>Date of Birth :</td>
+            <td>
+              <input type="date" name="sales_dob" id="sales_dob" required />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="submit" value="SUBMIT" id="btn_submit_sales" />
+            </td>
+            <td>
+              <input type="reset" value="RESET" id="btn_reset_submit" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </body>
+</html>
