@@ -1,0 +1,26 @@
+{
+  "name": "banja",
+  "version": "1.0.0",
+  "description": "An application to support Boda Boda Banja with management",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/briantical/Banja.git"
+  },
+  "keywords": [
+    "BodaBoda",
+    "Banja"
+  ],
+  "author": "LUTAAYA Brian Ivan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/briantical/Banja/issues"
+  },
+  "homepage": "https://github.com/briantical/Banja#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
