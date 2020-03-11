@@ -1,11 +1,17 @@
 const express = require("express");
 
-let server = express();
+let app = express();
 
-server.get("/", (req, res) => {
+app.use(express.static(__dirname + "/public"));
+
+app.get("/", (req, res) => {
   res.sendFile(__dirname + "/index.html");
 });
 
-server.listen(3000, () => {
+app.get("*", (req, res) => {
+  res.render(__dirname + "/index.html");
+});
+
+app.listen(3000, () => {
   console.log("Listening on PORT 3000");
 });
