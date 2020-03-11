@@ -1,7 +1,24 @@
+const pug = require("pug");
 const express = require("express");
+const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+
+const PORT = 3000;
+const DB_URI = "mongodb://localhost:27017/banja";
+const options = {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+};
 
 let app = express();
 
+/**
+ * body-parser to capture that form data and convert it to JSON
+ */
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
+//Access the public folder for css
 app.use(express.static(__dirname + "/public"));
 
 app.get("/", (req, res) => {
@@ -12,6 +29,11 @@ app.get("*", (req, res) => {
   res.render(__dirname + "/index.html");
 });
 
-app.listen(3000, () => {
-  console.log("Listening on PORT 3000");
+mongoose.connect(DB_URI, options, error => {
+  if (error) throw error;
+  console.log(`Successfully started the database`);
+});
+
+app.listen(`${PORT}`, () => {
+  console.log(`Listening on PORT ${PORT}`);
 });
