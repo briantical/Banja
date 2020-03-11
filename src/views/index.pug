@@ -1,7 +1,29 @@
 doctype html
 html
     head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        //- Adding the stylesheet pages
+        link(rel="stylesheet", href="css/bootstrap/bootstrap.css")
+        link(rel="stylesheet",type="text/css", href="css/style.css")
         title BodaBoda Banja : Sign in
     body
-        div
-            p I am Lutaaya Brian Ivan
+        form(action="")
+            table
+                tbody
+                    tr
+                        td Username :
+                        td
+                            input#username(type="text", name="username")
+                    tr
+                        td Password :
+                        td
+                            input#userpassword(type="password", name="userpassword")
+                    tr
+                        td
+                            input#btn_submit_login(type="button", value="SUBMIT")
+                        td
+                            input#btn_reset_login(type="reset", value="CANCEL")
+        script(src="./../js/bootstrap/jquery.js")
+        script(src="./../js/bootstrap/bootstrap.js")
+        script(src="./../js/index.js")
