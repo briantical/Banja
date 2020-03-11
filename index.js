@@ -1,6 +1,7 @@
 const pug = require("pug");
 const express = require("express");
 const mongoose = require("mongoose");
+const favicon = require("serve-favicon");
 const bodyParser = require("body-parser");
 
 const PORT = 3000;
@@ -18,16 +19,24 @@ let app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+//Using the favicons
+app.use(favicon(__dirname + "/public/favicon/favicon.ico"));
+
+//Define the template engine to use
+app.set("view engine", "pug");
+app.set("views", __dirname + "/src/views");
+
 //Access the public folder for css
 app.use(express.static(__dirname + "/public"));
 
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  //res.sendFile(__dirname + "/index.html");
+  res.render("index");
 });
 
-app.get("*", (req, res) => {
-  res.render(__dirname + "/index.html");
-});
+// app.get("*", (req, res) => {
+//   res.render(__dirname + "/index.html");
+// });
 
 mongoose.connect(DB_URI, options, error => {
   if (error) throw error;
