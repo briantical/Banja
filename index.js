@@ -34,6 +34,14 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
+app.get("/register", (req, res) => {
+  res.render("register");
+});
+
+app.get("/resetpassword", (req, res) => {
+  res.render("resetpassword");
+});
+
 app.get("*", (req, res) => {
   res.render("index");
 });
