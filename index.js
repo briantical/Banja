@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const favicon = require("serve-favicon");
 const bodyParser = require("body-parser");
 
-const PORT = 3000;
+const PORT = 3030;
 const DB_URI = "mongodb://localhost:27017/banja";
 const options = {
   useNewUrlParser: true,
@@ -27,7 +27,8 @@ app.set("view engine", "pug");
 app.set("views", __dirname + "/src/views");
 
 //Access the public folder for css
-app.use(express.static(__dirname + "/public"));
+// Access the public folder in the root directory
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.render("index");
