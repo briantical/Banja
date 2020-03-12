@@ -30,13 +30,12 @@ app.set("views", __dirname + "/src/views");
 app.use(express.static(__dirname + "/public"));
 
 app.get("/", (req, res) => {
-  //res.sendFile(__dirname + "/index.html");
   res.render("index");
 });
 
-// app.get("*", (req, res) => {
-//   res.render(__dirname + "/index.html");
-// });
+app.get("*", (req, res) => {
+  res.render("index");
+});
 
 mongoose.connect(DB_URI, options, error => {
   if (error) throw error;

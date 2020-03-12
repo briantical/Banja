@@ -1,11 +1,8 @@
 doctype html
 html
     head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        //- Adding the stylesheet pages
-        link(rel="stylesheet", href="css/bootstrap/bootstrap.css")
-        link(rel="stylesheet",type="text/css", href="css/style.css")
+        //- Include the head with the meta and link tags
+        include components/head.pug
         title BodaBoda Banja : Sign in
     body
         form(action="")
@@ -24,6 +21,8 @@ html
                             input#btn_submit_login(type="button", value="SUBMIT")
                         td
                             input#btn_reset_login(type="reset", value="CANCEL")
+        //- Include the footer component
+        include components/footer
         script(src="./../js/bootstrap/jquery.js")
         script(src="./../js/bootstrap/bootstrap.js")
         script(src="./../js/index.js")
