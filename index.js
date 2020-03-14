@@ -4,6 +4,8 @@ const mongoose = require("mongoose");
 const favicon = require("serve-favicon");
 const bodyParser = require("body-parser");
 
+import api from "./src/api";
+
 const PORT = 3030;
 const DB_URI = "mongodb://localhost:27017/banja";
 const options = {
@@ -30,21 +32,7 @@ app.set("views", __dirname + "/src/views");
 // Access the public folder in the root directory
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-  res.render("index");
-});
-
-app.get("/register", (req, res) => {
-  res.render("register");
-});
-
-app.get("/resetpassword", (req, res) => {
-  res.render("resetpassword");
-});
-
-app.get("*", (req, res) => {
-  res.render("index");
-});
+app.use("api/v1", api);
 
 mongoose.connect(DB_URI, options, error => {
   if (error) throw error;
