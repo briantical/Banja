@@ -5,7 +5,7 @@ html
         include components/head.pug
         title BodaBoda Banja : Sign in
     body
-        form(action="/signin" method="POST")
+        form(action="/api/v1/signin" method="POST")
             table
                 tbody
                     tr
@@ -18,15 +18,15 @@ html
                             input#userpassword(type="password", name="userpassword")
                     tr
                         td(cols="2")
-                            a(href="/register") Have no account? Register instead
+                            a(href="/api/v1/register") Have no account? Register instead
                     tr
                         td
-                            input#btn_submit_login(type="button", value="SUBMIT")
+                            input#btn_submit_login(type="submit", value="SUBMIT")
                         td
                             input#btn_reset_login(type="reset", value="CANCEL")
                     tr
                         td(cols="2")
-                            a(href="/resetpassword") Reset Password
+                            a(href="/api/v1/resetpassword") Reset Password
                         
 
         //- Include the footer component
