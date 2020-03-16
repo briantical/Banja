@@ -37,7 +37,7 @@ api.post("/register_sales", async (req, res) => {
     } = req.body);
     let user = new User(userdetails);
 
-    await user.save().then(async () => {
+    await user.save().then(async _theuser => {
       console.log("Created the user");
       try {
         let salesdetails = ({
@@ -46,6 +46,9 @@ api.post("/register_sales", async (req, res) => {
           number_of_working_days,
           email
         } = req.body);
+
+        let { _id: userID } = _theuser;
+        salesdetails = { ...salesdetails, userID };
 
         let salesexecutive = new Sale(salesdetails);
         console.log("Created the sales executive");
@@ -73,7 +76,7 @@ api.post("/register_customer", async (req, res) => {
     } = req.body);
     let user = new User(userdetails);
 
-    await user.save().then(async () => {
+    await user.save().then(async _theuser => {
       console.log("Created the user");
       try {
         let customerdetails = ({
@@ -92,6 +95,9 @@ api.post("/register_customer", async (req, res) => {
           referee_contact,
           referee_occupation
         } = req.body);
+
+        let { _id: userID } = _theuser;
+        customerdetails = { ...customerdetails, userID };
 
         let customer = new Customer(customerdetails);
         console.log("Created the customer");

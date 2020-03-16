@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
+const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
 let customer = new mongoose.Schema({
+  userID: ObjectId,
   customerID: String,
   NIN: String,
   nationality: String,
