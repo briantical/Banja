@@ -10,4 +10,4 @@ let sale = new mongoose.Schema({
   email: String
 });
 
-export default sale;
+module.exports = sale;

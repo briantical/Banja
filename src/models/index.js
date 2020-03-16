@@ -1,3 +1,5 @@
-export { default } from "./users";
-export { default } from "./sales";
-export { default } from "./customers";
+const User = require("./users");
+const Sale = require("./sales");
+const Customer = require("./customers");
+
+module.exports = { User, Sale, Customer };

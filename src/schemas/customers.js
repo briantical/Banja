@@ -23,4 +23,4 @@ let customer = new mongoose.Schema({
   }
 });
 
-export default customer;
+module.exports = customer;

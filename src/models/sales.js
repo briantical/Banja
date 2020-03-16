@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-import { sale as saleschema } from "./../schemas";
+const { sale } = require("./../schemas");
 
-let Sale = mongoose.model("User", saleschema);
+let Sale = mongoose.model("Sale", sale);
 
-export default Sale;
+module.exports = Sale;

@@ -8,4 +8,4 @@ let user = new mongoose.Schema({
   date_of_registration: Date
 });
 
-export default user;
+module.exports = user;
