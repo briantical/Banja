@@ -29,6 +29,7 @@ api.post("/register_sales", async (req, res) => {
     let userdetails = ({
       names,
       role,
+      password,
       username,
       phone_number,
       date_of_birth,
@@ -41,7 +42,6 @@ api.post("/register_sales", async (req, res) => {
       try {
         let salesdetails = ({
           ids,
-          password,
           supervisor,
           number_of_working_days,
           email
@@ -62,8 +62,47 @@ api.post("/register_sales", async (req, res) => {
 
 api.post("/register_customer", async (req, res) => {
   try {
+    let userdetails = ({
+      names,
+      role,
+      username,
+      password,
+      phone_number,
+      date_of_birth,
+      date_of_registration
+    } = req.body);
+    let user = new User(userdetails);
+
+    await user.save().then(async () => {
+      console.log("Created the user");
+      try {
+        let customerdetails = ({
+          customerID,
+          NIN,
+          nationality,
+          marital_status,
+          documents,
+          vehicle_type,
+          down_paymnet,
+          stage_name,
+          lc_one,
+          lc_three,
+          referee_name,
+          referee_dob,
+          referee_contact,
+          referee_occupation
+        } = req.body);
+
+        let customer = new Customer(customerdetails);
+        console.log("Created the customer");
+
+        await customer.save();
+      } catch (error) {
+        console.log("Could not create the customer");
+      }
+    });
   } catch (error) {
-    console.log(error);
+    console.log("Could not create user");
   }
 });
 
