@@ -4,7 +4,8 @@ const mongoose = require("mongoose");
 const favicon = require("serve-favicon");
 const bodyParser = require("body-parser");
 
-import api from "./src/api";
+//Project defined modules
+const api = require("./src/routes");
 
 const PORT = 3030;
 const DB_URI = "mongodb://localhost:27017/banja";
@@ -30,9 +31,9 @@ app.set("views", __dirname + "/src/views");
 
 //Access the public folder for css
 // Access the public folder in the root directory
-app.use(express.static("public"));
+app.use("/static", express.static(__dirname + "/public"));
 
-app.use("api/v1", api);
+app.use("/api/v1", api);
 
 mongoose.connect(DB_URI, options, error => {
   if (error) throw error;

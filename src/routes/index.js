@@ -1,6 +1,6 @@
-const express = require("express");
+const { Router } = require("express");
 
-const api = express();
+const api = Router();
 
 api.get("/", (req, res) => {
   res.render("index");
@@ -18,4 +18,4 @@ api.get("*", (req, res) => {
   res.render("index");
 });
 
-export default api;
+module.exports = api;
