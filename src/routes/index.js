@@ -10,18 +10,42 @@ api.get("/", (req, res) => {
 api.post("/signin", async (req, res) => {
   try {
     let { username } = req.body;
-    let user = await User.find({ username });
+    let user = await User.findOne({ username: username });
     let { role } = user;
 
-    // If your user name belongs to admin, supervisor
-    //redirect o specific page
+    if (role.includes("admin")) {
+      res.render("saleslist");
+    } else if (role.includes("sales")) {
+      res.render("customerslist");
+    } else {
+      res.render("index");
+    }
   } catch (error) {
     console.log(error);
+    res.render("index");
   }
 });
 
 api.get("/register", (req, res) => {
   res.render("register");
+});
+
+api.get("/saleslist", async (req, res) => {
+  try {
+    let sales = await Sale.find();
+    res.render("saleslist", { sales });
+  } catch (error) {
+    console.log("Could not retrieve the sales executive");
+  }
+});
+
+api.get("/customerslist", async (req, res) => {
+  try {
+    let customers = await Customer.find();
+    res.render("customerslist", { customers });
+  } catch (error) {
+    console.log("Could not retrieve the customers");
+  }
 });
 
 api.post("/register_sales", async (req, res) => {
@@ -53,7 +77,9 @@ api.post("/register_sales", async (req, res) => {
         let salesexecutive = new Sale(salesdetails);
         console.log("Created the sales executive");
 
-        await salesexecutive.save();
+        await salesexecutive
+          .save()
+          .then(() => res.redirect("/api/v1/saleslist"));
       } catch (error) {
         console.log("Could not create the sales executive");
       }
@@ -102,7 +128,7 @@ api.post("/register_customer", async (req, res) => {
         let customer = new Customer(customerdetails);
         console.log("Created the customer");
 
-        await customer.save();
+        await customer.save().then(() => res.redirect("/api/v1/customerslist"));
       } catch (error) {
         console.log("Could not create the customer");
       }
