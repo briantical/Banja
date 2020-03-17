@@ -14,15 +14,15 @@ api.post("/signin", async (req, res) => {
     let { role } = user;
 
     if (role.includes("admin")) {
-      res.render("saleslist");
+      res.redirect("/api/v1/saleslist");
     } else if (role.includes("sales")) {
-      res.render("customerslist");
+      res.redirect("/api/v1/customerslist");
     } else {
-      res.render("index");
+      res.redirect("/api/v1/");
     }
   } catch (error) {
     console.log(error);
-    res.render("index");
+    res.redirect("/api/v1/");
   }
 });
 
@@ -32,9 +32,13 @@ api.get("/register", (req, res) => {
 
 api.get("/saleslist", async (req, res) => {
   try {
-    let sales = await Sale.find();
+    let sales = await Sale.find().populate("userID");
+    if (req.query.ids) {
+      sales = await Sale.find({ ids: req.query.ids }).populate("userID");
+    }
     res.render("saleslist", { sales });
   } catch (error) {
+    console.log(error);
     console.log("Could not retrieve the sales executive");
   }
 });
@@ -42,7 +46,12 @@ api.get("/saleslist", async (req, res) => {
 api.get("/customerslist", async (req, res) => {
   try {
     let customers = await Customer.find();
-    res.render("customerslist", { customers });
+    if (req.query.ids) {
+      customers = await Customer.find({ ids: req.query.ids }).populate(
+        "userID"
+      );
+    }
+    res.render("customerslist", { customers }).populate("userID");
   } catch (error) {
     console.log("Could not retrieve the customers");
   }

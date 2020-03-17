@@ -5,3 +5,27 @@ html
         title BodaBoda Banja : Customers
     body
         h1 Customers List
+        div.form-row
+            div.col.form-group.col-md-9    
+                form.search(action='/api/v1/saleslist')
+                    div.form-row
+                        div.col-md-8
+                            input.form-control(name='ids' placeholder="Enter your search term ...")
+                        div.col-md-4
+                            input.btn.btn-dark.btn-block(type="submit")
+        table.table
+            thead.thead-dark
+                tr
+                    th Unique ID
+                    th User ID
+                    th Supervisor
+                    th Working Days
+                    th Email
+            tbody
+                each sale in sales
+                    tr
+                        td #{sale.ids}
+                        td #{sale.userID}
+                        td #{sale.supervisor}
+                        td #{sale.number_of_working_days}
+                        td #{email}

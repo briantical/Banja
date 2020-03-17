@@ -4,7 +4,7 @@ const ObjectId = Schema.Types.ObjectId;
 
 let sale = new mongoose.Schema({
   ids: String,
-  userID: ObjectId,
+  userID: { type: ObjectId, ref: "User" },
   supervisor: String,
   number_of_working_days: Number,
   email: String
