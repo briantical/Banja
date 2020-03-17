@@ -33,7 +33,7 @@ app.set("views", __dirname + "/src/views");
 // Access the public folder in the root directory
 app.use("/static", express.static(__dirname + "/public"));
 
-app.use("/api/v1", api);
+app.use("/", api);
 
 mongoose.connect(DB_URI, options, error => {
   if (error) throw error;

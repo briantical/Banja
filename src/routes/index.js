@@ -14,15 +14,15 @@ api.post("/signin", async (req, res) => {
     let { role } = user;
 
     if (role.includes("admin")) {
-      res.redirect("/api/v1/saleslist");
+      res.redirect("/saleslist");
     } else if (role.includes("sales")) {
-      res.redirect("/api/v1/customerslist");
+      res.redirect("/customerslist");
     } else {
-      res.redirect("/api/v1/");
+      res.redirect("/");
     }
   } catch (error) {
     console.log(error);
-    res.redirect("/api/v1/");
+    res.redirect("/");
   }
 });
 
@@ -86,9 +86,7 @@ api.post("/register_sales", async (req, res) => {
         let salesexecutive = new Sale(salesdetails);
         console.log("Created the sales executive");
 
-        await salesexecutive
-          .save()
-          .then(() => res.redirect("/api/v1/saleslist"));
+        await salesexecutive.save().then(() => res.redirect("/saleslist"));
       } catch (error) {
         console.log("Could not create the sales executive");
       }
@@ -137,7 +135,7 @@ api.post("/register_customer", async (req, res) => {
         let customer = new Customer(customerdetails);
         console.log("Created the customer");
 
-        await customer.save().then(() => res.redirect("/api/v1/customerslist"));
+        await customer.save().then(() => res.redirect("/customerslist"));
       } catch (error) {
         console.log("Could not create the customer");
       }

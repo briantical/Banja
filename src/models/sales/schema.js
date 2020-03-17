@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
-let sale = new mongoose.Schema({
+let saleschema = new mongoose.Schema({
   ids: String,
   userID: { type: ObjectId, ref: "User" },
   supervisor: String,
@@ -10,4 +10,4 @@ let sale = new mongoose.Schema({
   email: String
 });
 
-module.exports = sale;
+module.exports = saleschema;

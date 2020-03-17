@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-let user = new mongoose.Schema({
+let userschema = new mongoose.Schema({
   names: String,
   role: [String],
   password: String,
@@ -10,4 +10,4 @@ let user = new mongoose.Schema({
   date_of_registration: Date
 });
 
-module.exports = user;
+module.exports = userschema;

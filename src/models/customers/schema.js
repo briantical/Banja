@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const ObjectId = Schema.Types.ObjectId;
 
-let customer = new mongoose.Schema({
+let customerschema = new mongoose.Schema({
   userID: ObjectId,
   customerID: String,
   NIN: String,
@@ -20,4 +20,4 @@ let customer = new mongoose.Schema({
   referee_occupation: String
 });
 
-module.exports = customer;
+module.exports = customerschema;

@@ -1,5 +1,5 @@
-const User = require("./users");
-const Sale = require("./sales");
-const Customer = require("./customers");
+const User = require("./users/model");
+const Sale = require("./sales/model");
+const Customer = require("./customers/model");
 
 module.exports = { User, Sale, Customer };
