@@ -6,6 +6,133 @@ body {
   height: 100vh;
 }
 
+.commons_vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.commons_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* The sidebar stlyings on the landing page */
+/* The Brand section */
+.sidebar {
+  height: 100%;
+}
+.sidebar_brand {
+  width: 58%;
+  background-color: rgb(0, 97, 170);
+  color: rgb(255, 255, 255);
+  box-shadow: 10px 0px 0px 0px rgba(0, 97, 170, 0.5);
+}
+
+.sidebar_content {
+  width: 25rem;
+  height: 25rem;
+}
+.sidebar_logo {
+  width: 20rem;
+  height: 20rem;
+}
+
+.sidebar_social {
+  height: 3rem;
+}
+
+.sidebar_social a,
+.sidebar_social a:visited a:hover {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+.sidebar_social_facebook,
+.sidebar_social_twitter {
+  height: 100%;
+  padding-left: 2rem;
+}
+
+.sidebar_social_facebook img,
+.sidebar_social_twitter img {
+  height: 60%;
+}
+
+.sidebar_footer {
+  position: absolute;
+  bottom: 0px;
+}
+
+.sidebar_footer p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.sidebar_form {
+  width: 42%;
+}
+.sidebar_submit {
+  margin-top: 1rem;
+}
+
+.sidebar_submit a {
+  text-decoration: none;
+  color: rgb(0, 97, 170);
+}
+
+.sidebar_form_labels {
+  color: rgb(0, 0, 0);
+  font-weight: 700;
+}
+
+.sidebar_form_inputs {
+  text-align: center;
+  border-radius: 1rem;
+  color: rgb(0, 97, 170);
+  border: 2px solid rgb(0, 97, 170);
+}
+
+/* Side bar with the form */
+.sidebar_nav {
+  top: 0px;
+  right: 0px;
+  height: 10%;
+  position: absolute;
+  padding-right: 2rem;
+  font-weight: 500;
+  color: rgb(0, 97, 170);
+}
+
+.sidebar_nav a,
+.sidebar_nav a:active {
+  text-decoration: none;
+  color: rgb(0, 97, 170);
+  margin-left: 2rem;
+}
+
+._buttons {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-left: 1rem;
+  border-radius: 1rem;
+  color: rgb(0, 97, 170);
+  font-weight: 700;
+  border: 2px solid rgb(0, 97, 170);
+  background-color: rgb(255, 255, 255);
+}
+
+._buttons:hover {
+  border-radius: 1rem;
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+  border: 2px solid rgb(0, 97, 170);
+  background-color: rgb(0, 97, 170);
+}
+
 /* The styling for the footer */
 footer {
   display: flex;

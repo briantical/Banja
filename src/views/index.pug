@@ -5,32 +5,51 @@ html
         include components/head.pug
         title BodaBoda Banja : Sign in
     body
-        form(action="/signin" method="POST")
-            table
-                tbody
-                    tr
-                        td Username :
-                        td
-                            input#username(type="text", name="username")
-                    tr
-                        td Password :
-                        td
-                            input#userpassword(type="password", name="userpassword")
-                    tr
-                        td(cols="2")
-                            a(href="/register") Have no account? Register instead
-                    tr
-                        td
-                            input#btn_submit_login(type="submit", value="SUBMIT")
-                        td
-                            input#btn_reset_login(type="reset", value="CANCEL")
-                    tr
-                        td(cols="2")
-                            a(href="/resetpassword") Reset Password
-                        
+        .container-fluid(style="height: 100%")
+            .row(style="height: 100%")
+                .container-md-7.sidebar.sidebar_brand.commons_vertical
+                    .sidebar_content
+                        img.sidebar_logo(src="/static/images/White Banja.png", alt="BodaBoda Banja Logo", title="BodaBoda Banja")
+                        p(title="About us")
+                            | BodaBoda Banja finances income-generating assets for proven entrepreneurs. 
+                            | We invest in giving a chance to customers generally unable to access traditional 
+                            | credit providers.
+                        .sidebar_social.commons_row
+                            a(href="#"): .sidebar_social_facebook.commons_row(title="Visit our Facebook page")
+                                img(src="/static/icons/facebook.png", alt="Facebook BodaBoda Banja")
+                                p Banja_UG
+                            a(href="#"): .sidebar_social_twitter.commons_row(title="Visit our Twitter page")
+                                img(src="/static/icons/twitter.png", alt="Twitter BodaBoda Banja")
+                                p Banja_UG
+                            
 
-        //- Include the footer component
-        include components/footer
+                    .sidebar_footer.commons_vertical
+                        p All Rights Reserved
+                        p BodaBoda Banja &copy 2020
+                    
+                .container-md-5.sidebar.sidebar_form.commons_vertical
+                    .sidebar_nav.commons_row
+                        a.commons_vertical(href="#"): .navbar_home HOME
+                        a.commons_vertical(href="#"): .navbar_aboutus ABOUT US
+                        a.commons_vertical(href="#"): .navbar_contact CONTACT
+                    .sidebar_div_form
+                        form(action="/signin" method="POST")
+                            table
+                                tbody
+                                    tr
+                                        td: .sidebar_form_labels Username :
+                                        td
+                                            input.sidebar_form_inputs#username(type="text", name="username", placeholder="username")
+                                    tr
+                                        td: .sidebar_form_labels Password :
+                                        td
+                                            input.sidebar_form_inputs#userpassword(type="password", name="userpassword",placeholder="********")
+                            .sidebar_submit.commons_vertical
+                                a(href="/register") Have no account? Register instead
+                                .sidebar_submit_buttons
+                                    input._buttons#btn_submit_login(type="submit", value="LOGIN")
+                                    input._buttons#btn_reset_login(type="reset", value="CANCEL")
+                                a(href="/resetpassword") Reset Password
         script(src="/static/js/bootstrap/jquery.js")
         script(src="/static/js/bootstrap/bootstrap.js")
         script(src="/static/js/index.js")

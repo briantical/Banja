@@ -21,3 +21,5 @@ const LOAD_DETAILS = [
     monthly_installment: 294590
   }
 ];
+
+console.log("Welcome to BodaBoda Banja");
