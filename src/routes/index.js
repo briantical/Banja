@@ -1,5 +1,8 @@
 const { Router } = require("express");
 const { User, Sale, Customer } = require("./../models");
+const passport = require("passport");
+
+const permissions = require("./../../permissions");
 
 const api = Router();
 
@@ -7,24 +10,28 @@ api.get("/", (req, res) => {
   res.render("index");
 });
 
-api.post("/signin", async (req, res) => {
-  try {
-    let { username } = req.body;
-    let user = await User.findOne({ username: username });
-    let { role } = user;
-
-    if (role.includes("admin")) {
-      res.redirect("/saleslist");
-    } else if (role.includes("sales")) {
-      res.redirect("/customerslist");
-    } else {
-      res.redirect("/");
-    }
-  } catch (error) {
-    console.log(error);
-    res.redirect("/");
+api.post(
+  "/signin",
+  passport.authenticate("local", { failureRedirect: "/" }),
+  (req, res) => {
+    let roles = permissions[req.user.role];
+    // try {
+    //   let { username } = req.body;
+    //   let user = await User.findOne({ username: username });
+    //   let { role } = user;
+    //   if (role.includes("admin")) {
+    //     res.redirect("/saleslist");
+    //   } else if (role.includes("sales")) {
+    //     res.redirect("/customerslist");
+    //   } else {
+    //     res.redirect("/");
+    //   }
+    // } catch (error) {
+    //   console.log(error);
+    //   res.redirect("/");
+    // }
   }
-});
+);
 
 api.get("/register", (req, res) => {
   res.render("register");
@@ -70,8 +77,10 @@ api.post("/register_sales", async (req, res) => {
     } = req.body);
     let user = new User(userdetails);
 
-    await user.save().then(async _theuser => {
+    await User.register(user, req.body.password, async (error, _theuser) => {
+      if (error) throw error;
       console.log("Created the user");
+
       try {
         let salesdetails = ({
           ids,
@@ -109,8 +118,8 @@ api.post("/register_customer", async (req, res) => {
     } = req.body);
     let user = new User(userdetails);
 
-    await user.save().then(async _theuser => {
-      console.log("Created the user");
+    await User.register(user, req.body.password, async (error, _theuser) => {
+      if (error) throw error;
       try {
         let customerdetails = ({
           customerID,

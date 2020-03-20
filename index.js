@@ -3,9 +3,12 @@ const express = require("express");
 const mongoose = require("mongoose");
 const favicon = require("serve-favicon");
 const bodyParser = require("body-parser");
+const passport = require("passport");
 
 //Project defined modules
 const api = require("./src/routes");
+
+const { User } = require("./src/models");
 
 const PORT = 3030;
 const DB_URI = "mongodb://localhost:27017/banja";
@@ -21,6 +24,12 @@ let app = express();
  */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+// Initialize passport
+app.use(passport.initialize());
+passport.use(User.createStrategy());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 //Using the favicons
 app.use(favicon(__dirname + "/public/favicon/favicon.ico"));
