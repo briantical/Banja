@@ -4,7 +4,8 @@ html
         include components/head
         title BodaBoda Banja : Sales Executives
     body
-        h1 Sales Executive List
+        include components/header
+        h3 Sales Executives
         div.form-row
             div.col.form-group.col-md-9    
                 form.search(action='/saleslist')
@@ -19,8 +20,8 @@ html
                     th Unique ID
                     th Name
                     th Username
-                    td Phone Number
-                    td Date of Birth
+                    th Phone Number
+                    th Date of Birth
                     th Supervisor
                     th Working Days
                     th Email
@@ -35,3 +36,5 @@ html
                         td #{sale.supervisor}
                         td #{sale.number_of_working_days}
                         td #{sale.email}
+        .add_button.commons_vertical +
+        include components/footer

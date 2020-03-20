@@ -4,15 +4,16 @@ html
         include components/head
         title BodaBoda Banja : Customers
     body
-        h1 Customers List
+        include components/header
+        h3 Customers List
         div.form-row
             div.col.form-group.col-md-9    
-                form.search(action='/api/v1/saleslist')
+                form.search(action='/customerslist')
                     div.form-row
                         div.col-md-8
                             input.form-control(name='ids' placeholder="Enter your search term ...")
                         div.col-md-4
-                            input.btn.btn-dark.btn-block(type="submit")
+                            input.btn.btn-dark.btn-block(type="submit",value="Filter")
         table.table
             thead.thead-dark
                 tr
@@ -22,10 +23,12 @@ html
                     th Working Days
                     th Email
             tbody
-                each sale in sales
+                each customer in customers
                     tr
-                        td #{sale.ids}
-                        td #{sale.userID}
-                        td #{sale.supervisor}
-                        td #{sale.number_of_working_days}
-                        td #{email}
+                        td #{customer.ids}
+                        td #{customer.userID}
+                        td #{customer.supervisor}
+                        td #{customer.number_of_working_days}
+                        td #{customer.email}
+    .add_button.commons_vertical +
+    include components/footer
