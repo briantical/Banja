@@ -26,19 +26,3 @@ loginroutes.get("*", (req, res) => {
 });
 
 module.exports = loginroutes;
-
-// try {
-//   let { username } = req.body;
-//   let user = await User.findOne({ username: username });
-//   let { role } = user;
-//   if (role.includes("admin")) {
-//     res.redirect("/saleslist");
-//   } else if (role.includes("sales")) {
-//     res.redirect("/customerslist");
-//   } else {
-//     res.redirect("/");
-//   }
-// } catch (error) {
-//   console.log(error);
-//   res.redirect("/");
-// }

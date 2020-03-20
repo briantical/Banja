@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const passport = require("passport");
 
 //Project defined modules
-const api = require("./src/routes");
+const approutes = require("./src/routes");
 
 const { User } = require("./src/models");
 
@@ -42,7 +42,7 @@ app.set("views", __dirname + "/src/views");
 // Access the public folder in the root directory
 app.use("/static", express.static(__dirname + "/public"));
 
-app.use("/", api);
+app.use("/", approutes);
 
 mongoose.connect(DB_URI, options, error => {
   if (error) throw error;

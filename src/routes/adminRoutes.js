@@ -9,7 +9,7 @@ adminroutes.get("/sales", async (req, res) => {
     if (req.query.ids) {
       sales = await Sale.find({ ids: req.query.ids }).populate("userID");
     }
-    res.render("saleslist", { sales });
+    res.render("salesmen", { sales });
   } catch (error) {
     console.log(error);
     console.log("Could not retrieve the sales executive");
@@ -47,7 +47,7 @@ adminroutes.post("/sales", async (req, res) => {
         let salesexecutive = new Sale(salesdetails);
         console.log("Created the sales executive");
 
-        await salesexecutive.save().then(() => res.redirect("/saleslist"));
+        await salesexecutive.save().then(() => res.redirect("/sales"));
       } catch (error) {
         console.log("Could not create the sales executive");
       }
@@ -55,10 +55,6 @@ adminroutes.post("/sales", async (req, res) => {
   } catch (error) {
     console.log("Could not create user");
   }
-});
-
-adminroutes.get("*", (req, res) => {
-  res.render("index");
 });
 
 module.exports = adminroutes;

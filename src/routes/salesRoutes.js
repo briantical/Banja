@@ -67,8 +67,4 @@ salesroutes.post("/customers", async (req, res) => {
   }
 });
 
-salesroutes.get("*", (req, res) => {
-  res.render("index");
-});
-
 module.exports = salesroutes;

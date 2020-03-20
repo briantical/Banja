@@ -10,8 +10,4 @@ usersroutes.get("/aboutus", (req, res) => {
   res.render("aboutus");
 });
 
-usersroutes.get("*", (req, res) => {
-  res.render("index");
-});
-
 module.exports = usersroutes;
