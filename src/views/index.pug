@@ -33,7 +33,7 @@ html
                         a.commons_vertical(href="#"): .navbar_aboutus ABOUT US
                         a.commons_vertical(href="#"): .navbar_contact CONTACT
                     .sidebar_div_form
-                        form(action="/signin" method="POST")
+                        form(action="/login" method="POST")
                             table
                                 tbody
                                     tr
@@ -43,7 +43,7 @@ html
                                     tr
                                         td: .sidebar_form_labels Password :
                                         td
-                                            input.sidebar_form_inputs#userpassword(type="password", name="userpassword",placeholder="********")
+                                            input.sidebar_form_inputs#password(type="password", name="password",placeholder="********")
                             .sidebar_submit.commons_vertical
                                 a(href="/register") Have no account? Register instead
                                 .sidebar_submit_buttons

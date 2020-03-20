@@ -11,7 +11,6 @@ adminroutes.get("/sales", async (req, res) => {
     }
     res.render("salesmen", { sales });
   } catch (error) {
-    console.log(error);
     console.log("Could not retrieve the sales executive");
   }
 });
@@ -47,7 +46,7 @@ adminroutes.post("/sales", async (req, res) => {
         let salesexecutive = new Sale(salesdetails);
         console.log("Created the sales executive");
 
-        await salesexecutive.save().then(() => res.redirect("/sales"));
+        await salesexecutive.save().then(() => res.redirect("/admin/sales"));
       } catch (error) {
         console.log("Could not create the sales executive");
       }

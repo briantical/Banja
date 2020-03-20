@@ -11,9 +11,11 @@ loginroutes.get("/", (req, res) => {
 
 loginroutes.post(
   "/",
-  passport.authenticate("local", { failureRedirect: "/" }),
+  passport.authenticate("local", { failureRedirect: "/login/resetpassword" }),
   (req, res) => {
-    let roles = permissions[req.user.role];
+    let { names, role: user_role } = req.user;
+    let role = permissions[user_role];
+    res.redirect(role.homepage + "?names=" + names);
   }
 );
 

@@ -6,14 +6,15 @@ const salesroutes = Router();
 
 salesroutes.get("/customers", async (req, res) => {
   try {
-    let customers = await Customer.find();
+    let customers = await Customer.find().populate("userID");
     if (req.query.ids) {
       customers = await Customer.find({ ids: req.query.ids }).populate(
         "userID"
       );
     }
-    res.render("customerslist", { customers }).populate("userID");
+    res.render("customers", { customers });
   } catch (error) {
+    console.log(error);
     console.log("Could not retrieve the customers");
   }
 });
@@ -32,6 +33,7 @@ salesroutes.post("/customers", async (req, res) => {
     let user = new User(userdetails);
 
     await User.register(user, req.body.password, async (error, _theuser) => {
+      console.log("Created the user");
       if (error) throw error;
       try {
         let customerdetails = ({
@@ -57,7 +59,7 @@ salesroutes.post("/customers", async (req, res) => {
         let customer = new Customer(customerdetails);
         console.log("Created the customer");
 
-        await customer.save().then(() => res.redirect("/customerslist"));
+        await customer.save().then(() => res.redirect("/sales/customers"));
       } catch (error) {
         console.log("Could not create the customer");
       }
