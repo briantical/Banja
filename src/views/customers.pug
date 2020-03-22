@@ -1,34 +1,37 @@
 doctype html
+include components/header
 html
     head
         include components/head
         title BodaBoda Banja : Customers
     body
-        include components/header
-        h3 Customers List
+        +banja_header(names)
+        h3 Customers
         div.form-row
             div.col.form-group.col-md-9    
                 form.search(action='/customerslist')
                     div.form-row
                         div.col-md-8
-                            input.form-control(name='ids' placeholder="Enter your search term ...")
+                            input.form-control(name='ids' placeholder="Enter your search term ..." autocomplete="off")
                         div.col-md-4
                             input.btn.btn-dark.btn-block(type="submit",value="Filter")
         table.table
             thead.thead-dark
                 tr
-                    th Unique ID
-                    th User ID
-                    th Supervisor
-                    th Working Days
-                    th Email
+                    th Customer ID
+                    th Names
+                    th Username
+                    th Phone Number
+                    th Date of Birth
+                    th Date onBoarded
             tbody
                 each customer in customers
                     tr
-                        td #{customer.ids}
-                        td #{customer.userID}
-                        td #{customer.supervisor}
-                        td #{customer.number_of_working_days}
-                        td #{customer.email}
-    .add_button.commons_vertical +
+                        td #{customer.customerID}
+                        td #{customer.userID.names}
+                        td #{customer.userID.username}
+                        td #{customer.userID.phone_number}
+                        td #{customer.userID.date_of_birth}
+                        td #{customer.userID.date_of_registration}
+        .add_button.commons_vertical +
     include components/footer

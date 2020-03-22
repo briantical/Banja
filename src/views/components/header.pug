@@ -1,17 +1,18 @@
 //- The menu navigation bar should be availabe on all pages
-.banja_header
-    .header_logo.commons_row(title="BodaBoda Banja")
-        img.header_logo_img(src="/static/images/White Banja.png", alt="BodaBoda Banja Logo")
-        .header_logo_name BodaBoda
-            span  Banja
-        sup TM
-        
-    .header_contents.commons_row
-        .header_links.commons_row
-            a.commons_vertical(href="#"): .navbar_home HOME
-            a.commons_vertical(href="#"): .navbar_aboutus ABOUT US
-            a.commons_vertical(href="#"): .navbar_contact CONTACT
-        .header_profile.commons_row
-            .header_profile_img.commons_row
-                img.header_profile_img_img(src="/static/images/Helmet.png", alt="Profile Picture", title="Profile Picture")
-            .header_profile_name Lutaaya Brian Ivan
+mixin banja_header(user_names)
+    .banja_header
+        .header_logo.commons_row(title="BodaBoda Banja")
+            img.header_logo_img(src="/static/images/White Banja.png", alt="BodaBoda Banja Logo")
+            .header_logo_name BodaBoda
+                span  Banja
+            sup TM
+            
+        .header_contents.commons_row
+            .header_links.commons_row
+                a.commons_vertical(href="#"): .navbar_home HOME
+                a.commons_vertical(href="#"): .navbar_aboutus ABOUT US
+                a.commons_vertical(href="#"): .navbar_contact CONTACT
+            .header_profile.commons_row
+                .header_profile_img.commons_row
+                    img.header_profile_img_img(src="/static/images/Helmet.png", alt="Profile Picture", title="Profile Picture")
+                .header_profile_name= user_names

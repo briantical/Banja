@@ -7,10 +7,15 @@ const salesroutes = Router();
 salesroutes.get("/customers", async (req, res) => {
   try {
     let customers = await Customer.find().populate("userID");
-    if (req.query.ids) {
-      customers = await Customer.find({ ids: req.query.ids }).populate(
-        "userID"
-      );
+
+    if (req.query.names) {
+      if (req.query.ids) {
+        customers = await Customer.find({
+          ids: req.query.ids
+        }).populate("userID");
+        res.render("customers", { customers, names: req.query.names });
+      }
+      res.render("customers", { customers, names: req.query.names });
     }
     res.render("customers", { customers });
   } catch (error) {
