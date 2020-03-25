@@ -1,0 +1,108 @@
+doctype html
+include components/header
+html
+    head
+        include components/head
+        title BodaBoda Banja : Customers
+    body
+        +banja_header(names)
+        .banja_content
+            h3 Add Customer
+            form(action="/sales/customers", method="post")
+                table
+                    tbody
+                        tr
+                            td
+                                fieldset
+                                    legend Personal Information
+                                    table
+                                        tbody
+                                            tr
+                                                td Full Names :
+                                                td: input#names(type="text", name="names", autocomplete="off")
+                                            tr
+                                                td Username :
+                                                td: input#username(type="text", name="username",autocomplete="off")
+                                            tr
+                                                td Phone Number :
+                                                td: input#phone_number(type="tel", name="phone_number",autocomplete="off")
+                                            tr
+                                                td  Date of Birth :
+                                                td: input#date_of_birth(type="date", name="date_of_birth",autocomplete="off")
+                                            tr
+                                            -var today = new Date()
+                                                td: input#date_of_registration(type="date", name="date_of_registration", value=today , hidden)
+                                            tr
+                                                td Customer ID:
+                                                td: input#customerID(type="text", name="customerID", autocomplete="off")
+                        tr
+                            td
+                                fieldset
+                                    legend Verification
+                                    table
+                                        tbody
+                                            tr
+                                                td National ID Number (NIN) :
+                                                td: input#NIN(type="text", name="NIN", autocomplete="off")
+                                            tr
+                                                td Nationality :
+                                                td: input#nationality(type="text", name="nationality", autocomplete="off")
+                                            tr
+                                                td Marital Status :
+                                                td: input#marital_status(type="text", name="marital_status", autocomplete="off")
+                                            tr
+                                                td Verification Documents :
+                                                td
+                                                    label Provided
+                                                    input#provided(type="radio", name="documents",value="true")
+                                                    label Not Provided
+                                                    input#notprovided(type="radio", name="documents", value="false", checked)
+                                            tr
+                                                td Stage Name :
+                                                td: input#stage_name(type="text", name="stage_name", autocomplete="off")
+                                            tr
+                                                td LC One :
+                                                td: input#lc_one(type="text", name="lc_one", autocomplete="off")
+                                            tr
+                                                td LC Three
+                                                td: input#lc_three(type="text", name="lc_three", autocomplete="off")
+                        tr
+                            td
+                                fieldset
+                                    legend Vehicle Details
+                                    table
+                                        tbody
+                                            tr
+                                                td Vehicle :
+                                                td
+                                                    select#vehicle_type(name="vehicle_type")
+                                                        option(value="BodaBoda") BodaBoda
+                                                        option(value="TukTuk") TukTuk
+                                            tr
+                                                td Down Payment :
+                                                td: input#down_paymnet(type="number", name="down_paymnet", autocomplete="off")
+                        tr
+                            td
+                                fieldset
+                                    legend Referee
+                                    table
+                                        tbody
+                                            tr
+                                                td Name :
+                                                td: input#referee_name(type="text", name="referee_name", autocomplete="off")
+                                            tr
+                                                td Contact
+                                                td: input#referee_contact(type="text", name="referee_contact",autocomplete="off")
+                                            tr
+                                                td Occupation :
+                                                td: input#referee_occupation(type="text", name="referee_occupation",autocomplete="off")
+                                            tr
+                                                td Contact :
+                                                td: input#referee_contact(type="tel", name="referee_contact",autocomplete="off")
+                        tr
+                            td: input(type="submit", value="SUBMIT")
+                            td: input(type="reset", value="RESET")
+        include components/footer
+        script(src="/static/js/bootstrap/jquery.js")
+        script(src="/static/js/bootstrap/bootstrap.js")
+        script(src="/static/js/index.js")

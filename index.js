@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const favicon = require("serve-favicon");
 const bodyParser = require("body-parser");
 const passport = require("passport");
+const session = require("express-session");
 
 //Project defined modules
 const approutes = require("./src/routes");
@@ -33,6 +34,15 @@ passport.deserializeUser(User.deserializeUser());
 
 //Using the favicons
 app.use(favicon(__dirname + "/public/favicon/favicon.ico"));
+
+// Use sessions forr tracking the pages
+app.use(
+  session({
+    secret: "thesecret",
+    resave: true,
+    saveUninitialized: false
+  })
+);
 
 //Define the template engine to use
 app.set("view engine", "pug");

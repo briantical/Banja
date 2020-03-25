@@ -4,7 +4,7 @@ const passport = require("passport");
 
 const salesroutes = Router();
 
-salesroutes.get("/customers", async (req, res) => {
+salesroutes.get("/customerslist", async (req, res) => {
   try {
     let customers = await Customer.find().populate("userID");
 
@@ -22,6 +22,10 @@ salesroutes.get("/customers", async (req, res) => {
     console.log(error);
     console.log("Could not retrieve the customers");
   }
+});
+
+salesroutes.get("/customers", (req, res) => {
+  res.render("addcustomer");
 });
 
 salesroutes.post("/customers", async (req, res) => {
