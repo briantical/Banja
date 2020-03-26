@@ -18,7 +18,6 @@ salesroutes.get("/customerslist", async (req, res) => {
         }
         res.render("customers", { customers, names: req.query.names });
       }
-      res.render("customers", { customers });
     } catch (error) {
       console.log(error);
       console.log("Could not retrieve the customers");

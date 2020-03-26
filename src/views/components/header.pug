@@ -16,3 +16,7 @@ mixin banja_header(user_names)
                 .header_profile_img.commons_row
                     img.header_profile_img_img(src="/static/images/Helmet.png", alt="Profile Picture", title="Profile Picture")
                 .header_profile_name= user_names
+                form.logout.commons_row(action="/logout",method="POST")
+                    button.commons_row(type="submit")
+                        img(src="/static/icons/logout.png", alt="Logout button", title="Logout")
+                        p Logout
