@@ -21,3 +21,12 @@ const LOAD_DETAILS = [
     monthly_installment: 294590
   }
 ];
+
+console.log("Welcome to BodaBoda Banja");
+
+let createCustomer = () => {
+  Response.redirect("/sales/customers", 500);
+};
+
+let add_customers_btn = document.getElementById("add_customers");
+add_customers_btn.addEventListener("click", createCustomer);

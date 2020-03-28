@@ -1,0 +1,41 @@
+doctype html
+include components/header
+html
+    head
+        include components/head
+        title BodaBoda Banja : Customers
+    body
+        +banja_header(names)
+        .banja_content
+            h3 Customers
+            div.form-row
+                div.col.form-group.col-md-9    
+                    form.search(action='/customerslist')
+                        div.form-row
+                            div.col-md-8
+                                input.form-control(name='ids' placeholder="Enter your search term ..." autocomplete="off")
+                            div.col-md-4
+                                input.btn.btn-dark.btn-block(type="submit",value="Filter")
+            table.table
+                thead.thead-dark
+                    tr
+                        th Customer ID
+                        th Names
+                        th Username
+                        th Phone Number
+                        th Date of Birth
+                        th Date onBoarded
+                tbody
+                    each customer in customers
+                        tr
+                            td #{customer.customerID}
+                            td #{customer.userID.names}
+                            td #{customer.userID.username}
+                            td #{customer.userID.phone_number}
+                            td #{customer.userID.date_of_birth}
+                            td #{customer.userID.date_of_registration}
+                .add_button.commons_vertical#add_customers +
+    include components/footer
+    script(src="/static/js/bootstrap/jquery.js")
+    script(src="/static/js/bootstrap/bootstrap.js")
+    script(src="/static/js/index.js")

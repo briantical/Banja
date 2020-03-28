@@ -1,0 +1,263 @@
+body {
+  font-size: 0.8rem;
+  margin: 0px;
+  padding: 0px;
+  width: 100vw;
+  height: 100vh;
+}
+
+.commons_vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.commons_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Styling the sections */
+.banja_header,
+.banja_footer,
+.banja_content {
+  position: absolute;
+  right: 0;
+  left: 0;
+}
+
+.banja_content {
+  top: 4rem;
+  bottom: 2.5rem;
+  overflow: auto;
+}
+
+/* The styling for the footer */
+.banja_footer {
+  bottom: 0px;
+  position: absolute;
+  height: 2.5rem;
+  width: 100%;
+  display: flex;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 97, 170);
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.banja_footer p {
+  padding: 0px;
+  margin: 0px;
+}
+
+/* The sidebar stlyings on the landing page */
+/* The Brand section */
+.sidebar {
+  height: 100%;
+}
+.sidebar_brand {
+  width: 58%;
+  background-color: rgb(0, 97, 170);
+  color: rgb(255, 255, 255);
+  box-shadow: 10px 0px 0px 0px rgba(0, 97, 170, 0.5);
+}
+
+.sidebar_content {
+  width: 25rem;
+  height: 25rem;
+}
+.sidebar_logo {
+  width: 20rem;
+  height: 20rem;
+}
+
+.sidebar_social {
+  height: 3rem;
+}
+
+.sidebar_social a,
+.sidebar_social a:visited a:hover {
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+.sidebar_social_facebook,
+.sidebar_social_twitter {
+  height: 100%;
+  padding-left: 2rem;
+}
+
+.sidebar_social_facebook img,
+.sidebar_social_twitter img {
+  height: 60%;
+}
+
+.sidebar_footer {
+  position: absolute;
+  bottom: 0px;
+}
+
+.sidebar_footer p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.sidebar_form {
+  width: 42%;
+}
+.sidebar_submit {
+  margin-top: 1rem;
+}
+
+.sidebar_submit a {
+  text-decoration: none;
+  color: rgb(0, 97, 170);
+}
+
+.sidebar_form_labels {
+  color: rgb(0, 0, 0);
+  font-weight: 700;
+}
+
+.sidebar_form_inputs {
+  text-align: center;
+  border-radius: 1rem;
+  color: rgb(0, 97, 170);
+  border: 2px solid rgb(0, 97, 170);
+}
+
+/* Side bar with the form */
+.sidebar_nav {
+  top: 0px;
+  right: 0px;
+  height: 10%;
+  position: absolute;
+  padding-right: 2rem;
+  font-weight: 500;
+  color: rgb(0, 97, 170);
+}
+
+.sidebar_nav a,
+.sidebar_nav a:active {
+  text-decoration: none;
+  color: rgb(0, 97, 170);
+  margin-left: 2rem;
+}
+
+._buttons {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  margin-left: 1rem;
+  border-radius: 1rem;
+  color: rgb(0, 97, 170);
+  font-weight: 700;
+  border: 2px solid rgb(0, 97, 170);
+  background-color: rgb(255, 255, 255);
+}
+
+._buttons:hover {
+  border-radius: 1rem;
+  color: rgb(255, 255, 255);
+  font-weight: 700;
+  border: 2px solid rgb(0, 97, 170);
+  background-color: rgb(0, 97, 170);
+}
+
+/* Styling the Header of all pages */
+.banja_header {
+  height: 4rem;
+  padding: 0rem 1rem;
+  position: absolute;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 97, 170);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header_logo_img {
+  height: 3.5rem;
+  width: 3.5rem;
+}
+
+.header_logo_name {
+  font-size: 1.5rem;
+  font-family: serif;
+}
+
+.header_logo_name span {
+  font-size: 1rem;
+}
+
+sup {
+  font-size: 0.5rem;
+  font-weight: 700;
+}
+
+.header_links a {
+  margin-right: 1rem;
+  text-decoration: none;
+  color: rgb(255, 255, 255);
+}
+
+.header_links a:hover {
+  font-weight: 700;
+  background-color: rgb(0, 106, 213);
+}
+
+.header_links a div {
+  width: 5rem;
+  height: 4rem;
+}
+
+.header_profile_img {
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  border: 0.1rem solid rgb(255, 255, 255);
+}
+
+.header_profile_img_img {
+  height: 2rem;
+  width: 2rem;
+}
+.header_profile_name {
+  margin-left: 0.2rem;
+  font-weight: 700;
+}
+.logout {
+  margin-left: 1rem;
+}
+.logout button {
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(255, 255, 255);
+  background-color: rgb(0, 97, 170);
+}
+.logout button img {
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+.logout button p {
+  margin: 0px;
+  padding: 0px;
+  font-weight: 700;
+}
+
+/* The fab button */
+.add_button {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  font-weight: 700;
+  position: absolute;
+  bottom: 6rem;
+  right: 6rem;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 97, 170);
+}
