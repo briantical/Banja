@@ -5,6 +5,7 @@ const favicon = require("serve-favicon");
 const bodyParser = require("body-parser");
 const passport = require("passport");
 const session = require("express-session");
+const MemoryStore = require("memorystore")(session);
 
 //Project defined modules
 const approutes = require("./src/routes");
@@ -47,6 +48,9 @@ app.use(
       secure: true,
       maxAge: 60000
     },
+    store: new MemoryStore({
+      checkPeriod: 86400000
+    }),
     secret: "thesecret",
     resave: true,
     saveUninitialized: false
