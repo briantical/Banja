@@ -20,6 +20,8 @@ const options = {
 
 let MONGO_DB_URI = process.env.MONGODB_URI || DB_URI;
 
+console.log(process.env.MONGODB_URI);
+
 let app = express();
 
 /**
@@ -38,8 +40,13 @@ passport.deserializeUser(User.deserializeUser());
 app.use(favicon(__dirname + "/public/favicon/favicon.ico"));
 
 // Use sessions forr tracking the pages
+app.set("trust proxy", 1);
 app.use(
   session({
+    cookie: {
+      secure: true,
+      maxAge: 60000
+    },
     secret: "thesecret",
     resave: true,
     saveUninitialized: false
