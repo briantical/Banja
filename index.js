@@ -12,7 +12,7 @@ const approutes = require("./src/routes");
 
 const { User } = require("./src/models");
 
-const PORT = 3030;
+const PORT = process.env.PORT || 3030;
 const DB_URI = "mongodb://localhost:27017/banja";
 const options = {
   useNewUrlParser: true,
