@@ -1,3 +1,8 @@
+// index.js
+
+/**
+ * Required External Modules
+ */
 const pug = require("pug");
 const express = require("express");
 const mongoose = require("mongoose");
@@ -9,21 +14,22 @@ const MemoryStore = require("memorystore")(session);
 
 //Project defined modules
 const approutes = require("./src/routes");
-
 const { User } = require("./src/models");
 
+/**
+ * App Variables
+ */
 const PORT = process.env.PORT || 3030;
 const DB_URI = "mongodb://localhost:27017/banja";
 const options = {
   useNewUrlParser: true,
   useUnifiedTopology: true
 };
-
-let MONGO_DB_URI = process.env.MONGODB_URI || DB_URI;
-
-console.log(process.env.MONGODB_URI);
-
-let app = express();
+const MONGO_DB_URI = process.env.MONGODB_URI || DB_URI;
+const app = express();
+/**
+ *  App Configuration
+ */
 
 /**
  * body-parser to capture that form data and convert it to JSON
@@ -72,6 +78,9 @@ mongoose.connect(MONGO_DB_URI, options, error => {
   console.log(`Successfully started the database`);
 });
 
+/**
+ * Server Activation
+ */
 app.listen(`${PORT}`, () => {
   console.log(`Listening on PORT ${PORT}`);
 });
