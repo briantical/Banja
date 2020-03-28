@@ -9,7 +9,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "run dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "ui": "browser-sync start --proxy=localhost:3030 --files='**/*.css, **/*.pug, **/*.js' --ignore=node_modules --reload-delay 10 --no-ui --no-notify"
   },
   "repository": {
     "type": "git",
@@ -38,6 +39,7 @@
     "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
+    "browser-sync": "^2.26.7",
     "nodemon": "^2.0.2"
   }
 }

@@ -5,13 +5,13 @@ const permissions = require("./../../permissions");
 
 const loginroutes = Router();
 
-loginroutes.get("/", (req, res) => {
-  res.render("index");
-});
+// loginroutes.get("/", (req, res) => {
+//   res.render("index");
+// });
 
 loginroutes.post(
   "/",
-  passport.authenticate("local", { failureRedirect: "/login/resetpassword" }),
+  passport.authenticate("local", { failureRedirect: "/" }),
   (req, res) => {
     req.session.user = req.user;
     let { names, role: user_role } = req.user;

@@ -1,6 +1,5 @@
 const { Router } = require("express");
-const { User, Sale, Customer } = require("./../models");
-const passport = require("passport");
+const { User, Customer } = require("./../models");
 
 const salesroutes = Router();
 
@@ -23,7 +22,7 @@ salesroutes.get("/customerslist", async (req, res) => {
       console.log("Could not retrieve the customers");
     }
   } else {
-    res.redirect("/login");
+    res.redirect("/");
   }
 });
 
@@ -31,7 +30,7 @@ salesroutes.get("/customers", (req, res) => {
   if (req.session.user) {
     res.render("addcustomer");
   } else {
-    res.redirect("/login");
+    res.redirect("/");
   }
 });
 
@@ -85,7 +84,7 @@ salesroutes.post("/customers", async (req, res) => {
       console.log("Could not create user");
     }
   } else {
-    res.redirect("/login");
+    res.redirect("/");
   }
 });
 

@@ -50,10 +50,6 @@ app.use(favicon(__dirname + "/public/favicon/favicon.ico"));
 app.set("trust proxy", 1);
 app.use(
   session({
-    cookie: {
-      secure: true,
-      maxAge: 60000
-    },
     store: new MemoryStore({
       checkPeriod: 86400000
     }),
@@ -73,7 +69,7 @@ app.use("/static", express.static(__dirname + "/public"));
 
 app.use("/", approutes);
 
-mongoose.connect(MONGO_DB_URI, options, error => {
+mongoose.connect(DB_URI, options, error => {
   if (error) throw error;
   console.log(`Successfully started the database`);
 });

@@ -11,13 +11,17 @@ approutes.use("/login", loginroutes);
 approutes.use("/sales", salesroutes);
 approutes.use("/admin", adminroutes);
 
+approutes.get("/", (req, res) => {
+  res.render("index");
+});
+
 approutes.post("/logout", (req, res) => {
   if (req.session) {
     req.session.destroy(function(err) {
       if (err) {
         console.log("Failed to destroy session");
       } else {
-        return res.redirect("/login");
+        return res.redirect("/");
       }
     });
   }
