@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "An application to support Boda Boda Banja with management",
   "main": "index.js",
+  "engines": {
+    "node": "12.16.1"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js"

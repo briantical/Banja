@@ -18,6 +18,8 @@ const options = {
   useUnifiedTopology: true
 };
 
+let MONGO_DB_URI = process.env.MONGODB_URI || DB_URI;
+
 let app = express();
 
 /**
@@ -54,7 +56,7 @@ app.use("/static", express.static(__dirname + "/public"));
 
 app.use("/", approutes);
 
-mongoose.connect(DB_URI, options, error => {
+mongoose.connect(MONGO_DB_URI, options, error => {
   if (error) throw error;
   console.log(`Successfully started the database`);
 });
