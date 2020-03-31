@@ -5,6 +5,6 @@ mixin banja_filter(action, name)
             form.search(action=action)
                 div.form-row
                     div.col-md-8
-                        input.form-control(name= name placeholder="Enter your search term ..." autocomplete="off")
+                        input.form-control(name= name, placeholder="Filter by " + name,  autocomplete="off")
                     div.col-md-4
                         input.btn.btn-dark.btn-block(type="submit",value="Filter")

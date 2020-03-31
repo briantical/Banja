@@ -18,22 +18,23 @@ html
                                     table
                                         tbody
                                             tr
-                                                td Full Names :
+                                                td.form_headers Full Names :
                                                 td: input#names(type="text", name="names", autocomplete="off")
                                             tr
-                                                td Username :
+                                                td.form_headers Username :
                                                 td: input#username(type="text", name="username",autocomplete="off")
                                             tr
-                                                td Phone Number :
+                                                td.form_headers Phone Number :
                                                 td: input#phone_number(type="tel", name="phone_number",autocomplete="off")
                                             tr
-                                                td  Date of Birth :
+                                                td.form_headers Date of Birth :
                                                 td: input#date_of_birth(type="date", name="date_of_birth",autocomplete="off")
                                             tr
                                             -var today = new Date()
-                                                td: input#date_of_registration(type="date", name="date_of_registration", value=today , hidden)
+                                                td: input#date_of_registration(type="text", name="date_of_registration", value= today , hidden)
+                                                td: input#password(type="password", name="password",value="notrequired", hidden)
                                             tr
-                                                td Customer ID:
+                                                td.form_headers Customer ID:
                                                 td: input#customerID(type="text", name="customerID", autocomplete="off")
                         tr
                             td
@@ -42,29 +43,29 @@ html
                                     table
                                         tbody
                                             tr
-                                                td National ID Number (NIN) :
+                                                td.form_headers National ID Number (NIN) :
                                                 td: input#NIN(type="text", name="NIN", autocomplete="off")
                                             tr
-                                                td Nationality :
+                                                td.form_headers Nationality :
                                                 td: input#nationality(type="text", name="nationality", autocomplete="off")
                                             tr
-                                                td Marital Status :
+                                                td.form_headers Marital Status :
                                                 td: input#marital_status(type="text", name="marital_status", autocomplete="off")
                                             tr
-                                                td Verification Documents :
+                                                td.form_headers Verification Documents :
                                                 td
                                                     label Provided
                                                     input#provided(type="radio", name="documents",value="true")
                                                     label Not Provided
                                                     input#notprovided(type="radio", name="documents", value="false", checked)
                                             tr
-                                                td Stage Name :
+                                                td.form_headers Stage Name :
                                                 td: input#stage_name(type="text", name="stage_name", autocomplete="off")
                                             tr
-                                                td LC One :
+                                                td.form_headers LC One :
                                                 td: input#lc_one(type="text", name="lc_one", autocomplete="off")
                                             tr
-                                                td LC Three
+                                                td.form_headers LC Three :
                                                 td: input#lc_three(type="text", name="lc_three", autocomplete="off")
                         tr
                             td
@@ -73,13 +74,13 @@ html
                                     table
                                         tbody
                                             tr
-                                                td Vehicle :
+                                                td.form_headers Vehicle :
                                                 td
                                                     select#vehicle_type(name="vehicle_type")
                                                         option(value="BodaBoda") BodaBoda
                                                         option(value="TukTuk") TukTuk
                                             tr
-                                                td Down Payment :
+                                                td.form_headers Down Payment :
                                                 td: input#down_paymnet(type="number", name="down_paymnet", autocomplete="off")
                         tr
                             td
@@ -88,20 +89,20 @@ html
                                     table
                                         tbody
                                             tr
-                                                td Name :
+                                                td.form_headers Name :
                                                 td: input#referee_name(type="text", name="referee_name", autocomplete="off")
                                             tr
-                                                td Contact
+                                                td.form_headers Date of Birth :
                                                 td: input#referee_dob(type="date", name="referee_dob",autocomplete="off")
                                             tr
-                                                td Occupation :
+                                                td.form_headers Occupation :
                                                 td: input#referee_occupation(type="text", name="referee_occupation",autocomplete="off")
                                             tr
-                                                td Contact :
+                                                td.form_headers Contact :
                                                 td: input#referee_contact(type="tel", name="referee_contact",autocomplete="off")
                         tr
-                            td: input(type="submit", value="SUBMIT")
-                            td: input(type="reset", value="RESET")
+                            td: input.add_customer_btns(type="submit", value="SUBMIT")
+                            td: input.add_customer_btns(type="reset", value="RESET")
         include components/footer
         script(src="/static/js/bootstrap/jquery.js")
         script(src="/static/js/bootstrap/bootstrap.js")

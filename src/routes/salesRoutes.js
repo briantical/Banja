@@ -77,7 +77,7 @@ salesroutes.post("/customers", async (req, res) => {
           console.log("Created the customer");
 
           await customer.save();
-          res.redirect("/sales/customers");
+          res.redirect("/sales/customerslist");
         } catch (error) {
           console.log("Could not create the customer");
         }
