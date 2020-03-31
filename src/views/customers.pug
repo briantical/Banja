@@ -1,5 +1,6 @@
-doctype html
 include components/header
+include components/filter
+doctype html
 html
     head
         include components/head
@@ -8,14 +9,7 @@ html
         +banja_header(names)
         .banja_content
             h3 Customers
-            div.form-row
-                div.col.form-group.col-md-9    
-                    form.search(action='/customerslist')
-                        div.form-row
-                            div.col-md-8
-                                input.form-control(name='ids' placeholder="Enter your search term ..." autocomplete="off")
-                            div.col-md-4
-                                input.btn.btn-dark.btn-block(type="submit",value="Filter")
+            +banja_filter("/sales/customerslist", "customerID")
             table.table
                 thead.thead-dark
                     tr

@@ -5,17 +5,17 @@ const salesroutes = Router();
 
 salesroutes.get("/customerslist", async (req, res) => {
   if (req.session.user) {
+    let { names } = req.session.user;
     try {
       let customers = await Customer.find().populate("userID");
 
-      if (req.query.names) {
-        if (req.query.ids) {
-          customers = await Customer.find({
-            ids: req.query.ids
-          }).populate("userID");
-          res.render("customers", { customers, names: req.query.names });
-        }
-        res.render("customers", { customers, names: req.query.names });
+      if (req.query.customerID) {
+        customers = await Customer.find({
+          customerID: req.query.customerID
+        }).populate("userID");
+        res.render("customers", { customers, names });
+      } else {
+        res.render("customers", { customers, names });
       }
     } catch (error) {
       console.log(error);
