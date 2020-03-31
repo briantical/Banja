@@ -28,7 +28,8 @@ salesroutes.get("/customerslist", async (req, res) => {
 
 salesroutes.get("/customers", (req, res) => {
   if (req.session.user) {
-    res.render("addcustomer");
+    let { names } = req.session.user;
+    res.render("addcustomer", { names });
   } else {
     res.redirect("/");
   }
@@ -75,7 +76,8 @@ salesroutes.post("/customers", async (req, res) => {
           let customer = new Customer(customerdetails);
           console.log("Created the customer");
 
-          await customer.save().then(() => res.redirect("/sales/customers"));
+          await customer.save();
+          res.redirect("/sales/customers");
         } catch (error) {
           console.log("Could not create the customer");
         }

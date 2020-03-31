@@ -28,7 +28,7 @@ html
                             td #{customer.userID.phone_number}
                             td #{customer.userID.date_of_birth}
                             td #{customer.userID.date_of_registration}
-                .add_button.commons_vertical#add_customers +
+                a(href="/sales/customers", title="Add customer"): .add_button.commons_vertical#add_customers +
     include components/footer
     script(src="/static/js/bootstrap/jquery.js")
     script(src="/static/js/bootstrap/bootstrap.js")
