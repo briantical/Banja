@@ -3,19 +3,29 @@ const { User, Sale } = require("./../models");
 
 const adminroutes = Router();
 
-adminroutes.get("/sales", async (req, res) => {
+adminroutes.get("/saleslist", async (req, res) => {
   if (req.session.user) {
+    let { names } = req.session.user;
     try {
       let sales = await Sale.find().populate("userID");
       if (req.query.ids) {
         sales = await Sale.find({ ids: req.query.ids }).populate("userID");
       }
-      res.render("salesmen", { sales });
+      res.render("salesmen", { sales, names });
     } catch (error) {
       console.log("Could not retrieve the sales executive");
     }
   } else {
-    res.redirect("/login");
+    res.redirect("/");
+  }
+});
+
+adminroutes.get("/sales", (req, res) => {
+  if (req.session.user) {
+    let { names } = req.session.user;
+    res.render("addsalesman", { names });
+  } else {
+    res.redirect("/");
   }
 });
 
@@ -51,7 +61,9 @@ adminroutes.post("/sales", async (req, res) => {
           let salesexecutive = new Sale(salesdetails);
           console.log("Created the sales executive");
 
-          await salesexecutive.save().then(() => res.redirect("/admin/sales"));
+          await salesexecutive
+            .save()
+            .then(() => res.redirect("/admin/saleslist"));
         } catch (error) {
           console.log("Could not create the sales executive");
         }
@@ -60,7 +72,7 @@ adminroutes.post("/sales", async (req, res) => {
       console.log("Could not create user");
     }
   } else {
-    res.redirect("/login");
+    res.redirect("/");
   }
 });
 

@@ -274,7 +274,8 @@ td label {
   margin: 0rem 0.5rem;
 }
 
-.add_customer_btns {
+.add_customer_btns,
+.add_salesman_btns {
   width: 5rem;
   border-radius: 1rem;
   font-weight: 700;

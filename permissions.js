@@ -1,6 +1,6 @@
 let roles = {
   admin: {
-    homepage: "/admin/sales",
+    homepage: "/admin/saleslist",
     actions: ["can_create_salesmen", "can_view_salesmen"]
   },
   supervisor: {
