@@ -28,6 +28,7 @@ html
                             td #{customer.userID.phone_number}
                             td #{customer.userID.date_of_birth}
                             td #{customer.userID.date_of_registration}
+                            td: .deletecustomer
                 a(href="/sales/customers", title="Add customer"): .add_button.commons_vertical#add_customers +
     include components/footer
     script(src="/static/js/bootstrap/jquery.js")

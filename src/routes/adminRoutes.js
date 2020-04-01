@@ -76,4 +76,18 @@ adminroutes.post("/sales", async (req, res) => {
   }
 });
 
+adminroutes.get("/deletesales", async (req, res) => {
+  if (req.session.user) {
+    try {
+      let { user_id, rolesmen_id } = req.query;
+      await User.deleteOne({ _id: user_id });
+      await Sale.deleteOne({ _id: rolesmen_id });
+
+      res.redirect("/admin/saleslist");
+    } catch (error) {
+      res.redirect("/admin/saleslist");
+    }
+  } else res.redirect("/");
+});
+
 module.exports = adminroutes;

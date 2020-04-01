@@ -1,5 +1,6 @@
 include components/header
 include components/filter
+include components/deleteuser
 doctype html
 html
     head
@@ -31,7 +32,7 @@ html
                             td #{sale.email}
                             td #{sale.supervisor}
                             td #{sale.number_of_working_days}  
-                            td #{sale.userID.date_of_birth}   
-            .add_button.commons_vertical +
+                            td #{sale.userID.date_of_birth}
+                            td: +delete_banja_user(sale.userID._id, sale._id, "/admin/deletesales") 
             a(href="/admin/sales", title="Add salesman"): .add_button.commons_vertical#add_customers +
         include components/footer
