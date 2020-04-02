@@ -90,4 +90,46 @@ adminroutes.get("/deletesales", async (req, res) => {
   } else res.redirect("/");
 });
 
+adminroutes.post("/editsales", async (req, res) => {
+  if (req.session.user) {
+    res.redirect("/admin/editsales");
+  } else res.redirect("/");
+});
+
+adminroutes.get("/editsales", (req, res) => {
+  if (req.session.user) {
+    let { names } = req.session.user;
+    res.render("editsalesman", { names });
+  }
+});
+
+adminroutes.post("/editsalesman", async (req, res) => {
+  if (req.session.user) {
+    try {
+      let user = ({
+        names,
+        role,
+        password,
+        username,
+        phone_number,
+        date_of_birth,
+        date_of_registration
+      } = req.body);
+
+      await User.updateOne({ _id: userID }, user);
+
+      let sales = ({
+        ids,
+        supervisor,
+        number_of_working_days,
+        email
+      } = req.body);
+
+      await Sale.updateOne({ _id: salesID }, sales);
+    } catch (error) {
+      res.redirect("/admin/saleslist");
+    }
+  } else res.redirect("/");
+});
+
 module.exports = adminroutes;

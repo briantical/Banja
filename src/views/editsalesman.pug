@@ -1,0 +1,63 @@
+include components/header
+doctype html
+html
+    head
+        include components/head
+        title BodaBoda Banja : Salesmen
+    body
+        +banja_header(names)
+        .banja_content
+            h3 Edit Salesmen
+            form(action="/admin/sales", method="post")
+                table
+                    tbody
+                        tr
+                            td
+                                fieldset
+                                    legend Personal Information
+                                    table
+                                        tbody
+                                            tr
+                                                td.form_headers Full Names :
+                                                td: input#names(type="text", name="names", autocomplete="off")
+                                            tr
+                                                td.form_headers Username :
+                                                td: input#username(type="text", name="username",autocomplete="off")
+                                            tr
+                                                td.form_headers Phone Number :
+                                                td: input#phone_number(type="tel", name="phone_number",autocomplete="off")
+                                            tr
+                                                td.form_headers Date of Birth :
+                                                td: input#date_of_birth(type="date", name="date_of_birth",autocomplete="off")
+                                            tr
+                                            -var today = new Date()
+                                                td: input#date_of_registration(type="text", name="date_of_registration", value= today , hidden)
+                                                td: input#password(type="password", name="password",value="notrequired", hidden)
+                        tr
+                            td
+                                fieldset
+                                    legend Details
+                                    table
+                                        tbody
+                                            tr
+                                                td.form_headers Unique ID :
+                                                td: input#ids(type="text", name="ids", autocomplete="off")
+                                            tr
+                                                td.form_headers Supervisor :
+                                                td
+                                                    select#supervisor(name="supervisor")
+                                                        option(value="Lutaaya Brian Ivan") Lutaaya Brian Ivan
+                                            tr
+                                                td.form_headers Number of working days :
+                                                td: input#number_of_working_days(type="number", name="number_of_working_days", autocomplete="off")
+                                            tr
+                                                td.form_headers Email (optional) :
+                                                td: input#email(type="email", name="email", autocomplete="off")
+                        tr
+                            td: input.add_salesman_btns(type="submit", value="SUBMIT")
+                            td: input.add_salesman_btns(type="reset", value="RESET")
+
+        include components/footer
+        script(src="/static/js/bootstrap/jquery.js")
+        script(src="/static/js/bootstrap/bootstrap.js")
+        script(src="/static/js/index.js")
