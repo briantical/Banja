@@ -35,6 +35,6 @@ html
                             td #{sale.number_of_working_days}  
                             td #{sale.userID.date_of_birth}
                             td: +delete_banja_user(sale.userID._id, sale._id, "/admin/deletesales")
-                            td: +edit_banja_user(sale.userID._id, sale._id, "/admin/editsales") 
+                            td: +edit_banja_user(sale, "/admin/editsales") 
             a(href="/admin/sales", title="Add salesman"): .add_button.commons_vertical#add_customers +
         include components/footer

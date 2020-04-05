@@ -9,6 +9,9 @@ html
         .banja_content
             h3 Edit Salesmen
             form(action="/admin/sales", method="post")
+                -
+                    let user_data = JSON.parse(rolesman)
+                    let {userID:{names:personnamre, username,phone_number,date_of_birth,date_of_registration},ids,number_of_working_days,email,supervisor} = user_data
                 table
                     tbody
                         tr
@@ -19,20 +22,16 @@ html
                                         tbody
                                             tr
                                                 td.form_headers Full Names :
-                                                td: input#names(type="text", name="names", autocomplete="off")
+                                                td: input#names(type="text", name="names", autocomplete="off",placeholder=personnamre)
                                             tr
                                                 td.form_headers Username :
-                                                td: input#username(type="text", name="username",autocomplete="off")
+                                                td: input#username(type="text", name="username",autocomplete="off", placeholder=username)
                                             tr
                                                 td.form_headers Phone Number :
-                                                td: input#phone_number(type="tel", name="phone_number",autocomplete="off")
+                                                td: input#phone_number(type="tel", name="phone_number",autocomplete="off",placeholder=phone_number)
                                             tr
                                                 td.form_headers Date of Birth :
-                                                td: input#date_of_birth(type="date", name="date_of_birth",autocomplete="off")
-                                            tr
-                                            -var today = new Date()
-                                                td: input#date_of_registration(type="text", name="date_of_registration", value= today , hidden)
-                                                td: input#password(type="password", name="password",value="notrequired", hidden)
+                                                td: input#date_of_birth(type="date", name="date_of_birth",autocomplete="off",placeholder=date_of_birth)
                         tr
                             td
                                 fieldset
@@ -41,7 +40,7 @@ html
                                         tbody
                                             tr
                                                 td.form_headers Unique ID :
-                                                td: input#ids(type="text", name="ids", autocomplete="off")
+                                                td: input#ids(type="text", name="ids", autocomplete="off",placeholder=ids)
                                             tr
                                                 td.form_headers Supervisor :
                                                 td
@@ -49,10 +48,10 @@ html
                                                         option(value="Lutaaya Brian Ivan") Lutaaya Brian Ivan
                                             tr
                                                 td.form_headers Number of working days :
-                                                td: input#number_of_working_days(type="number", name="number_of_working_days", autocomplete="off")
+                                                td: input#number_of_working_days(type="number", name="number_of_working_days", autocomplete="off",placeholder=number_of_working_days)
                                             tr
                                                 td.form_headers Email (optional) :
-                                                td: input#email(type="email", name="email", autocomplete="off")
+                                                td: input#email(type="email", name="email", autocomplete="off",placeholder=email)
                         tr
                             td: input.add_salesman_btns(type="submit", value="SUBMIT")
                             td: input.add_salesman_btns(type="reset", value="RESET")

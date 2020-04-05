@@ -39,7 +39,7 @@ adminroutes.post("/sales", async (req, res) => {
         username,
         phone_number,
         date_of_birth,
-        date_of_registration
+        date_of_registration,
       } = req.body);
       let user = new User(userdetails);
 
@@ -52,7 +52,7 @@ adminroutes.post("/sales", async (req, res) => {
             ids,
             supervisor,
             number_of_working_days,
-            email
+            email,
           } = req.body);
 
           let { _id: userID } = _theuser;
@@ -90,16 +90,27 @@ adminroutes.get("/deletesales", async (req, res) => {
   } else res.redirect("/");
 });
 
-adminroutes.post("/editsales", async (req, res) => {
+adminroutes.post("/editsales", (req, res) => {
   if (req.session.user) {
-    res.redirect("/admin/editsales");
+    if (req.body) {
+      let { rolesman } = req.body;
+      req.session.rolesman = rolesman;
+      res.redirect("/admin/editsales");
+    } else {
+      res.redirect("/admin/saleslist");
+    }
   } else res.redirect("/");
 });
 
 adminroutes.get("/editsales", (req, res) => {
-  if (req.session.user) {
-    let { names } = req.session.user;
-    res.render("editsalesman", { names });
+  if (req.session.user && req.session.rolesman) {
+    let {
+      user: { names },
+      rolesman,
+    } = req.session;
+    res.render("editsalesman", { names, rolesman });
+  } else {
+    res.redirect("/");
   }
 });
 
@@ -113,7 +124,7 @@ adminroutes.post("/editsalesman", async (req, res) => {
         username,
         phone_number,
         date_of_birth,
-        date_of_registration
+        date_of_registration,
       } = req.body);
 
       await User.updateOne({ _id: userID }, user);
@@ -122,7 +133,7 @@ adminroutes.post("/editsalesman", async (req, res) => {
         ids,
         supervisor,
         number_of_working_days,
-        email
+        email,
       } = req.body);
 
       await Sale.updateOne({ _id: salesID }, sales);
