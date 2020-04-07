@@ -8,10 +8,10 @@ html
         +banja_header(names)
         .banja_content
             h3 Edit Salesmen
-            form(action="/admin/sales", method="post")
+            form(action="/admin/editsalesman", method="post")
                 -
                     let user_data = JSON.parse(rolesman)
-                    let {userID:{names:personnamre, username,phone_number,date_of_birth,date_of_registration},ids,number_of_working_days,email,supervisor} = user_data
+                    let {userID:{_id:user_id,names:personnamre, username,phone_number,date_of_birth,date_of_registration},ids,number_of_working_days,email,supervisor,_id} = user_data
                 table
                     tbody
                         tr
@@ -32,6 +32,8 @@ html
                                             tr
                                                 td.form_headers Date of Birth :
                                                 td: input#date_of_birth(type="date", name="date_of_birth",autocomplete="off",placeholder=date_of_birth)
+                                                td: input#user_id(type="text", name="user_id", value=user_id, hidden)
+                                                td: input#role_id(type="text", name="role_id", value=_id, hidden)
                         tr
                             td
                                 fieldset

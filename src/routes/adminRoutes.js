@@ -116,28 +116,29 @@ adminroutes.get("/editsales", (req, res) => {
 
 adminroutes.post("/editsalesman", async (req, res) => {
   if (req.session.user) {
+    let parameters = req.body;
+
+    for (const parameter in parameters) {
+      if (parameters.hasOwnProperty(parameter)) {
+        if (parameters[parameter] == "") {
+          delete parameters[parameter];
+        }
+      }
+    }
+    let { role_id, user_id } = req.body;
+    delete parameters.role_id;
+    delete parameters.user_id;
+
+    // let { role_id, user_id } = req.body;
+    // console.log(req.body);
     try {
-      let user = ({
-        names,
-        role,
-        password,
-        username,
-        phone_number,
-        date_of_birth,
-        date_of_registration,
-      } = req.body);
-
-      await User.updateOne({ _id: userID }, user);
-
-      let sales = ({
-        ids,
-        supervisor,
-        number_of_working_days,
-        email,
-      } = req.body);
-
-      await Sale.updateOne({ _id: salesID }, sales);
+      let user = await User.updateOne({ _id: user_id }, parameters);
+      let sale = await Sale.updateOne({ _id: role_id }, parameters);
+      console.log("user" + JSON.stringify(user));
+      console.log("sale" + JSON.stringify(sale));
+      res.redirect("/admin/saleslist");
     } catch (error) {
+      console.log(error);
       res.redirect("/admin/saleslist");
     }
   } else res.redirect("/");
