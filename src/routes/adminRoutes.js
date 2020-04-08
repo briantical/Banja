@@ -10,8 +10,10 @@ adminroutes.get("/saleslist", async (req, res) => {
       let sales = await Sale.find().populate("userID");
       if (req.query.ids) {
         sales = await Sale.find({ ids: req.query.ids }).populate("userID");
+        res.render("salesmen", { sales, names });
+      } else {
+        res.render("salesmen", { sales, names });
       }
-      res.render("salesmen", { sales, names });
     } catch (error) {
       console.log("Could not retrieve the sales executive");
     }
@@ -79,7 +81,12 @@ adminroutes.post("/sales", async (req, res) => {
 adminroutes.get("/deletesales", async (req, res) => {
   if (req.session.user) {
     try {
-      let { user_id, rolesmen_id } = req.query;
+      let {
+        rolesman: {
+          _id: rolesmen_id,
+          userID: { _id: user_id },
+        },
+      } = req.body;
       await User.deleteOne({ _id: user_id });
       await Sale.deleteOne({ _id: rolesmen_id });
 
@@ -109,7 +116,9 @@ adminroutes.get("/editsales", (req, res) => {
       rolesman,
     } = req.session;
     res.render("editsalesman", { names, rolesman });
+    req.session.rolesman = undefined;
   } else {
+    req.session.rolesman = undefined;
     res.redirect("/");
   }
 });
@@ -129,13 +138,10 @@ adminroutes.post("/editsalesman", async (req, res) => {
     delete parameters.role_id;
     delete parameters.user_id;
 
-    // let { role_id, user_id } = req.body;
-    // console.log(req.body);
     try {
-      let user = await User.updateOne({ _id: user_id }, parameters);
-      let sale = await Sale.updateOne({ _id: role_id }, parameters);
-      console.log("user" + JSON.stringify(user));
-      console.log("sale" + JSON.stringify(sale));
+      await User.updateOne({ _id: user_id }, parameters);
+      await Sale.updateOne({ _id: role_id }, parameters);
+
       res.redirect("/admin/saleslist");
     } catch (error) {
       console.log(error);

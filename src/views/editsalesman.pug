@@ -11,7 +11,7 @@ html
             form(action="/admin/editsalesman", method="post")
                 -
                     let user_data = JSON.parse(rolesman)
-                    let {userID:{_id:user_id,names:personnamre, username,phone_number,date_of_birth,date_of_registration},ids,number_of_working_days,email,supervisor,_id} = user_data
+                    let {userID:{_id:user_id,names:personname, username,phone_number,date_of_birth,date_of_registration},ids,number_of_working_days,email,supervisor,_id} = user_data
                 table
                     tbody
                         tr
@@ -22,7 +22,7 @@ html
                                         tbody
                                             tr
                                                 td.form_headers Full Names :
-                                                td: input#names(type="text", name="names", autocomplete="off",placeholder=personnamre)
+                                                td: input#names(type="text", name="names", autocomplete="off",placeholder=personname)
                                             tr
                                                 td.form_headers Username :
                                                 td: input#username(type="text", name="username",autocomplete="off", placeholder=username)

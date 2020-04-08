@@ -1,6 +1,5 @@
 //- The delete action for customer and sales lists
 mixin delete_banja_user(user_id, rolesmen_id, action)   
-    form(action=action)
-        input(name="user_id", hidden, value=user_id)
-        input(name="rolesmen_id", hidden, value=rolesmen_id)
+    form(action=action, method="POST")
+        input(name="rolesman", hidden, value=rolesman)
         input(type="submit",value="Delete")

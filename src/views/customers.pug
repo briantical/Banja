@@ -1,5 +1,7 @@
 include components/header
 include components/filter
+include components/deleteuser
+include components/edituser
 doctype html
 html
     head
@@ -28,7 +30,8 @@ html
                             td #{customer.userID.phone_number}
                             td #{customer.userID.date_of_birth}
                             td #{customer.userID.date_of_registration}
-                            td: .deletecustomer
+                            td: +delete_banja_user(customer, "/sales/deletecustomer")
+                            td: +edit_banja_user(customer, "/sales/editcustomer")
                 a(href="/sales/customers", title="Add customer"): .add_button.commons_vertical#add_customers +
     include components/footer
     script(src="/static/js/bootstrap/jquery.js")

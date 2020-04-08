@@ -8,17 +8,16 @@ salesroutes.get("/customerslist", async (req, res) => {
     let { names } = req.session.user;
     try {
       let customers = await Customer.find().populate("userID");
-
       if (req.query.customerID) {
         customers = await Customer.find({
-          customerID: req.query.customerID
+          customerID: req.query.customerID,
         }).populate("userID");
+
         res.render("customers", { customers, names });
       } else {
         res.render("customers", { customers, names });
       }
     } catch (error) {
-      console.log(error);
       console.log("Could not retrieve the customers");
     }
   } else {
@@ -45,7 +44,7 @@ salesroutes.post("/customers", async (req, res) => {
         password,
         phone_number,
         date_of_birth,
-        date_of_registration
+        date_of_registration,
       } = req.body);
       let user = new User(userdetails);
 
@@ -67,7 +66,7 @@ salesroutes.post("/customers", async (req, res) => {
             referee_name,
             referee_dob,
             referee_contact,
-            referee_occupation
+            referee_occupation,
           } = req.body);
 
           let { _id: userID } = _theuser;
@@ -88,6 +87,76 @@ salesroutes.post("/customers", async (req, res) => {
   } else {
     res.redirect("/");
   }
+});
+
+salesroutes.get("/deletecustomer", async (req, res) => {
+  if (req.session.user) {
+    try {
+      let {
+        rolesman: {
+          _id: rolesmen_id,
+          userID: { _id: user_id },
+        },
+      } = req.body;
+      await User.deleteOne({ _id: user_id });
+      await Customer.deleteOne({ _id: rolesmen_id });
+
+      res.redirect("/sales/customerslist");
+    } catch (error) {
+      res.redirect("/sales/customerslist");
+    }
+  } else res.redirect("/");
+});
+
+salesroutes.post("/editcustomer", (req, res) => {
+  if (req.session.user) {
+    if (req.body) {
+      let { rolesman } = req.body;
+      req.session.rolesman = rolesman;
+      res.redirect("/sales/editcustomer");
+    } else {
+      res.redirect("/sales/customerslist");
+    }
+  } else res.redirect("/");
+});
+
+salesroutes.get("/editcustomer", (req, res) => {
+  if (req.session.user && req.session.rolesman) {
+    let {
+      user: { names },
+      rolesman,
+    } = req.session;
+    res.render("editcustomer", { names, rolesman });
+  } else {
+    res.redirect("/");
+  }
+});
+
+salesroutes.post("/editcustomers", async (req, res) => {
+  if (req.session.user) {
+    let parameters = req.body;
+
+    for (const parameter in parameters) {
+      if (parameters.hasOwnProperty(parameter)) {
+        if (parameters[parameter] == "") {
+          delete parameters[parameter];
+        }
+      }
+    }
+    let { role_id, user_id } = req.body;
+    delete parameters.role_id;
+    delete parameters.user_id;
+
+    try {
+      await User.updateOne({ _id: user_id }, parameters);
+      await Customer.updateOne({ _id: role_id }, parameters);
+
+      res.redirect("/sales/customerslist");
+    } catch (error) {
+      console.log(error);
+      res.redirect("/sales/customerslist");
+    }
+  } else res.redirect("/");
 });
 
 module.exports = salesroutes;
