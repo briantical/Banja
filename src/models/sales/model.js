@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
-const saleschema = require("./schema");
+const mongoose = require('mongoose');
+const saleschema = require('./schema');
 
-let Sale = mongoose.model("Sale", saleschema);
+const Sale = mongoose.model('Sale', saleschema);
 
 module.exports = Sale;

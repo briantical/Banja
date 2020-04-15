@@ -1,58 +1,67 @@
-const { Router } = require("express");
-const { User, Customer } = require("./../models");
+const { Router } = require('express');
+const { User, Customer } = require('../models');
 
 const salesroutes = Router();
 
-salesroutes.get("/customerslist", async (req, res) => {
+salesroutes.get('/customerslist', async (req, res) => {
   if (req.session.user) {
-    let { names } = req.session.user;
+    const { names } = req.session.user;
     try {
-      let customers = await Customer.find().populate("userID");
+      let customers = await Customer.find().populate('userID');
       if (req.query.customerID) {
         customers = await Customer.find({
-          customerID: req.query.customerID,
-        }).populate("userID");
+          customerID: req.query.customerID
+        }).populate('userID');
 
-        res.render("customers", { customers, names });
+        res.render('customers', { customers, names });
       } else {
-        res.render("customers", { customers, names });
+        res.render('customers', { customers, names });
       }
     } catch (error) {
-      console.log("Could not retrieve the customers");
+      // console.log('Could not retrieve the customers');
     }
   } else {
-    res.redirect("/");
+    res.redirect('/');
   }
 });
 
-salesroutes.get("/customers", (req, res) => {
+salesroutes.get('/customers', (req, res) => {
   if (req.session.user) {
-    let { names } = req.session.user;
-    res.render("addcustomer", { names });
+    const { names } = req.session.user;
+    res.render('addcustomer', { names });
   } else {
-    res.redirect("/");
+    res.redirect('/');
   }
 });
 
-salesroutes.post("/customers", async (req, res) => {
+salesroutes.post('/customers', async (req, res) => {
   if (req.session.user) {
     try {
-      let userdetails = ({
+      const {
         names,
         role,
         username,
         password,
         phone_number,
         date_of_birth,
-        date_of_registration,
-      } = req.body);
-      let user = new User(userdetails);
+        date_of_registration
+      } = req.body;
+
+      const userdetails = {
+        names,
+        role,
+        username,
+        password,
+        phone_number,
+        date_of_birth,
+        date_of_registration
+      };
+      const user = new User(userdetails);
 
       await User.register(user, req.body.password, async (error, _theuser) => {
-        console.log("Created the user");
         if (error) throw error;
         try {
-          let customerdetails = ({
+          const {
             customerID,
             NIN,
             nationality,
@@ -66,84 +75,98 @@ salesroutes.post("/customers", async (req, res) => {
             referee_name,
             referee_dob,
             referee_contact,
-            referee_occupation,
-          } = req.body);
+            referee_occupation
+          } = req.body;
 
-          let { _id: userID } = _theuser;
+          let customerdetails = {
+            customerID,
+            NIN,
+            nationality,
+            marital_status,
+            documents,
+            vehicle_type,
+            down_paymnet,
+            stage_name,
+            lc_one,
+            lc_three,
+            referee_name,
+            referee_dob,
+            referee_contact,
+            referee_occupation
+          };
+          const { _id: userID } = _theuser;
           customerdetails = { ...customerdetails, userID };
 
-          let customer = new Customer(customerdetails);
-          console.log("Created the customer");
+          const customer = new Customer(customerdetails);
 
           await customer.save();
-          res.redirect("/sales/customerslist");
+          res.redirect('/sales/customerslist');
         } catch (error) {
-          console.log("Could not create the customer");
+          // console.log('Could not create the customer');
         }
       });
     } catch (error) {
-      console.log("Could not create user");
+      // console.log('Could not create user');
     }
   } else {
-    res.redirect("/");
+    res.redirect('/');
   }
 });
 
-salesroutes.get("/deletecustomer", async (req, res) => {
+salesroutes.get('/deletecustomer', async (req, res) => {
   if (req.session.user) {
     try {
-      let {
+      const {
         rolesman: {
           _id: rolesmen_id,
-          userID: { _id: user_id },
-        },
+          userID: { _id: user_id }
+        }
       } = req.body;
       await User.deleteOne({ _id: user_id });
       await Customer.deleteOne({ _id: rolesmen_id });
 
-      res.redirect("/sales/customerslist");
+      res.redirect('/sales/customerslist');
     } catch (error) {
-      res.redirect("/sales/customerslist");
+      res.redirect('/sales/customerslist');
     }
-  } else res.redirect("/");
+  } else res.redirect('/');
 });
 
-salesroutes.post("/editcustomer", (req, res) => {
+salesroutes.post('/editcustomer', (req, res) => {
   if (req.session.user) {
     if (req.body) {
-      let { rolesman } = req.body;
+      const { rolesman } = req.body;
       req.session.rolesman = rolesman;
-      res.redirect("/sales/editcustomer");
+      res.redirect('/sales/editcustomer');
     } else {
-      res.redirect("/sales/customerslist");
+      res.redirect('/sales/customerslist');
     }
-  } else res.redirect("/");
+  } else res.redirect('/');
 });
 
-salesroutes.get("/editcustomer", (req, res) => {
+salesroutes.get('/editcustomer', (req, res) => {
   if (req.session.user && req.session.rolesman) {
-    let {
+    const {
       user: { names },
-      rolesman,
+      rolesman
     } = req.session;
-    res.render("editcustomer", { names, rolesman });
+    res.render('editcustomer', { names, rolesman });
   } else {
-    res.redirect("/");
+    res.redirect('/');
   }
 });
 
-salesroutes.post("/editcustomers", async (req, res) => {
+salesroutes.post('/editcustomers', async (req, res) => {
   if (req.session.user) {
-    let parameters = req.body;
+    const parameters = req.body;
 
-    for (const parameter in parameters) {
-      if (parameters.hasOwnProperty(parameter)) {
-        if (parameters[parameter] == "") {
-          delete parameters[parameter];
-        }
+    Object.keys(parameters).forEach((key) => {
+      if (parameters[key] === '') {
+        delete parameters[key];
       }
-    }
-    let { role_id, user_id } = req.body;
+    });
+
+    const { role_id, user_id } = req.body;
     delete parameters.role_id;
     delete parameters.user_id;
 
@@ -151,12 +174,12 @@ salesroutes.post("/editcustomers", async (req, res) => {
       await User.updateOne({ _id: user_id }, parameters);
       await Customer.updateOne({ _id: role_id }, parameters);
 
-      res.redirect("/sales/customerslist");
+      res.redirect('/sales/customerslist');
     } catch (error) {
-      console.log(error);
-      res.redirect("/sales/customerslist");
+      // console.log(error);
+      res.redirect('/sales/customerslist');
     }
-  } else res.redirect("/");
+  } else res.redirect('/');
 });
 
 module.exports = salesroutes;

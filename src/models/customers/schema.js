@@ -1,9 +1,12 @@
-const mongoose = require("mongoose");
-const Schema = mongoose.Schema;
-const ObjectId = Schema.Types.ObjectId;
+const mongoose = require('mongoose');
 
-let customerschema = new mongoose.Schema({
-  userID: { type: ObjectId, ref: "User" },
+const { Schema } = mongoose;
+const {
+  Types: { ObjectId }
+} = Schema;
+
+const customerschema = new mongoose.Schema({
+  userID: { type: ObjectId, ref: 'User' },
   customerID: String,
   NIN: String,
   nationality: String,

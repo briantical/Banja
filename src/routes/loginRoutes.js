@@ -1,7 +1,7 @@
-const { Router } = require("express");
-const passport = require("passport");
+const { Router } = require('express');
+const passport = require('passport');
 
-const permissions = require("./../../permissions");
+const permissions = require('../../permissions');
 
 const loginroutes = Router();
 
@@ -10,22 +10,22 @@ const loginroutes = Router();
 // });
 
 loginroutes.post(
-  "/",
-  passport.authenticate("local", { failureRedirect: "/" }),
+  '/',
+  passport.authenticate('local', { failureRedirect: '/' }),
   (req, res) => {
     req.session.user = req.user;
-    let { names, role: user_role } = req.user;
-    let role = permissions[user_role];
-    res.redirect(role.homepage + "?names=" + names);
+    const { names, role: userRole } = req.user;
+    const role = permissions[userRole];
+    res.redirect(`${role.homepage}?names=${names}`);
   }
 );
 
-loginroutes.get("/resetpassword", (req, res) => {
-  res.render("resetpassword");
+loginroutes.get('/resetpassword', (req, res) => {
+  res.render('resetpassword');
 });
 
-loginroutes.get("*", (req, res) => {
-  res.render("index");
+loginroutes.get('*', (req, res) => {
+  res.render('index');
 });
 
 module.exports = loginroutes;

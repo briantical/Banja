@@ -1,9 +1,9 @@
-const mongoose = require("mongoose");
-const userschema = require("./schema");
-const passportLocalMongoose = require("passport-local-mongoose");
+const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
+const userschema = require('./schema');
 
-userschema.plugin(passportLocalMongoose, { usernameField: "username" });
+userschema.plugin(passportLocalMongoose, { usernameField: 'username' });
 
-let User = mongoose.model("User", userschema);
+const User = mongoose.model('User', userschema);
 
 module.exports = User;
