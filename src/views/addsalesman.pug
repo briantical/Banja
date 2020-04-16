@@ -46,7 +46,10 @@ html
                                                 td.form_headers Supervisor :
                                                 td
                                                     select#supervisor(name="supervisor")
-                                                        option(value="Lutaaya Brian Ivan") Lutaaya Brian Ivan
+                                                        option(value="none") Choose a supervisor
+                                                        each supervisor in supervisors
+                                                            option(value=supervisor.userID.names)=supervisor.userID.names
+
                                             tr
                                                 td.form_headers Number of working days :
                                                 td: input#number_of_working_days(type="number", name="number_of_working_days", autocomplete="off")
