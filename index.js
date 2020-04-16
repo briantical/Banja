@@ -62,7 +62,7 @@ app.use(
 
 // Define the template engine to use
 app.set('view engine', 'pug');
-app.set('views', path(__dirname, '/src/views'));
+app.set('views', path.join(__dirname, '/src/views'));
 
 // Access the public folder for css
 // Access the public folder in the root directory

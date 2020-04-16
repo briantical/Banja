@@ -290,3 +290,13 @@ td label {
   border-radius: 50%;
   background-color: rgb(0, 97, 170);
 }
+
+.edit_btn,
+.delete_btn {
+  border-width: 0px;
+}
+
+.edit_icon,
+.delete_icon {
+  color: rgb(0, 97, 170);
+}

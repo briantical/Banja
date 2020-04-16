@@ -5,10 +5,6 @@ const permissions = require('../../permissions');
 
 const loginroutes = Router();
 
-// loginroutes.get("/", (req, res) => {
-//   res.render("index");
-// });
-
 loginroutes.post(
   '/',
   passport.authenticate('local', { failureRedirect: '/' }),
