@@ -11,7 +11,7 @@ html
             form(action="/admin/editsalesman", method="post")
                 -
                     let user_data = JSON.parse(rolesman)
-                    let {userID:{_id:user_id,names:personname, username,phone_number,date_of_birth,date_of_registration},ids,number_of_working_days,email,supervisor,_id} = user_data
+                    let {user:{_id:userID,names:personname, username,phoneNumber,dateOfBirth,dateOfRegistration},ids,numberOfWorkingDays,email,supervisor,_id} = user_data
                 table
                     tbody
                         tr
@@ -28,12 +28,12 @@ html
                                                 td: input#username(type="text", name="username",autocomplete="off", placeholder=username)
                                             tr
                                                 td.form_headers Phone Number :
-                                                td: input#phone_number(type="tel", name="phone_number",autocomplete="off",placeholder=phone_number)
+                                                td: input#phoneNumber(type="tel", name="phoneNumber",autocomplete="off",placeholder=phoneNumber)
                                             tr
                                                 td.form_headers Date of Birth :
-                                                td: input#date_of_birth(type="date", name="date_of_birth",autocomplete="off",placeholder=date_of_birth)
-                                                td: input#user_id(type="text", name="user_id", value=user_id, hidden)
-                                                td: input#role_id(type="text", name="role_id", value=_id, hidden)
+                                                td: input#dateOfBirth(type="date", name="dateOfBirth",autocomplete="off",placeholder=dateOfBirth)
+                                                td: input#userID(type="text", name="userID", value=userID, hidden)
+                                                td: input#roleID(type="text", name="roleID", value=_id, hidden)
                         tr
                             td
                                 fieldset
@@ -49,10 +49,10 @@ html
                                                     select#supervisor(name="supervisor")
                                                         option(value=supervisor)=supervisor
                                                         each _supervisor in supervisors
-                                                            option(value=_supervisor.userID.names)=_supervisor.userID.names
+                                                            option(value=_supervisor.user.names)=_supervisor.user.names
                                             tr
                                                 td.form_headers Number of working days :
-                                                td: input#number_of_working_days(type="number", name="number_of_working_days", autocomplete="off",placeholder=number_of_working_days)
+                                                td: input#numberOfWorkingDays(type="number", name="numberOfWorkingDays", autocomplete="off",placeholder=numberOfWorkingDays)
                                             tr
                                                 td.form_headers Email (optional) :
                                                 td: input#email(type="email", name="email", autocomplete="off",placeholder=email)

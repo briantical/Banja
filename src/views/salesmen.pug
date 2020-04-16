@@ -27,13 +27,13 @@ html
                     each sale in sales
                         tr
                             td #{sale.ids}
-                            td #{sale.userID.names}
-                            td #{sale.userID.username}
-                            td #{sale.userID.phone_number}
+                            td #{sale.user.names}
+                            td #{sale.user.username}
+                            td #{sale.user.phoneNumber}
                             td #{sale.email}
                             td #{sale.supervisor}
-                            td #{sale.number_of_working_days}  
-                            td #{sale.userID.date_of_birth}
+                            td #{sale.numberOfWorkingDays}  
+                            td #{sale.user.dateOfBirth}
                             td: +delete_banja_user(sale, "/admin/deletesales")
                             td: +edit_banja_user(sale, "/admin/editsales") 
             a(href="/admin/sales", title="Add salesman"): .add_button.commons_vertical#add_customers +

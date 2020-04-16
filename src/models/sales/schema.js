@@ -7,9 +7,9 @@ const {
 
 const saleschema = new mongoose.Schema({
   ids: String,
-  userID: { type: ObjectId, ref: 'User' },
+  user: { type: ObjectId, ref: 'User' },
   supervisor: String,
-  number_of_working_days: Number,
+  numberOfWorkingDays: Number,
   email: String
 });
 

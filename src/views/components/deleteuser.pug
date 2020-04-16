@@ -1,5 +1,5 @@
 //- The delete action for customer and sales lists
-mixin delete_banja_user(user_id, rolesmen_id, action)   
+mixin delete_banja_user(userID, rolesmenID, action)   
     form(action=action, method="POST")
         input(name="rolesman", hidden, value=rolesman)
         button.delete_btn(type="submit"): i.fas.fa-trash-alt.delete_icon

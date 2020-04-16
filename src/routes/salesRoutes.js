@@ -10,11 +10,11 @@ salesroutes.get('/customerslist', async (req, res) => {
       home
     } = req.session;
     try {
-      let customers = await Customer.find().populate('userID');
+      let customers = await Customer.find().populate('user');
       if (req.query.customerID) {
         customers = await Customer.find({
           customerID: req.query.customerID
-        }).populate('userID');
+        }).populate('user');
 
         res.render('customers', { customers, names, home });
       } else {
@@ -48,9 +48,9 @@ salesroutes.post('/customers', async (req, res) => {
         role,
         username,
         password,
-        phone_number,
-        date_of_birth,
-        date_of_registration
+        phoneNumber,
+        dateOfBirth,
+        dateOfRegistration
       } = req.body;
 
       const userdetails = {
@@ -58,9 +58,9 @@ salesroutes.post('/customers', async (req, res) => {
         role,
         username,
         password,
-        phone_number,
-        date_of_birth,
-        date_of_registration
+        phoneNumber,
+        dateOfBirth,
+        dateOfRegistration
       };
       const user = new User(userdetails);
 
@@ -71,37 +71,37 @@ salesroutes.post('/customers', async (req, res) => {
             customerID,
             NIN,
             nationality,
-            marital_status,
+            maritalStatus,
             documents,
-            vehicle_type,
-            down_paymnet,
-            stage_name,
-            lc_one,
-            lc_three,
-            referee_name,
-            referee_dob,
-            referee_contact,
-            referee_occupation
+            vehicleType,
+            downPaymnet,
+            stageName,
+            lcOne,
+            lcThree,
+            refereeName,
+            refereeDob,
+            refereeContact,
+            refereeOccupation
           } = req.body;
 
           let customerdetails = {
             customerID,
             NIN,
             nationality,
-            marital_status,
+            maritalStatus,
             documents,
-            vehicle_type,
-            down_paymnet,
-            stage_name,
-            lc_one,
-            lc_three,
-            referee_name,
-            referee_dob,
-            referee_contact,
-            referee_occupation
+            vehicleType,
+            downPaymnet,
+            stageName,
+            lcOne,
+            lcThree,
+            refereeName,
+            refereeDob,
+            refereeContact,
+            refereeOccupation
           };
-          const { _id: userID } = _theuser;
-          customerdetails = { ...customerdetails, userID };
+          const { _id: _user } = _theuser;
+          customerdetails = { ...customerdetails, _user };
 
           const customer = new Customer(customerdetails);
 
@@ -124,12 +124,12 @@ salesroutes.get('/deletecustomer', async (req, res) => {
     try {
       const {
         rolesman: {
-          _id: rolesmen_id,
-          userID: { _id: user_id }
+          _id: rolesmenID,
+          user: { _id: userID }
         }
       } = req.body;
-      await User.deleteOne({ _id: user_id });
-      await Customer.deleteOne({ _id: rolesmen_id });
+      await User.deleteOne({ _id: userID });
+      await Customer.deleteOne({ _id: rolesmenID });
 
       res.redirect('/sales/customerslist');
     } catch (error) {
@@ -173,13 +173,13 @@ salesroutes.post('/editcustomers', async (req, res) => {
       }
     });
 
-    const { role_id, user_id } = req.body;
-    delete parameters.role_id;
-    delete parameters.user_id;
+    const { roleID, userID } = req.body;
+    delete parameters.roleID;
+    delete parameters.userID;
 
     try {
-      await User.updateOne({ _id: user_id }, parameters);
-      await Customer.updateOne({ _id: role_id }, parameters);
+      await User.updateOne({ _id: userID }, parameters);
+      await Customer.updateOne({ _id: roleID }, parameters);
 
       res.redirect('/sales/customerslist');
     } catch (error) {

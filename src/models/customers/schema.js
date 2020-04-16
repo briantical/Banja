@@ -6,21 +6,21 @@ const {
 } = Schema;
 
 const customerschema = new mongoose.Schema({
-  userID: { type: ObjectId, ref: 'User' },
+  user: { type: ObjectId, ref: 'User' },
   customerID: String,
   NIN: String,
   nationality: String,
-  marital_status: String,
+  maritalStatus: String,
   documents: Boolean,
-  vehicle_type: String,
-  down_paymnet: Number,
-  stage_name: String,
-  lc_one: String,
-  lc_three: String,
-  referee_name: String,
-  referee_dob: Date,
-  referee_contact: String,
-  referee_occupation: String
+  vehicleType: String,
+  downPaymnet: Number,
+  stageName: String,
+  lcOne: String,
+  lcThree: String,
+  refereeName: String,
+  refereeDob: Date,
+  refereeContact: String,
+  refereeOccupation: String
 });
 
 module.exports = customerschema;

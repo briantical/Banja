@@ -5,9 +5,9 @@ const userschema = new mongoose.Schema({
   role: String,
   password: String,
   username: String,
-  phone_number: String,
-  date_of_birth: Date,
-  date_of_registration: Date
+  phoneNumber: String,
+  dateOfBirth: Date,
+  dateOfRegistration: Date
 });
 
 module.exports = userschema;

@@ -10,9 +10,9 @@ adminroutes.get('/saleslist', async (req, res) => {
       home
     } = req.session;
     try {
-      let sales = await Sale.find().populate('userID');
+      let sales = await Sale.find().populate('user');
       if (req.query.ids) {
-        sales = await Sale.find({ ids: req.query.ids }).populate('userID');
+        sales = await Sale.find({ ids: req.query.ids }).populate('user');
         res.render('salesmen', { sales, names, home });
       } else {
         res.render('salesmen', { sales, names, home });
@@ -29,7 +29,7 @@ adminroutes.get('/saleslist', async (req, res) => {
 adminroutes.get('/sales', async (req, res) => {
   try {
     if (req.session.user) {
-      const supervisors = await Sale.find().populate('userID');
+      const supervisors = await Sale.find().populate('user');
       const {
         user: { names },
         home
@@ -52,47 +52,41 @@ adminroutes.post('/sales', async (req, res) => {
         role,
         password,
         username,
-        phone_number,
-        date_of_birth,
-        date_of_registration
+        phoneNumber,
+        dateOfBirth,
+        dateOfRegistration
       } = req.body;
 
-      let userdetails = {
+      const userdetails = {
         names,
         role,
         password,
         username,
-        phone_number,
-        date_of_birth,
-        date_of_registration
+        phoneNumber,
+        dateOfBirth,
+        dateOfRegistration
       };
       const user = new User(userdetails);
 
       await User.register(user, req.body.password, async (error, _theuser) => {
         if (error) throw error;
+        const { ids, supervisor, numberOfWorkingDays, email } = req.body;
 
-        try {
-          const { ids, supervisor, number_of_working_days, email } = req.body;
+        let salesdetails = {
+          ids,
+          supervisor,
+          numberOfWorkingDays,
+          email
+        };
 
-          let salesdetails = {
-            ids,
-            supervisor,
-            number_of_working_days,
-            email
-          };
+        const { _id: _user } = _theuser;
+        salesdetails = { ...salesdetails, _user };
 
-          const { _id: userID } = _theuser;
-          salesdetails = { ...salesdetails, userID };
+        const salesexecutive = new Sale(salesdetails);
 
-          const salesexecutive = new Sale(salesdetails);
-
-          await salesexecutive
-            .save()
-            .then(() => res.redirect('/admin/saleslist'));
-        } catch (error) {
-          // console.log('Could not create the sales executive');
-          // throw error
-        }
+        await salesexecutive
+          .save()
+          .then(() => res.redirect('/admin/saleslist'));
       });
     } catch (error) {
       // console.log('Could not create user');
@@ -106,14 +100,14 @@ adminroutes.post('/sales', async (req, res) => {
 adminroutes.get('/deletesales', async (req, res) => {
   if (req.session.user) {
     try {
-      let {
+      const {
         rolesman: {
-          _id: rolesmen_id,
-          userID: { _id: user_id }
+          _id: rolesmenID,
+          user: { _id: userID }
         }
       } = req.body;
-      await User.deleteOne({ _id: user_id });
-      await Sale.deleteOne({ _id: rolesmen_id });
+      await User.deleteOne({ _id: userID });
+      await Sale.deleteOne({ _id: rolesmenID });
 
       res.redirect('/admin/saleslist');
     } catch (error) {
@@ -142,7 +136,7 @@ adminroutes.get('/editsales', async (req, res) => {
         rolesman,
         home
       } = req.session;
-      const supervisors = await Sale.find().populate('userID');
+      const supervisors = await Sale.find().populate('user');
       res.render('editsalesman', {
         names,
         rolesman,
@@ -169,13 +163,13 @@ adminroutes.post('/editsalesman', async (req, res) => {
       }
     });
 
-    let { role_id, user_id } = req.body;
-    delete parameters.role_id;
-    delete parameters.user_id;
+    const { roleID, userID } = req.body;
+    delete parameters.roleID;
+    delete parameters.userID;
 
     try {
-      await User.updateOne({ _id: user_id }, parameters);
-      await Sale.updateOne({ _id: role_id }, parameters);
+      await User.updateOne({ _id: userID }, parameters);
+      await Sale.updateOne({ _id: roleID }, parameters);
 
       res.redirect('/admin/saleslist');
     } catch (error) {

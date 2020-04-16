@@ -25,11 +25,11 @@ html
                     each customer in customers
                         tr
                             td #{customer.customerID}
-                            td #{customer.userID.names}
-                            td #{customer.userID.username}
-                            td #{customer.userID.phone_number}
-                            td #{customer.userID.date_of_birth}
-                            td #{customer.userID.date_of_registration}
+                            td #{customer.user.names}
+                            td #{customer.user.username}
+                            td #{customer.user.phoneNumber}
+                            td #{customer.user.dateOfBirth}
+                            td #{customer.user.dateOfRegistration}
                             td: +delete_banja_user(customer, "/sales/deletecustomer")
                             td: +edit_banja_user(customer, "/sales/editcustomer")
                 a(href="/sales/customers", title="Add customer"): .add_button.commons_vertical#add_customers +
