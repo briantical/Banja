@@ -134,18 +134,28 @@ adminroutes.post('/editsales', (req, res) => {
   } else res.redirect('/');
 });
 
-adminroutes.get('/editsales', (req, res) => {
-  if (req.session.user && req.session.rolesman) {
-    const {
-      user: { names },
-      rolesman,
-      home
-    } = req.session;
-    res.render('editsalesman', { names, rolesman, home });
-    req.session.rolesman = undefined;
-  } else {
-    req.session.rolesman = undefined;
-    res.redirect('/');
+adminroutes.get('/editsales', async (req, res) => {
+  try {
+    if (req.session.user && req.session.rolesman) {
+      const {
+        user: { names },
+        rolesman,
+        home
+      } = req.session;
+      const supervisors = await Sale.find().populate('userID');
+      res.render('editsalesman', {
+        names,
+        rolesman,
+        home,
+        supervisors
+      });
+      req.session.rolesman = undefined;
+    } else {
+      req.session.rolesman = undefined;
+      res.redirect('/');
+    }
+  } catch (error) {
+    res.redirect('/admin/saleslist');
   }
 });
 
