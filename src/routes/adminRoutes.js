@@ -5,14 +5,17 @@ const adminroutes = Router();
 
 adminroutes.get('/saleslist', async (req, res) => {
   if (req.session.user) {
-    const { names } = req.session.user;
+    const {
+      user: { names },
+      home
+    } = req.session;
     try {
       let sales = await Sale.find().populate('userID');
       if (req.query.ids) {
         sales = await Sale.find({ ids: req.query.ids }).populate('userID');
-        res.render('salesmen', { sales, names });
+        res.render('salesmen', { sales, names, home });
       } else {
-        res.render('salesmen', { sales, names });
+        res.render('salesmen', { sales, names, home });
       }
     } catch (error) {
       // console.log('Could not retrieve the sales executive');
@@ -27,8 +30,11 @@ adminroutes.get('/sales', async (req, res) => {
   try {
     if (req.session.user) {
       const supervisors = await Sale.find().populate('userID');
-      const { names } = req.session.user;
-      res.render('addsalesman', { names, supervisors });
+      const {
+        user: { names },
+        home
+      } = req.session;
+      res.render('addsalesman', { names, supervisors, home });
     } else {
       res.redirect('/');
     }
@@ -132,9 +138,10 @@ adminroutes.get('/editsales', (req, res) => {
   if (req.session.user && req.session.rolesman) {
     const {
       user: { names },
-      rolesman
+      rolesman,
+      home
     } = req.session;
-    res.render('editsalesman', { names, rolesman });
+    res.render('editsalesman', { names, rolesman, home });
     req.session.rolesman = undefined;
   } else {
     req.session.rolesman = undefined;

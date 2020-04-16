@@ -12,6 +12,8 @@ loginroutes.post(
     req.session.user = req.user;
     const { names, role: userRole } = req.user;
     const role = permissions[userRole];
+    const home = role.homepage;
+    req.session.home = home;
     res.redirect(`${role.homepage}?names=${names}`);
   }
 );

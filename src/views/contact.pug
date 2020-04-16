@@ -1,7 +1,11 @@
-html(lang="en")
+include components/header
+doctype html
+html
     head
-        meta(charset="UTF-8")
-        meta(name="viewport", content="width=device-width, initial-scale=1.0")
-        title BodaBoda Banja | Contact us
+        include components/head
+        title BodaBoda Banja : Contact
     body
-        p contact us
+        +banja_header(names,home, true)
+        .banja_content
+            h3 Contact us
+        include components/footer

@@ -240,6 +240,13 @@ sup {
   border: 1px solid rgb(255, 255, 255);
   background-color: rgb(0, 97, 170);
 }
+
+.logout button:disabled {
+  color: rgb(255, 255, 255);
+  border: 1px solid rgb(0, 97, 170);
+  background-color: rgb(0, 97, 170);
+}
+
 .logout button img {
   height: 1rem;
   margin-right: 0.5rem;

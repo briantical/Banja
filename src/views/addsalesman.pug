@@ -5,7 +5,7 @@ html
         include components/head
         title BodaBoda Banja : Salesmen
     body
-        +banja_header(names)
+        +banja_header(names,home,false)
         .banja_content
             h3 Add Salesmen
             form(action="/admin/sales", method="post")

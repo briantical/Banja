@@ -5,7 +5,10 @@ const salesroutes = Router();
 
 salesroutes.get('/customerslist', async (req, res) => {
   if (req.session.user) {
-    const { names } = req.session.user;
+    const {
+      user: { names },
+      home
+    } = req.session;
     try {
       let customers = await Customer.find().populate('userID');
       if (req.query.customerID) {
@@ -13,9 +16,9 @@ salesroutes.get('/customerslist', async (req, res) => {
           customerID: req.query.customerID
         }).populate('userID');
 
-        res.render('customers', { customers, names });
+        res.render('customers', { customers, names, home });
       } else {
-        res.render('customers', { customers, names });
+        res.render('customers', { customers, names, home });
       }
     } catch (error) {
       // console.log('Could not retrieve the customers');
@@ -27,8 +30,11 @@ salesroutes.get('/customerslist', async (req, res) => {
 
 salesroutes.get('/customers', (req, res) => {
   if (req.session.user) {
-    const { names } = req.session.user;
-    res.render('addcustomer', { names });
+    const {
+      user: { names },
+      home
+    } = req.session;
+    res.render('addcustomer', { names, home });
   } else {
     res.redirect('/');
   }
@@ -148,9 +154,10 @@ salesroutes.get('/editcustomer', (req, res) => {
   if (req.session.user && req.session.rolesman) {
     const {
       user: { names },
-      rolesman
+      rolesman,
+      home
     } = req.session;
-    res.render('editcustomer', { names, rolesman });
+    res.render('editcustomer', { names, rolesman, home });
   } else {
     res.redirect('/');
   }
