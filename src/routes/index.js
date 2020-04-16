@@ -13,7 +13,12 @@ approutes.use('/sales', salesroutes);
 approutes.use('/admin', adminroutes);
 
 approutes.get('/', (req, res) => {
-  res.render('index');
+  if (req.query.message) {
+    const { message } = req.query;
+    res.render('index', { message });
+  } else {
+    res.render('index');
+  }
 });
 
 approutes.post('/logout', (req, res) => {

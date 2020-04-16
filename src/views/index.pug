@@ -48,7 +48,13 @@ html
                                 .sidebar_submit_buttons
                                     input._buttons#btn_submit_login(type="submit", value="LOGIN")
                                     input._buttons#btn_reset_login(type="reset", value="CANCEL")
-                                a(href="/resetpassword") Reset Password
+                                a(href="/user/resetpassword") Reset Password
+                                -  if(message)
+                                    - let _message = JSON.parse(message)
+                                        if(_message.type === "success")
+                                            .success_msg=_message.msg
+                                        else
+                                            .error_msg= _message.msg
         script(src="/static/js/bootstrap/jquery.js")
         script(src="/static/js/bootstrap/bootstrap.js")
         script(src="/static/js/index.js")

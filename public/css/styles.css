@@ -307,3 +307,10 @@ td label {
 .delete_icon {
   color: rgb(0, 97, 170);
 }
+
+.success_msg {
+  color: greenyellow;
+}
+.error_msg {
+  color: red;
+}
