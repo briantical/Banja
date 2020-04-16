@@ -10,7 +10,9 @@ salesroutes.get('/customerslist', async (req, res) => {
       home
     } = req.session;
     try {
-      let customers = await Customer.find().populate('user');
+      let customers = await Customer.find({ supervisor: names }).populate(
+        'user'
+      );
       if (req.query.customerID) {
         customers = await Customer.find({
           customerID: req.query.customerID
@@ -62,11 +64,13 @@ salesroutes.post('/customers', async (req, res) => {
         dateOfBirth,
         dateOfRegistration
       };
-      const user = new User(userdetails);
+      const newuser = new User(userdetails);
 
-      await User.register(user, req.body.password, async (error, _theuser) => {
-        if (error) throw error;
-        try {
+      await User.register(
+        newuser,
+        req.body.password,
+        async (error, _theuser) => {
+          if (error) throw error;
           const {
             customerID,
             NIN,
@@ -76,6 +80,7 @@ salesroutes.post('/customers', async (req, res) => {
             vehicleType,
             downPaymnet,
             stageName,
+            supervisor,
             lcOne,
             lcThree,
             refereeName,
@@ -93,6 +98,7 @@ salesroutes.post('/customers', async (req, res) => {
             vehicleType,
             downPaymnet,
             stageName,
+            supervisor,
             lcOne,
             lcThree,
             refereeName,
@@ -100,17 +106,15 @@ salesroutes.post('/customers', async (req, res) => {
             refereeContact,
             refereeOccupation
           };
-          const { _id: _user } = _theuser;
-          customerdetails = { ...customerdetails, _user };
+          const { _id: user } = _theuser;
+          customerdetails = { ...customerdetails, user };
 
           const customer = new Customer(customerdetails);
 
           await customer.save();
           res.redirect('/sales/customerslist');
-        } catch (error) {
-          // console.log('Could not create the customer');
         }
-      });
+      );
     } catch (error) {
       // console.log('Could not create user');
     }
