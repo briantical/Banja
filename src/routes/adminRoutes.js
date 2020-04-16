@@ -60,7 +60,6 @@ adminroutes.post('/sales', async (req, res) => {
       const userdetails = {
         names,
         role,
-        password,
         username,
         phoneNumber,
         dateOfBirth,
@@ -68,30 +67,26 @@ adminroutes.post('/sales', async (req, res) => {
       };
       const newuser = new User(userdetails);
 
-      await User.register(
-        newuser,
-        req.body.password,
-        async (error, _theuser) => {
-          if (error) throw error;
-          const { ids, supervisor, numberOfWorkingDays, email } = req.body;
+      await User.register(newuser, password, async (error, _theuser) => {
+        if (error) throw error;
+        const { ids, supervisor, numberOfWorkingDays, email } = req.body;
 
-          let salesdetails = {
-            ids,
-            supervisor,
-            numberOfWorkingDays,
-            email
-          };
+        let salesdetails = {
+          ids,
+          supervisor,
+          numberOfWorkingDays,
+          email
+        };
 
-          const { _id: user } = _theuser;
-          salesdetails = { ...salesdetails, user };
+        const { _id: user } = _theuser;
+        salesdetails = { ...salesdetails, user };
 
-          const salesexecutive = new Sale(salesdetails);
+        const salesexecutive = new Sale(salesdetails);
 
-          await salesexecutive
-            .save()
-            .then(() => res.redirect('/admin/saleslist'));
-        }
-      );
+        await salesexecutive
+          .save()
+          .then(() => res.redirect('/admin/saleslist'));
+      });
     } catch (error) {
       // console.log('Could not create user');
       // throw error

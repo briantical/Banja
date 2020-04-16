@@ -59,62 +59,57 @@ salesroutes.post('/customers', async (req, res) => {
         names,
         role,
         username,
-        password,
         phoneNumber,
         dateOfBirth,
         dateOfRegistration
       };
       const newuser = new User(userdetails);
 
-      await User.register(
-        newuser,
-        req.body.password,
-        async (error, _theuser) => {
-          if (error) throw error;
-          const {
-            customerID,
-            NIN,
-            nationality,
-            maritalStatus,
-            documents,
-            vehicleType,
-            downPaymnet,
-            stageName,
-            supervisor,
-            lcOne,
-            lcThree,
-            refereeName,
-            refereeDob,
-            refereeContact,
-            refereeOccupation
-          } = req.body;
+      await User.register(newuser, password, async (error, _theuser) => {
+        if (error) throw error;
+        const {
+          customerID,
+          NIN,
+          nationality,
+          maritalStatus,
+          documents,
+          vehicleType,
+          downPaymnet,
+          stageName,
+          supervisor,
+          lcOne,
+          lcThree,
+          refereeName,
+          refereeDob,
+          refereeContact,
+          refereeOccupation
+        } = req.body;
 
-          let customerdetails = {
-            customerID,
-            NIN,
-            nationality,
-            maritalStatus,
-            documents,
-            vehicleType,
-            downPaymnet,
-            stageName,
-            supervisor,
-            lcOne,
-            lcThree,
-            refereeName,
-            refereeDob,
-            refereeContact,
-            refereeOccupation
-          };
-          const { _id: user } = _theuser;
-          customerdetails = { ...customerdetails, user };
+        let customerdetails = {
+          customerID,
+          NIN,
+          nationality,
+          maritalStatus,
+          documents,
+          vehicleType,
+          downPaymnet,
+          stageName,
+          supervisor,
+          lcOne,
+          lcThree,
+          refereeName,
+          refereeDob,
+          refereeContact,
+          refereeOccupation
+        };
+        const { _id: user } = _theuser;
+        customerdetails = { ...customerdetails, user };
 
-          const customer = new Customer(customerdetails);
+        const customer = new Customer(customerdetails);
 
-          await customer.save();
-          res.redirect('/sales/customerslist');
-        }
-      );
+        await customer.save();
+        res.redirect('/sales/customerslist');
+      });
     } catch (error) {
       // console.log('Could not create user');
     }

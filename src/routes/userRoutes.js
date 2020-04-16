@@ -35,21 +35,21 @@ usersroutes.post('/resetpassword', async (req, res) => {
   try {
     const { username, oldpassword, newpassword } = req.body;
     const user = await User.findOne({ username });
-
-    const { password } = user;
-
-    if (password === oldpassword) {
-      await User.updateOne({ username }, { password: newpassword });
-      res.redirect(
-        `/?message={"type": "success","msg":"Password successfully changed"}`
-      );
-    } else {
-      res.redirect(
-        `/?message={"type": "error","msg": "Confirm your login details"}`
-      );
-    }
+    await user
+      .changePassword(oldpassword, newpassword)
+      .then(() => {
+        res.redirect(
+          '/?message={"type": "success","msg": "Password successfully changed"}'
+        );
+      })
+      .catch((error) => {
+        const { message } = error;
+        res.redirect(`/?message={"type": "error","msg":"${message}"}`);
+      });
   } catch (error) {
-    // console.log(error)
+    res.redirect(
+      '/?message={"type": "success","msg": "Password successfully changed"}'
+    );
   }
 });
 
