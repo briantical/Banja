@@ -14,6 +14,7 @@ const customerschema = new mongoose.Schema({
   documents: Boolean,
   vehicleType: String,
   downPaymnet: Number,
+  lastPayment: Date,
   stageName: String,
   supervisor: String,
   lcOne: String,

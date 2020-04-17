@@ -19,21 +19,16 @@ html
                                         tbody
                                             tr
                                                 td.form_headers Full Names :
-                                                td: input#names(type="text", name="names", autocomplete="off")
+                                                td: input#names(type="text", name="names", autocomplete="off", pattern="/Aa-Zz/", required)
                                             tr
                                                 td.form_headers Username :
-                                                td: input#username(type="text", name="username",autocomplete="off")
+                                                td: input#username(type="text", name="username",autocomplete="off",required)
                                             tr
                                                 td.form_headers Phone Number :
-                                                td: input#phoneNumber(type="tel", name="phoneNumber",autocomplete="off")
+                                                td: input#phoneNumber(type="tel", name="phoneNumber",autocomplete="off",required)
                                             tr
                                                 td.form_headers Date of Birth :
-                                                td: input#dateOfBirth(type="date", name="dateOfBirth",autocomplete="off")
-                                            tr
-                                            -var today = new Date()
-                                                td: input#dateOfRegistration(type="text", name="dateOfRegistration", value= today , hidden)
-                                                td: input#password(type="password", name="password",value="notrequired", hidden)
-                                                td: input#role(type="text", name="role",value="sales", hidden)
+                                                td: input#dateOfBirth(type="date", name="dateOfBirth",autocomplete="off",required)
                         tr
                             td
                                 fieldset
@@ -42,24 +37,24 @@ html
                                         tbody
                                             tr
                                                 td.form_headers Unique ID :
-                                                td: input#ids(type="text", name="ids", autocomplete="off")
+                                                td: input#ids(type="text", name="ids", autocomplete="off", minlength="5" , maxlength="35", required)
                                             tr
                                                 td.form_headers Supervisor :
                                                 td
-                                                    select#supervisor(name="supervisor")
+                                                    select#supervisor(name="supervisor",required)
                                                         option(value="none") Choose a supervisor
                                                         each supervisor in supervisors
                                                             option(value=supervisor.user.names)=supervisor.user.names
 
                                             tr
                                                 td.form_headers Number of working days :
-                                                td: input#numberOfWorkingDays(type="number", name="numberOfWorkingDays", autocomplete="off")
+                                                td: input#numberOfWorkingDays(type="number", name="numberOfWorkingDays", autocomplete="off",required)
                                             tr
                                                 td.form_headers Email (optional) :
                                                 td: input#email(type="email", name="email", autocomplete="off")
                         tr
                             td: input.add_salesman_btns(type="submit", value="SUBMIT")
-                            td: input.add_salesman_btns(type="reset", value="RESET")
+                            td: input.add_salesman_btns(type="reset", value="CANCEL")
 
         include components/footer
         script(src="/static/js/bootstrap/jquery.js")

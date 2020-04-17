@@ -46,16 +46,11 @@ adminroutes.get('/sales', async (req, res) => {
 
 adminroutes.post('/sales', async (req, res) => {
   if (req.session.user) {
+    const role = 'sales';
+    const dateOfRegistration = new Date();
+
     try {
-      const {
-        names,
-        role,
-        password,
-        username,
-        phoneNumber,
-        dateOfBirth,
-        dateOfRegistration
-      } = req.body;
+      const { names, username, phoneNumber, dateOfBirth } = req.body;
 
       const userdetails = {
         names,
@@ -66,6 +61,7 @@ adminroutes.post('/sales', async (req, res) => {
         dateOfRegistration
       };
       const newuser = new User(userdetails);
+      const password = 'banjasupervisor';
 
       await User.register(newuser, password, async (error, _theuser) => {
         if (error) throw error;

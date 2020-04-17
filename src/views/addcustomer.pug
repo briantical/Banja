@@ -19,21 +19,16 @@ html
                                         tbody
                                             tr
                                                 td.form_headers Full Names :
-                                                td: input#names(type="text", name="names", autocomplete="off")
+                                                td: input#names(type="text", name="names", autocomplete="off", pattern="/Aa-Zz/", required)
                                             tr
                                                 td.form_headers Username :
-                                                td: input#username(type="text", name="username",autocomplete="off")
+                                                td: input#username(type="text", name="username",autocomplete="off",required)
                                             tr
                                                 td.form_headers Phone Number :
-                                                td: input#phoneNumber(type="tel", name="phoneNumber",autocomplete="off")
+                                                td: input#phoneNumber(type="tel", name="phoneNumber",autocomplete="off",required, minlength="10", maxlength="10")
                                             tr
                                                 td.form_headers Date of Birth :
-                                                td: input#dateOfBirth(type="date", name="dateOfBirth",autocomplete="off")
-                                            tr
-                                            -var today = new Date()
-                                                td: input#dateOfRegistration(type="text", name="dateOfRegistration", value= today , hidden)
-                                                td: input#password(type="password", name="password",value="notrequired", hidden)
-                                                td: input#supervisor(type="text", name="supervisor",value=names, hidden)
+                                                td: input#dateOfBirth(type="date", name="dateOfBirth",autocomplete="off",required)
                         tr
                             td
                                 fieldset
@@ -42,10 +37,10 @@ html
                                         tbody
                                             tr
                                                 td.form_headers National ID Number (NIN) :
-                                                td: input#NIN(type="text", name="NIN", autocomplete="off")
+                                                td: input#NIN(type="text", name="NIN", autocomplete="off", minlength="13",maxlength="13", pattern="/Az-aZ*/",required)
                                             tr
                                                 td.form_headers Nationality :
-                                                td: input#nationality(type="text", name="nationality", autocomplete="off")
+                                                td: input#nationality(type="text", name="nationality", autocomplete="off",required)
                                             tr
                                                 td.form_headers Marital Status :
                                                 td: input#maritalStatus(type="text", name="maritalStatus", autocomplete="off")
@@ -58,13 +53,13 @@ html
                                                     input#notprovided(type="radio", name="documents", value="false", checked)
                                             tr
                                                 td.form_headers Stage Name :
-                                                td: input#stageName(type="text", name="stageName", autocomplete="off")
+                                                td: input#stageName(type="text", name="stageName", autocomplete="off",required)
                                             tr
                                                 td.form_headers LC One :
-                                                td: input#lcOne(type="text", name="lcOne", autocomplete="off")
+                                                td: input#lcOne(type="text", name="lcOne", autocomplete="off",required)
                                             tr
                                                 td.form_headers LC Three :
-                                                td: input#lcThree(type="text", name="lcThree", autocomplete="off")
+                                                td: input#lcThree(type="text", name="lcThree", autocomplete="off",required)
                         tr
                             td
                                 fieldset
@@ -79,7 +74,7 @@ html
                                                         option(value="TukTuk") TukTuk
                                             tr
                                                 td.form_headers Down Payment :
-                                                td: input#downPaymnet(type="number", name="downPaymnet", autocomplete="off")
+                                                td: input#downPaymnet(type="number", name="downPaymnet", autocomplete="off",required)
                         tr
                             td
                                 fieldset
@@ -88,16 +83,16 @@ html
                                         tbody
                                             tr
                                                 td.form_headers Name :
-                                                td: input#refereeName(type="text", name="refereeName", autocomplete="off")
+                                                td: input#refereeName(type="text", name="refereeName", autocomplete="off",required)
                                             tr
                                                 td.form_headers Date of Birth :
-                                                td: input#refereeDob(type="date", name="refereeDob",autocomplete="off")
+                                                td: input#refereeDob(type="date", name="refereeDob",autocomplete="off",required)
                                             tr
                                                 td.form_headers Occupation :
-                                                td: input#refereeOccupation(type="text", name="refereeOccupation",autocomplete="off")
+                                                td: input#refereeOccupation(type="text", name="refereeOccupation",autocomplete="off",required)
                                             tr
                                                 td.form_headers Contact :
-                                                td: input#refereeContact(type="tel", name="refereeContact",autocomplete="off")
+                                                td: input#refereeContact(type="tel", name="refereeContact",autocomplete="off",required, minlength="10", maxlength="10")
                         tr
                             td: input.add_customer_btns(type="submit", value="SUBMIT")
                             td: input.add_customer_btns(type="reset", value="RESET")

@@ -44,12 +44,11 @@ salesroutes.get('/customers', (req, res) => {
 
 salesroutes.post('/customers', async (req, res) => {
   if (req.session.user) {
+    const role = 'customers';
     try {
       const {
         names,
-        role,
         username,
-        password,
         phoneNumber,
         dateOfBirth,
         dateOfRegistration
@@ -64,6 +63,8 @@ salesroutes.post('/customers', async (req, res) => {
         dateOfRegistration
       };
       const newuser = new User(userdetails);
+      const password = 'notrequired';
+      const { names: supervisor } = req.session.user;
 
       await User.register(newuser, password, async (error, _theuser) => {
         if (error) throw error;
@@ -75,7 +76,6 @@ salesroutes.post('/customers', async (req, res) => {
           vehicleType,
           downPaymnet,
           stageName,
-          supervisor,
           lcOne,
           lcThree,
           refereeName,
@@ -88,6 +88,7 @@ salesroutes.post('/customers', async (req, res) => {
           .split(' ')
           .slice(0, 1)
           .join('')}${new Date().getFullYear()}${stageName.slice(0, 3)}`;
+        const lastPayment = new Date();
 
         let customerdetails = {
           customerID,
@@ -97,6 +98,7 @@ salesroutes.post('/customers', async (req, res) => {
           documents,
           vehicleType,
           downPaymnet,
+          lastPayment,
           stageName,
           supervisor,
           lcOne,
@@ -169,6 +171,7 @@ salesroutes.get('/editcustomer', (req, res) => {
 salesroutes.post('/editcustomers', async (req, res) => {
   if (req.session.user) {
     const parameters = req.body;
+    console.log(req.body);
 
     Object.keys(parameters).forEach((key) => {
       if (parameters[key] === '') {

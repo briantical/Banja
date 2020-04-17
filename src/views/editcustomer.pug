@@ -11,7 +11,7 @@ html
             form(action="/sales/editcustomers", method="post")  
                 -
                     let user_data = JSON.parse(rolesman)
-                    let { user : {_id:userID,names:personname,username,phoneNumber,dateOfBirth },NIN,nationality,maritalStatus,documents,stageName,lcOne,lcThree,vehicleType,refereeName,refereeDob,refereeOccupation,refereeContact,customerID,downPaymnet} =user_data
+                    let { user : {_id:userID,names:personname,username,phoneNumber,dateOfBirth },NIN,nationality,maritalStatus,documents,stageName,lcOne,lcThree,vehicleType,refereeName,refereeDob,refereeOccupation,refereeContact,customerID,downPaymnet, _id} =user_data
 
                 table
                     tbody
@@ -38,7 +38,7 @@ html
                                                 td: input#roleID(type="text", name="roleID", value=_id, hidden)
                                             tr
                                                 td.form_headers Customer ID:
-                                                td: input#customerID(type="text", name="customerID", autocomplete="off",placeholder=customerID)
+                                                td: input#customerID(type="text", name="customerID", autocomplete="off",value=customerID, disabled="true")
                         tr
                             td
                                 fieldset
@@ -58,9 +58,9 @@ html
                                                 td.form_headers Verification Documents :
                                                 td
                                                     label Provided
-                                                    input#provided(type="radio", name="documents",value="true")
+                                                    input#provided(type="radio", name="documents",value="true", required)
                                                     label Not Provided
-                                                    input#notprovided(type="radio", name="documents", value="false", checked)
+                                                    input#notprovided(type="radio", name="documents", value="false", checked, required)
                                             tr
                                                 td.form_headers Stage Name :
                                                 td: input#stageName(type="text", name="stageName", autocomplete="off",placeholder=stageName)
@@ -80,8 +80,9 @@ html
                                                 td.form_headers Vehicle :
                                                 td
                                                     select#vehicleType(name="vehicleType")
-                                                        option(value="BodaBoda") BodaBoda
+                                                        option(value=vehicleType) #{vehicleType}
                                                         option(value="TukTuk") TukTuk
+                                                        option(value="BodaBoda") BodaBoda
                                             tr
                                                 td.form_headers Down Payment :
                                                 td: input#downPaymnet(type="number", name="downPaymnet", autocomplete="off", placeholder=downPaymnet)
