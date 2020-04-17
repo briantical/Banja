@@ -7,7 +7,10 @@ const loginroutes = Router();
 
 loginroutes.post(
   '/',
-  passport.authenticate('local', { failureRedirect: '/' }),
+  passport.authenticate('local', {
+    failureRedirect:
+      '/?message={"type": "error","msg": "Password or Username is incorrect"}'
+  }),
   (req, res) => {
     req.session.user = req.user;
     const { names, role: userRole } = req.user;

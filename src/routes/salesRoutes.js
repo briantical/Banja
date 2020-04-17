@@ -68,7 +68,6 @@ salesroutes.post('/customers', async (req, res) => {
       await User.register(newuser, password, async (error, _theuser) => {
         if (error) throw error;
         const {
-          customerID,
           NIN,
           nationality,
           maritalStatus,
@@ -84,6 +83,11 @@ salesroutes.post('/customers', async (req, res) => {
           refereeContact,
           refereeOccupation
         } = req.body;
+
+        const customerID = `${names
+          .split(' ')
+          .slice(0, 1)
+          .join('')}${new Date().getFullYear()}${stageName.slice(0, 3)}`;
 
         let customerdetails = {
           customerID,
