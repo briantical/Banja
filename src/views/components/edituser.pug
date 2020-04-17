@@ -1,5 +1,5 @@
 //- The edit action for customer and sales lists
 mixin edit_banja_user(rolesman, action)   
-    form(action=action, method="POST")
+    form(action=action, method="GET")
         input(name="rolesman", hidden, value=rolesman)
         button.edit_btn(type="submit"): i.fas.fa-pencil-alt.edit_icon

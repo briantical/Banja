@@ -314,3 +314,7 @@ td label {
 .error_msg {
   color: red;
 }
+
+ul li {
+  list-style: none;
+}

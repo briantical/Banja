@@ -143,23 +143,11 @@ salesroutes.get('/deletecustomer', async (req, res) => {
   } else res.redirect('/');
 });
 
-salesroutes.post('/editcustomer', (req, res) => {
-  if (req.session.user) {
-    if (req.body) {
-      const { rolesman } = req.body;
-      req.session.rolesman = rolesman;
-      res.redirect('/sales/editcustomer');
-    } else {
-      res.redirect('/sales/customerslist');
-    }
-  } else res.redirect('/');
-});
-
 salesroutes.get('/editcustomer', (req, res) => {
-  if (req.session.user && req.session.rolesman) {
+  if (req.session.user) {
+    const { rolesman } = req.query;
     const {
       user: { names },
-      rolesman,
       home
     } = req.session;
     res.render('editcustomer', { names, rolesman, home });
@@ -171,7 +159,6 @@ salesroutes.get('/editcustomer', (req, res) => {
 salesroutes.post('/editcustomers', async (req, res) => {
   if (req.session.user) {
     const parameters = req.body;
-    console.log(req.body);
 
     Object.keys(parameters).forEach((key) => {
       if (parameters[key] === '') {

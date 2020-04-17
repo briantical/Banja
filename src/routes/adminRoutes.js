@@ -111,24 +111,12 @@ adminroutes.get('/deletesales', async (req, res) => {
   } else res.redirect('/');
 });
 
-adminroutes.post('/editsales', (req, res) => {
-  if (req.session.user) {
-    if (req.body) {
-      const { rolesman } = req.body;
-      req.session.rolesman = rolesman;
-      res.redirect('/admin/editsales');
-    } else {
-      res.redirect('/admin/saleslist');
-    }
-  } else res.redirect('/');
-});
-
 adminroutes.get('/editsales', async (req, res) => {
   try {
-    if (req.session.user && req.session.rolesman) {
+    if (req.session.user) {
+      const { rolesman } = req.query;
       const {
         user: { names },
-        rolesman,
         home
       } = req.session;
       const supervisors = await Sale.find().populate('user');
@@ -138,9 +126,7 @@ adminroutes.get('/editsales', async (req, res) => {
         home,
         supervisors
       });
-      req.session.rolesman = undefined;
     } else {
-      req.session.rolesman = undefined;
       res.redirect('/');
     }
   } catch (error) {
