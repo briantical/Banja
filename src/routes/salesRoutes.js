@@ -19,6 +19,9 @@ salesroutes.get('/customerslist', async (req, res) => {
         }).populate('user');
 
         res.render('customers', { customers, names, home });
+      } else if (req.query.newuser) {
+        const { newuser } = req.query;
+        res.render('customers', { customers, names, home, newuser });
       } else {
         res.render('customers', { customers, names, home });
       }
@@ -108,7 +111,7 @@ salesroutes.post('/customers', async (req, res) => {
         const customer = new Customer(customerdetails);
 
         await customer.save();
-        res.redirect('/sales/customerslist');
+        res.redirect(`/sales/customerslist?newuser=${customerID}`);
       });
     } catch (error) {
       // console.log('Could not create user');

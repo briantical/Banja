@@ -19,8 +19,9 @@ html
                         th Names
                         th Username
                         th Phone Number
-                        th Date of Birth
-                        th Date onBoarded
+                        th Outstanding Payment
+                        th Due Date
+                        th Next Payment
                 tbody
                     each customer in customers
                         tr
@@ -30,10 +31,13 @@ html
                             td #{customer.user.phoneNumber}
                             td #{customer.user.dateOfBirth}
                             td #{customer.user.dateOfRegistration}
+                            td Nan
                             td: +delete_banja_user(customer, "/sales/deletecustomer")
                             td: +edit_banja_user(customer, "/sales/editcustomer")
                 a(href="/sales/customers", title="Add customer"): .add_button.commons_vertical#add_customers +
     include components/footer
+    if newuser
+        != '<script>alert("The new customer ID is : ' + newuser + '")</script>'
     script(src="/static/js/bootstrap/jquery.js")
     script(src="/static/js/bootstrap/bootstrap.js")
     script(src="/static/js/index.js")
