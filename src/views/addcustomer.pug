@@ -19,13 +19,13 @@ html
                                         tbody
                                             tr
                                                 td.form_headers Full Names :
-                                                td: input#names(type="text", name="names", autocomplete="off", required)
+                                                td: input#names(type="text", name="names", autocomplete="off", required, pattern="^[a-zA-Z ]*$")
                                             tr
                                                 td.form_headers Username :
                                                 td: input#username(type="text", name="username",autocomplete="off",required)
                                             tr
                                                 td.form_headers Phone Number :
-                                                td: input#phoneNumber(type="tel", name="phoneNumber",autocomplete="off",required, minlength="10", maxlength="10")
+                                                td: input#phoneNumber(type="tel", name="phoneNumber",autocomplete="off",required, minlength="10", maxlength="10",pattern="^[0-9]{10}$")
                                             tr
                                                 td.form_headers Date of Birth :
                                                 td: input#dateOfBirth(type="date", name="dateOfBirth",autocomplete="off",required)
@@ -37,7 +37,7 @@ html
                                         tbody
                                             tr
                                                 td.form_headers National ID Number (NIN) :
-                                                td: input#NIN(type="text", name="NIN", autocomplete="off", minlength="13",maxlength="13", pattern="/Az-aZ*/",required)
+                                                td: input#NIN(type="text", name="NIN", autocomplete="off", minlength="13",maxlength="13", pattern="^[a-zA-Z]{3}[a-zA-Z0-9]",required)
                                             tr
                                                 td.form_headers Nationality :
                                                 td: input#nationality(type="text", name="nationality", autocomplete="off",required)
@@ -83,7 +83,7 @@ html
                                         tbody
                                             tr
                                                 td.form_headers Name :
-                                                td: input#refereeName(type="text", name="refereeName", autocomplete="off",required)
+                                                td: input#refereeName(type="text", name="refereeName", autocomplete="off",required,pattern="^[a-zA-Z ]*$")
                                             tr
                                                 td.form_headers Date of Birth :
                                                 td: input#refereeDob(type="date", name="refereeDob",autocomplete="off",required)
@@ -95,7 +95,7 @@ html
                                                 td: input#refereeContact(type="tel", name="refereeContact",autocomplete="off",required, minlength="10", maxlength="10")
                         tr
                             td: input.add_customer_btns(type="submit", value="SUBMIT")
-                            td: input.add_customer_btns(type="reset", value="RESET")
+                            td: input.add_customer_btns(type="reset", value="CANCEL")
         include components/footer
         script(src="/static/js/bootstrap/jquery.js")
         script(src="/static/js/bootstrap/bootstrap.js")
