@@ -46,14 +46,8 @@ salesroutes.post('/customers', async (req, res) => {
   if (req.session.user) {
     const role = 'customers';
     try {
-      const {
-        names,
-        username,
-        phoneNumber,
-        dateOfBirth,
-        dateOfRegistration
-      } = req.body;
-
+      const { names, username, phoneNumber, dateOfBirth } = req.body;
+      const dateOfRegistration = new Date();
       const userdetails = {
         names,
         role,

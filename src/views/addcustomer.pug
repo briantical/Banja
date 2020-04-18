@@ -19,16 +19,16 @@ html
                                         tbody
                                             tr
                                                 td.form_headers Full Names :
-                                                td: input#names(type="text", name="names", autocomplete="off", required, pattern="^[a-zA-Z ]*$")
+                                                td: input.form-control#names(type="text", name="names", autocomplete="off", required, pattern="^[a-zA-Z ]*$")
                                             tr
                                                 td.form_headers Username :
-                                                td: input#username(type="text", name="username",autocomplete="off",required)
+                                                td: input.form-control#username(type="text", name="username",autocomplete="off",required,pattern="[A-Za-z0-9]+",title="username requiresletters and numbers only, no punctuation or special characters")
                                             tr
                                                 td.form_headers Phone Number :
-                                                td: input#phoneNumber(type="tel", name="phoneNumber",autocomplete="off",required, minlength="10", maxlength="10",pattern="^[0-9]{10}$")
+                                                td: input.form-control#phoneNumber(type="tel", name="phoneNumber",autocomplete="off",required, minlength="10", maxlength="10",pattern="^07[0-9]{8}$")
                                             tr
                                                 td.form_headers Date of Birth :
-                                                td: input#dateOfBirth(type="date", name="dateOfBirth",autocomplete="off",required)
+                                                td: input.form-control#dateOfBirth(type="date", name="dateOfBirth",autocomplete="off",required)
                         tr
                             td
                                 fieldset
@@ -37,29 +37,31 @@ html
                                         tbody
                                             tr
                                                 td.form_headers National ID Number (NIN) :
-                                                td: input#NIN(type="text", name="NIN", autocomplete="off", minlength="13",maxlength="13", pattern="^[a-zA-Z]{3}[a-zA-Z0-9]",required)
+                                                td: input.form-control#NIN(type="text", name="NIN", autocomplete="off", minlength="13",maxlength="13", pattern="^[a-zA-Z]{3}[a-zA-Z0-9]+",required)
                                             tr
                                                 td.form_headers Nationality :
-                                                td: input#nationality(type="text", name="nationality", autocomplete="off",required)
+                                                td: input.form-control#nationality(type="text", name="nationality", autocomplete="off",required)
                                             tr
                                                 td.form_headers Marital Status :
-                                                td: input#maritalStatus(type="text", name="maritalStatus", autocomplete="off")
+                                                td: input.form-control#maritalStatus(type="text", name="maritalStatus", autocomplete="off")
                                             tr
                                                 td.form_headers Verification Documents :
                                                 td
-                                                    label Provided
-                                                    input#provided(type="radio", name="documents",value="true")
-                                                    label Not Provided
-                                                    input#notprovided(type="radio", name="documents", value="false", checked)
+                                                    .form-check.form-check-inline
+                                                        input.form-check-input#provided(type="radio", name="documents",value="true")
+                                                        label(for="provided") Provided
+                                                    .form-check.form-check-inline                                             
+                                                        input.form-check-input#notprovided(type="radio", name="documents", value="false", checked)
+                                                        label(for="notprovided") Not Provided
                                             tr
                                                 td.form_headers Stage Name :
-                                                td: input#stageName(type="text", name="stageName", autocomplete="off",required)
+                                                td: input.form-control#stageName(type="text", name="stageName", autocomplete="off",required)
                                             tr
                                                 td.form_headers LC One :
-                                                td: input#lcOne(type="text", name="lcOne", autocomplete="off",required)
+                                                td: input.form-control#lcOne(type="text", name="lcOne", autocomplete="off",required)
                                             tr
                                                 td.form_headers LC Three :
-                                                td: input#lcThree(type="text", name="lcThree", autocomplete="off",required)
+                                                td: input.form-control#lcThree(type="text", name="lcThree", autocomplete="off",required)
                         tr
                             td
                                 fieldset
@@ -69,12 +71,10 @@ html
                                             tr
                                                 td.form_headers Vehicle :
                                                 td
-                                                    select#vehicleType(name="vehicleType")
-                                                        option(value="BodaBoda") BodaBoda
-                                                        option(value="TukTuk") TukTuk
+                                                    select.form-control#vehicleType(name="vehicleType", required)
                                             tr
                                                 td.form_headers Down Payment :
-                                                td: input#downPaymnet(type="number", name="downPaymnet", autocomplete="off",required)
+                                                td#downpaymentcell
                         tr
                             td
                                 fieldset
@@ -83,20 +83,21 @@ html
                                         tbody
                                             tr
                                                 td.form_headers Name :
-                                                td: input#refereeName(type="text", name="refereeName", autocomplete="off",required,pattern="^[a-zA-Z ]*$")
+                                                td: input.form-control#refereeName(type="text", name="refereeName", autocomplete="off",required,pattern="^[a-zA-Z ]*$")
                                             tr
                                                 td.form_headers Date of Birth :
-                                                td: input#refereeDob(type="date", name="refereeDob",autocomplete="off",required)
+                                                td: input.form-control#refereeDob(type="date", name="refereeDob",autocomplete="off",required)
                                             tr
                                                 td.form_headers Occupation :
-                                                td: input#refereeOccupation(type="text", name="refereeOccupation",autocomplete="off",required)
+                                                td: input.form-control#refereeOccupation(type="text", name="refereeOccupation",autocomplete="off",required)
                                             tr
                                                 td.form_headers Contact :
-                                                td: input#refereeContact(type="tel", name="refereeContact",autocomplete="off",required, minlength="10", maxlength="10")
+                                                td: input.form-control#refereeContact(type="tel", name="refereeContact",autocomplete="off",required, minlength="10", maxlength="10")
                         tr
-                            td: input.add_customer_btns(type="submit", value="SUBMIT")
-                            td: input.add_customer_btns(type="reset", value="CANCEL")
+                            td: input.form-control.add_customer_btns(type="submit", value="SUBMIT")
+                            td: input.form-control.add_customer_btns(type="reset", value="CANCEL")
         include components/footer
         script(src="/static/js/bootstrap/jquery.js")
         script(src="/static/js/bootstrap/bootstrap.js")
         script(src="/static/js/index.js")
+        != "<script>insertElements()</script>"
