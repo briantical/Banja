@@ -19,9 +19,10 @@ html
                         th Names
                         th Username
                         th Phone Number
+                        th Vehicle Asset
                         th Outstanding Payment
-                        th Due Date
                         th Next Payment
+                       
                 tbody
                     each customer in customers
                         tr
@@ -29,11 +30,11 @@ html
                             td #{customer.user.names}
                             td #{customer.user.username}
                             td #{customer.user.phoneNumber}
-                            td #{customer.user.dateOfBirth}
-                            td #{customer.user.dateOfRegistration}
-                            td Nan
+                            td #{customer.vehicleType}
+                            td #{customer.downPayment}
+                            td #{customer.lastPayment}
                             td: +delete_banja_user(customer, "/sales/deletecustomer")
-                            td: +edit_banja_user(customer, "/sales/editcustomer")
+                            td: +edit_banja_user(customer, "/sales/editcustomer")    
                 a(href="/sales/customers", title="Add customer"): .add_button.commons_vertical#add_customers +
     include components/footer
     if newuser

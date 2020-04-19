@@ -71,7 +71,7 @@ salesroutes.post('/customers', async (req, res) => {
           maritalStatus,
           documents,
           vehicleType,
-          downPaymnet,
+          downPayment,
           stageName,
           lcOne,
           lcThree,
@@ -94,7 +94,7 @@ salesroutes.post('/customers', async (req, res) => {
           maritalStatus,
           documents,
           vehicleType,
-          downPaymnet,
+          downPayment: parseInt(downPayment, 10),
           lastPayment,
           stageName,
           supervisor,
@@ -121,15 +121,15 @@ salesroutes.post('/customers', async (req, res) => {
   }
 });
 
-salesroutes.get('/deletecustomer', async (req, res) => {
+salesroutes.post('/deletecustomer', async (req, res) => {
   if (req.session.user) {
     try {
+      const rolesman = JSON.parse(req.body.rolesman);
       const {
-        rolesman: {
-          _id: rolesmenID,
-          user: { _id: userID }
-        }
-      } = req.body;
+        _id: rolesmenID,
+        user: { _id: userID }
+      } = rolesman;
+
       await User.deleteOne({ _id: userID });
       await Customer.deleteOne({ _id: rolesmenID });
 

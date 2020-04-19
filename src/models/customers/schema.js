@@ -13,7 +13,7 @@ const customerschema = new mongoose.Schema({
   maritalStatus: String,
   documents: Boolean,
   vehicleType: String,
-  downPaymnet: Number,
+  downPayment: Number,
   lastPayment: Date,
   stageName: String,
   supervisor: String,

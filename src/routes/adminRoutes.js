@@ -92,15 +92,14 @@ adminroutes.post('/sales', async (req, res) => {
   }
 });
 
-adminroutes.get('/deletesales', async (req, res) => {
+adminroutes.post('/deletesales', async (req, res) => {
   if (req.session.user) {
     try {
+      const rolesman = JSON.parse(req.body.rolesman);
       const {
-        rolesman: {
-          _id: rolesmenID,
-          user: { _id: userID }
-        }
-      } = req.body;
+        _id: rolesmenID,
+        user: { _id: userID }
+      } = rolesman;
       await User.deleteOne({ _id: userID });
       await Sale.deleteOne({ _id: rolesmenID });
 

@@ -59,6 +59,7 @@ const insertElements = () => {
 
     if (vehicleTypeValue === vehicle.name) {
       downpayment.setAttribute('id', 'downPayment');
+      downpayment.setAttribute('name', 'downPayment');
       downpayment.setAttribute('class', 'form-control');
       downpayment.setAttribute('type', 'number');
       downpayment.setAttribute('required', 'true');
