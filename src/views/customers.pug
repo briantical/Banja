@@ -19,20 +19,23 @@ html
                         th Names
                         th Username
                         th Phone Number
-                        th Vehicle Asset
-                        th Outstanding Payment
+                        th Vehicle Type
+                        th Outstanding Payment (UGX)
                         th Next Payment
                        
                 tbody
                     each customer in customers
                         tr
+                            - let lastpaymentdate = new Date(customer.lastPayment)
+                            - let bodabodacost = 850000 + (2 * 24 * 214590)
+                            - let tuktukcost = 950000 + (2 * 24 * 294590 )
                             td #{customer.customerID}
                             td #{customer.user.names}
                             td #{customer.user.username}
                             td #{customer.user.phoneNumber}
                             td #{customer.vehicleType}
-                            td #{customer.downPayment}
-                            td #{customer.lastPayment}
+                            td #{(customer.vehicleType === "BodaBoda" ? bodabodacost - customer.downPayment : tuktukcost - customer.downPayment).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }
+                            td #{new Date(lastpaymentdate.setDate(lastpaymentdate.getDate()+30))}
                             td: +delete_banja_user(customer, "/sales/deletecustomer")
                             td: +edit_banja_user(customer, "/sales/editcustomer")    
                 a(href="/sales/customers", title="Add customer"): .add_button.commons_vertical#add_customers +

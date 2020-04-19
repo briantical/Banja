@@ -58,13 +58,16 @@ const insertElements = () => {
     const vehicleTypeValue = document.getElementById('vehicleType').value;
 
     if (vehicleTypeValue === vehicle.name) {
+      const vehicleDownPayment = vehicle.downPayment
+        .toString()
+        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
       downpayment.setAttribute('id', 'downPayment');
       downpayment.setAttribute('name', 'downPayment');
       downpayment.setAttribute('class', 'form-control');
       downpayment.setAttribute('type', 'number');
       downpayment.setAttribute('required', 'true');
       downpayment.setAttribute('min', vehicle.downPayment);
-      downpayment.setAttribute('placeholder', vehicle.downPayment);
+      downpayment.setAttribute('placeholder', vehicleDownPayment);
       cell.appendChild(downpayment);
     }
     return null;
