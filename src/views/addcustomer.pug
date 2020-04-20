@@ -8,7 +8,7 @@ html
         +banja_header(names, home, false)
         .banja_content
             h3 Add Customer
-            form(action="/sales/customers", method="post", enctype="multipart/form-data")
+            form#userform(action="/sales/customers", method="post", enctype="multipart/form-data")
                 table
                     tbody
                         tr
@@ -97,8 +97,8 @@ html
                                                 td.form_headers: label(for="refereeContact") Contact :
                                                 td: input.form-control#refereeContact(type="tel", name="refereeContact",autocomplete="off",required, minlength="10", maxlength="10",pattern="^07[0-9]{8}$")
                         tr
-                            td: input.form-control.add_customer_btns(type="submit", value="SUBMIT")
-                            td: input.form-control.add_customer_btns(type="reset", value="CANCEL")
+                            td: button.form-control.add_customer_btns(type="submit",onclick="checkFormValidity()") SUBMIT
+                            td: button.form-control.add_customer_btns(type="reset") CANCEL
         include components/footer
         script(src="/static/js/bootstrap/jquery.js")
         script(src="/static/js/bootstrap/bootstrap.js")

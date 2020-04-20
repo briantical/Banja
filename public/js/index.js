@@ -73,3 +73,20 @@ const insertElements = () => {
     return null;
   });
 };
+
+const checkFormValidity = () => {
+  const form = document.getElementById('userform');
+
+  if (form.checkValidity()) {
+    //
+  } else {
+    const forminputs = document.getElementsByTagName('input');
+    [...forminputs].forEach((forminput) => {
+      if (forminput.checkValidity()) {
+        forminput.removeAttribute('style');
+      } else {
+        forminput.setAttribute('style', 'border: 2px solid red');
+      }
+    });
+  }
+};
