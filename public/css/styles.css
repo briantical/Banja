@@ -299,11 +299,13 @@ td label {
 }
 
 .edit_btn,
+.view_btn,
 .delete_btn {
   border-width: 0px;
 }
 
 .edit_icon,
+.view_icon,
 .delete_icon {
   color: rgb(0, 97, 170);
 }

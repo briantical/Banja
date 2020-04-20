@@ -1,7 +1,9 @@
 include components/header
 include components/filter
-include components/deleteuser
 include components/edituser
+include components/viewuser
+include components/deleteuser
+
 doctype html
 html
     head
@@ -22,13 +24,14 @@ html
                         th Vehicle Type
                         th Outstanding Payment (UGX)
                         th Next Payment
+                        th(colspan="3") Actions
                        
                 tbody
                     each customer in customers
                         tr
                             - let lastpaymentdate = new Date(customer.lastPayment)
-                            - let bodabodacost = 850000 + (2 * 24 * 214590)
-                            - let tuktukcost = 950000 + (2 * 24 * 294590 )
+                            - let bodabodacost = 850000 + (2 * 12 * 214590)
+                            - let tuktukcost = 950000 + (2 * 12 * 294590 )
                             td #{customer.customerID}
                             td #{customer.user.names}
                             td #{customer.user.username}
@@ -36,8 +39,9 @@ html
                             td #{customer.vehicleType}
                             td #{(customer.vehicleType === "BodaBoda" ? bodabodacost - customer.downPayment : tuktukcost - customer.downPayment).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }
                             td #{new Date(lastpaymentdate.setDate(lastpaymentdate.getDate()+30))}
+                            td: +view_banja_user(customer, "/sales/editcustomer")
+                            td: +edit_banja_user(customer, "/sales/editcustomer")
                             td: +delete_banja_user(customer, "/sales/deletecustomer")
-                            td: +edit_banja_user(customer, "/sales/editcustomer")    
                 a(href="/sales/customers", title="Add customer"): .add_button.commons_vertical#add_customers +
     include components/footer
     if newuser

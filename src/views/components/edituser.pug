@@ -2,4 +2,4 @@
 mixin edit_banja_user(rolesman, action)   
     form(action=action, method="GET")
         input.form-control(name="rolesman", hidden, value=rolesman)
-        button.edit_btn(type="submit"): i.fas.fa-pencil-alt.edit_icon
+        button.edit_btn(type="submit", title="Edit the user"): i.fas.fa-pencil-alt.edit_icon

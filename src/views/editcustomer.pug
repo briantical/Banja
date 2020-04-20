@@ -28,7 +28,7 @@ html
                                                 td.form_headers: label(for="username") Username :
                                                 td: input.form-control#username(type="text", name="username",autocomplete="off",placeholder=username,pattern="[A-Za-z0-9]+",title="username requiresletters and numbers only, no punctuation or special characters")
                                             tr
-                                                td.form_header: label(for="phoneNumber") Phone Number :
+                                                td.form_headers: label(for="phoneNumber") Phone Number :
                                                 td: input.form-control#phoneNumber(type="tel", name="phoneNumber",autocomplete="off",placeholder=phoneNumber,minlength="10", maxlength="10",pattern="^07[0-9]{8}$", title="Format is 07********")
                                             tr
                                                 td.form_headers: label(for="dateOfBirth") Date of Birth :
@@ -86,7 +86,7 @@ html
                                                         option(value="TukTuk") TukTuk
                                                         option(value="BodaBoda") BodaBoda
                                             tr
-                                                td.form_headers: label(for="downPayment ") Down Payment :
+                                                td.form_headers: label(for="downPayment ") Amount Paid :
                                                 td: input.form-control#downPaymnet(type="number", name="downPaymnet", autocomplete="off", placeholder=downPayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
                         tr
                             td

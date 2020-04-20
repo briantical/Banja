@@ -8,7 +8,7 @@ html
         +banja_header(names, home, false)
         .banja_content
             h3 Add Customer
-            form(action="/sales/customers", method="post")
+            form(action="/sales/customers", method="post", enctype="multipart/form-data")
                 table
                     tbody
                         tr
@@ -53,6 +53,9 @@ html
                                                     .form-check.form-check-inline                                             
                                                         input.form-check-input#notprovided(type="radio", name="documents", value="false", checked)
                                                         label(for="notprovided") Not Provided
+                                            tr
+                                                td.form_headers: label(for="") Upload the documents (PDFs only):
+                                                td: input.form-control#verifiedDocs(type="file", name="verifiedDocs", required, multiple, accept="application/pdf")
                                             tr
                                                 td.form_headers: label(for="stageName") Stage Name :
                                                 td: input.form-control#stageName(type="text", name="stageName", autocomplete="off",required)
