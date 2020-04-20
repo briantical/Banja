@@ -36,13 +36,11 @@ html
                             table
                                 tbody
                                     tr
-                                        td: .sidebar_form_labels Username :
-                                        td
-                                            input.sidebar_form_inputs#username(type="text", name="username", placeholder="username", autocomplete="off")
+                                        td: .sidebar_form_labels: label(for="username") Username :
+                                        td: input.form-control.sidebar_form_inputs#username(type="text", name="username", placeholder="username", autocomplete="off")
                                     tr
-                                        td: .sidebar_form_labels Password :
-                                        td
-                                            input.sidebar_form_inputs#password(type="password", name="password",placeholder="********")
+                                        td: .sidebar_form_labels: label(for="password") Password :
+                                        td: input.form-control.sidebar_form_inputs#password(type="password", name="password",placeholder="********")
                             .sidebar_submit.commons_vertical
                                 .sidebar_submit_buttons
                                     input._buttons#btn_submit_login(type="submit", value="LOGIN")

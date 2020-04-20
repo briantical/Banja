@@ -11,7 +11,7 @@ html
             form(action="/sales/editcustomers", method="post")  
                 -
                     let user_data = JSON.parse(rolesman)
-                    let { user : {_id:userID,names:personname,username,phoneNumber,dateOfBirth },NIN,nationality,maritalStatus,documents,stageName,lcOne,lcThree,vehicleType,refereeName,refereeDob,refereeOccupation,refereeContact,customerID,downPaymnet, _id} =user_data
+                    let { user : {_id:userID,names:personname,username,phoneNumber,dateOfBirth },NIN,nationality,maritalStatus,documents,stageName,lcOne,lcThree,vehicleType,refereeName,refereeDob,refereeOccupation,refereeContact,customerID,downPayment, _id} =user_data
 
                 table
                     tbody
@@ -22,23 +22,23 @@ html
                                     table
                                         tbody
                                             tr
-                                                td.form_headers Full Names :
-                                                td: input#names(type="text", name="names", autocomplete="off",placeholder=personname)
+                                                td.form_headers: label(for="names") Full Names :
+                                                td: input.form-control#names(type="text", name="names", autocomplete="off",placeholder=personname,pattern="^[a-zA-Z ]*$", title="Only alphabets required for the name")
                                             tr
-                                                td.form_headers Username :
-                                                td: input#username(type="text", name="username",autocomplete="off",placeholder=username)
+                                                td.form_headers: label(for="username") Username :
+                                                td: input.form-control#username(type="text", name="username",autocomplete="off",placeholder=username,pattern="[A-Za-z0-9]+",title="username requiresletters and numbers only, no punctuation or special characters")
                                             tr
-                                                td.form_headers Phone Number :
-                                                td: input#phoneNumber(type="tel", name="phoneNumber",autocomplete="off",placeholder=phoneNumber)
+                                                td.form_header: label(for="phoneNumber") Phone Number :
+                                                td: input.form-control#phoneNumber(type="tel", name="phoneNumber",autocomplete="off",placeholder=phoneNumber,minlength="10", maxlength="10",pattern="^07[0-9]{8}$", title="Format is 07********")
                                             tr
-                                                td.form_headers Date of Birth :
-                                                td: input#dateOfBirth(type="date", name="dateOfBirth",autocomplete="off",placeholder=dateOfBirth)
+                                                td.form_headers: label(for="dateOfBirth") Date of Birth :
+                                                td: input.form-control#dateOfBirth(type="text", name="dateOfBirth",autocomplete="off",placeholder=dateOfBirth,  onfocus="(this.type='date')" onblur="(this.type='text')")
                                             tr
                                                 td: input#userID(type="text", name="userID", value=userID, hidden)
-                                                td: input#roleID(type="text", name="roleID", value=_id, hidden)
+                                                td: input.form-control#roleID(type="text", name="roleID", value=_id, hidden)
                                             tr
-                                                td.form_headers Customer ID:
-                                                td: input#customerID(type="text", name="customerID", autocomplete="off",value=customerID, disabled="true")
+                                                td.form_headers: label(for="=customerID") Customer ID:
+                                                td: input.form-control#customerID(type="text", name="customerID", autocomplete="off",value=customerID, disabled="true")
                         tr
                             td
                                 fieldset
@@ -46,30 +46,32 @@ html
                                     table
                                         tbody
                                             tr
-                                                td.form_headers National ID Number (NIN) :
-                                                td: input#NIN(type="text", name="NIN", autocomplete="off",placeholder=NIN)
+                                                td.form_headers: label(for="NIN") National ID Number (NIN) :
+                                                td: input.form-control#NIN(type="text", name="NIN", autocomplete="off",placeholder=NIN, minlength="13",maxlength="13", pattern="^[a-zA-Z]{3}[a-zA-Z0-9]+")
                                             tr
-                                                td.form_headers Nationality :
-                                                td: input#nationality(type="text", name="nationality", autocomplete="off",placeholder=nationality)
+                                                td.form_headers: label(for="nationality") Nationality :
+                                                td: input.form-control#nationality(type="text", name="nationality", autocomplete="off",placeholder=nationality)
                                             tr
-                                                td.form_headers Marital Status :
-                                                td: input#maritalStatus(type="text", name="maritalStatus", autocomplete="off",placeholder=maritalStatus)
+                                                td.form_headers: label(for="maritalStatus") Marital Status :
+                                                td: input.form-control#maritalStatus(type="text", name="maritalStatus", autocomplete="off",placeholder=maritalStatus)
                                             tr
-                                                td.form_headers Verification Documents :
+                                                td.form_headers: label(for="documents") Verification Documents :
                                                 td
-                                                    label Provided
-                                                    input#provided(type="radio", name="documents",value="true", required)
-                                                    label Not Provided
-                                                    input#notprovided(type="radio", name="documents", value="false", checked, required)
+                                                    .form-check.form-check-inline
+                                                        input.form-check-input#provided(type="radio", name="documents",value="true")
+                                                        label(for="provided") Provided
+                                                    .form-check.form-check-inline                                             
+                                                        input.form-check-input#notprovided(type="radio", name="documents", value="false", checked)
+                                                        label(for="notprovided") Not Provided
                                             tr
-                                                td.form_headers Stage Name :
-                                                td: input#stageName(type="text", name="stageName", autocomplete="off",placeholder=stageName)
+                                                td.form_headers: label(for="stageName") Stage Name :
+                                                td: input.form-control#stageName(type="text", name="stageName", autocomplete="off",placeholder=stageName)
                                             tr
-                                                td.form_headers LC One :
-                                                td: input#lcOne(type="text", name="lcOne", autocomplete="off",placeholder=lcOne)
+                                                td.form_headers: label(for="lcOne") LC One :
+                                                td: input.form-control#lcOne(type="text", name="lcOne", autocomplete="off",placeholder=lcOne)
                                             tr
-                                                td.form_headers LC Three :
-                                                td: input#lcThree(type="text", name="lcThree", autocomplete="off",placeholder=lcThree)
+                                                td.form_headers: label(for="lcThree") LC Three :
+                                                td: input.form-control#lcThree(type="text", name="lcThree", autocomplete="off",placeholder=lcThree)
                         tr
                             td
                                 fieldset
@@ -77,15 +79,15 @@ html
                                     table
                                         tbody
                                             tr
-                                                td.form_headers Vehicle :
+                                                td.form_headers: label(for="vehicleType") Vehicle :
                                                 td
-                                                    select#vehicleType(name="vehicleType")
+                                                    select.form-control#vehicleType(name="vehicleType")
                                                         option(value=vehicleType) #{vehicleType}
                                                         option(value="TukTuk") TukTuk
                                                         option(value="BodaBoda") BodaBoda
                                             tr
-                                                td.form_headers Down Payment :
-                                                td: input#downPaymnet(type="number", name="downPaymnet", autocomplete="off", placeholder=downPaymnet)
+                                                td.form_headers: label(for="downPayment ") Down Payment :
+                                                td: input.form-control#downPaymnet(type="number", name="downPaymnet", autocomplete="off", placeholder=downPayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","))
                         tr
                             td
                                 fieldset
@@ -93,17 +95,17 @@ html
                                     table
                                         tbody
                                             tr
-                                                td.form_headers Name :
-                                                td: input#refereeName(type="text", name="refereeName", autocomplete="off",placeholder=refereeName)
+                                                td.form_headers: label(for="refereeName") Name :
+                                                td: input.form-control#refereeName(type="text", name="refereeName", autocomplete="off",placeholder=refereeName)
                                             tr
-                                                td.form_headers Date of Birth :
-                                                td: input#refereeDob(type="date", name="refereeDob",autocomplete="off",placeholder=refereeDob)
+                                                td.form_headers: label(for="refereeDob") Date of Birth :
+                                                td: input.form-control#refereeDob(type="text", name="refereeDob",autocomplete="off",placeholder=refereeDob, onfocus="(this.type='date')", onblur="(this.type='text')")
                                             tr
-                                                td.form_headers Occupation :
-                                                td: input#refereeOccupation(type="text", name="refereeOccupation",autocomplete="off", placeholder=refereeOccupation)
+                                                td.form_headers: label(for="refereeOccupation") Occupation :
+                                                td: input.form-control#refereeOccupation(type="text", name="refereeOccupation",autocomplete="off", placeholder=refereeOccupation)
                                             tr
-                                                td.form_headers Contact :
-                                                td: input#refereeContact(type="tel", name="refereeContact",autocomplete="off", placeholder=refereeContact)
+                                                td.form_headers: label(for="refereeContact") Contact :
+                                                td: input.form-control#refereeContact(type="tel", name="refereeContact",autocomplete="off", placeholder=refereeContact)
                         tr
                             td: input.add_customer_btns(type="submit", value="SUBMIT")
                             td: input.add_customer_btns(type="reset", value="RESET")
