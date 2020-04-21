@@ -322,12 +322,7 @@ ul li {
 }
 
 /* Validation styling */
-/* 
 input:valid {
   color: rgb(0, 97, 170);
   border: 2px solid rgb(0, 97, 170);
 }
-
-input:invalid {
-  border: 2px solid red;
-} */

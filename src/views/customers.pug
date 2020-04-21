@@ -19,8 +19,8 @@ html
                     tr
                         th Customer ID
                         th Names
-                        th Username
                         th Phone Number
+                        th Stage Name
                         th Vehicle Type
                         th Outstanding Payment (UGX)
                         th Next Payment
@@ -30,16 +30,18 @@ html
                     each customer in customers
                         tr
                             - let lastpaymentdate = new Date(customer.lastPayment)
+                            - let nextpaymentdate = new Date(lastpaymentdate.setDate(lastpaymentdate.getDate()+30))
+                            - let duestyle = (new Date().getTime() < nextpaymentdate.getTime()) ? "color:green" : "color:red; font-weight: 700;"
                             - let bodabodacost = 850000 + (2 * 12 * 214590)
                             - let tuktukcost = 950000 + (2 * 12 * 294590 )
                             td #{customer.customerID}
-                            td #{customer.user.names}
-                            td #{customer.user.username}
+                            td #{customer.user.names}                            
                             td #{customer.user.phoneNumber}
+                            td #{customer.stageName}
                             td #{customer.vehicleType}
                             td #{(customer.vehicleType === "BodaBoda" ? bodabodacost - customer.downPayment : tuktukcost - customer.downPayment).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }
-                            td #{new Date(lastpaymentdate.setDate(lastpaymentdate.getDate()+30))}
-                            td: +view_banja_user(customer, "/sales/editcustomer")
+                            td(style=duestyle) #{nextpaymentdate}
+                            td: +view_banja_user(customer, "/sales/customer")
                             td: +edit_banja_user(customer, "/sales/editcustomer")
                             td: +delete_banja_user(customer, "/sales/deletecustomer")
                 a(href="/sales/customers", title="Add customer"): .add_button.commons_vertical#add_customers +

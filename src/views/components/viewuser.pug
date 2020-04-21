@@ -1,5 +1,5 @@
 //- The view action for customer and sales lists
 mixin view_banja_user(rolesman, action)   
-    form(action=action, method="GET")
+    form(action=action, method="POST")
         input.form-control(name="rolesman", hidden, value=rolesman)
         button.view_btn(type="submit", title="View the user"): i.fas.fa-eye.view_icon

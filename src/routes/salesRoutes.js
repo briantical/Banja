@@ -208,4 +208,17 @@ salesroutes.post('/editcustomers', async (req, res) => {
   } else res.redirect('/');
 });
 
+salesroutes.post('/customer', (req, res) => {
+  if (req.session.user) {
+    const { rolesman } = req.body;
+    const {
+      user: { names },
+      home
+    } = req.session;
+    res.render('viewcustomer', { names, rolesman, home });
+  } else {
+    res.redirect('/');
+  }
+});
+
 module.exports = salesroutes;
