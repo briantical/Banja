@@ -15,23 +15,19 @@ html
                 | BodaBoda Banja finances income-generating assets for proven entrepreneurs.
                 | We invest in giving a chance to customers generally unable to access traditional
                 | credit providers.
-            .carousel_container(style="height: 200px")
-                #carouselExampleIndicators.carousel.slide(data-ride="carousel", style="height: 60px")
-                    ol.carousel-indicators
-                        li.active(data-target="#carouselExampleIndicators" data-slide-to="0")
-                        li(data-target="#carouselExampleIndicators" data-slide-to="1")
-                        li(data-target="#carouselExampleIndicators" data-slide-to="2")
-                    .carousel-inner
-                        .carousel-item.active
-                            img.d-block.w-100(src="/static/images/user.png" alt="...")
-                        .carousel-item
-                            img.d-block.w-100(src="/static/images/user.png" alt="...")
-                        .carousel-item
-                            img.d-block.w-100(src="/static/images/user.png" alt="...")
-                    a.carousel-control-prev(href="#carouselExampleIndicators" role="button" data-slide="prev")
-                        span.carousel-control-prev-icon(aria-hidden="true")
-                        span.sr-only Previous
-                    a.carousel-control-next(href="#carouselExampleIndicators" role="button" data-slide="next")
-                        span.carousel-control-next-icon(aria-hidden="true")
-                        span.sr-only Next
+            .row.no-gutters
+                .featured
+                    h5 Featured
+                    .card.mb-3(style="max-width: 540px;")
+                        .row.no-gutters
+                            .col-md-4
+                                img.card-img(src="/static/images/youtubebanja.jpg" alt="Bodaboda banja on Youtube")
+                            .col-md-8
+                                .card-body
+                                    h5.card-title BodaBoda Banja on BBS Tv
+                                    p.card-text
+                                        | You can view our session on BBS TV about what BodaBoda Banja has to offer. Visit the link below : 
+                                        a(href="https://www.youtube.com/watch?v=xCeNFLxCrf0") Youtube
+                                    p.card-text
+                                        small.text-muted Uploaded by: BBS TEREFAYINA, May 14, 2019
         include components/footer
