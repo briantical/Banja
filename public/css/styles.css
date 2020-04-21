@@ -289,6 +289,7 @@ td label {
   color: rgb(0, 97, 170);
   border: 1px solid rgb(0, 97, 170);
   background-color: rgb(255, 255, 255);
+  margin-bottom: 1rem;
 }
 
 .deletecustomer {
@@ -306,10 +307,14 @@ td label {
 
 .edit_icon,
 .view_icon,
+.back_icon,
 .delete_icon {
   color: rgb(0, 97, 170);
 }
 
+.back_icon {
+  font-size: 24px;
+}
 .success_msg {
   color: greenyellow;
 }
@@ -325,4 +330,12 @@ ul li {
 input:valid {
   color: rgb(0, 97, 170);
   border: 2px solid rgb(0, 97, 170);
+}
+
+.navigation {
+  margin: 0.5rem;
+}
+
+td {
+  padding: 0.3rem 0rem;
 }

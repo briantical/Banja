@@ -7,98 +7,102 @@ html
     body
         +banja_header(names, home, false)
         .banja_content
-            h3 Add Customer
-            form#userform(action="/sales/customers", method="post", enctype="multipart/form-data")
-                table
-                    tbody
-                        tr
-                            td
-                                fieldset
-                                    legend Personal Information
-                                    table
-                                        tbody
-                                            tr
-                                                td.form_headers: label(for="names") Full Names :
-                                                td: input.form-control#names(type="text", name="names", autocomplete="off", required, pattern="^[a-zA-Z ]*$", title="Only alphabets required for the name")
-                                            tr
-                                                td.form_headers: label(for="username") Username :
-                                                td: input.form-control#username(type="text", name="username",autocomplete="off",required,pattern="[A-Za-z0-9]+",title="username requiresletters and numbers only, no punctuation or special characters")
-                                            tr
-                                                td.form_headers: label(for="phoneNumber") Phone Number :
-                                                td: input.form-control#phoneNumber(type="tel", name="phoneNumber",autocomplete="off",required, minlength="10", maxlength="10",pattern="^07[0-9]{8}$", title="Format is 07********")
-                                            tr
-                                                td.form_headers: label(for="dateOfBirth") Date of Birth :
-                                                td: input.form-control#dateOfBirth(type="date", name="dateOfBirth",autocomplete="off",required)
-                        tr
-                            td
-                                fieldset
-                                    legend Verification
-                                    table
-                                        tbody
-                                            tr
-                                                td.form_headers: label(for="NIN") National ID Number (NIN) :
-                                                td: input.form-control#NIN(type="text", name="NIN", autocomplete="off", minlength="13",maxlength="13", pattern="^[a-zA-Z]{3}[a-zA-Z0-9]+",required)
-                                            tr
-                                                td.form_headers: label(for="nationality") Nationality :
-                                                td: input.form-control#nationality(type="text", name="nationality", autocomplete="off",required)
-                                            tr
-                                                td.form_headers: label(for="maritalStatus") Marital Status :
-                                                td: input.form-control#maritalStatus(type="text", name="maritalStatus", autocomplete="off")
-                                            tr
-                                                td.form_headers: label(for="documents") Verification Documents :
-                                                td
-                                                    .form-check.form-check-inline
-                                                        input.form-check-input#provided(type="radio", name="documents",value="true")
-                                                        label(for="provided") Provided
-                                                    .form-check.form-check-inline                                             
-                                                        input.form-check-input#notprovided(type="radio", name="documents", value="false", checked)
-                                                        label(for="notprovided") Not Provided
-                                            tr
-                                                td.form_headers: label(for="") Upload the documents (PDFs only):
-                                                td: input.form-control#verifiedDocs(type="file", name="verifiedDocs", required, multiple, accept="application/pdf")
-                                            tr
-                                                td.form_headers: label(for="stageName") Stage Name :
-                                                td: input.form-control#stageName(type="text", name="stageName", autocomplete="off",required)
-                                            tr
-                                                td.form_headers: label(for="lcOne") LC One :
-                                                td: input.form-control#lcOne(type="text", name="lcOne", autocomplete="off",required)
-                                            tr
-                                                td.form_headers: label(for="lcThree") LC Three :
-                                                td: input.form-control#lcThree(type="text", name="lcThree", autocomplete="off",required)
-                        tr
-                            td
-                                fieldset
-                                    legend Vehicle Details
-                                    table
-                                        tbody
-                                            tr
-                                                td.form_headers: label(for="vehicleType") Vehicle :
-                                                td
-                                                    select.form-control#vehicleType(name="vehicleType", required)
-                                            tr
-                                                td.form_headers: label(for="downPayment") Down Payment :
-                                                td#downpaymentcell
-                        tr
-                            td
-                                fieldset
-                                    legend Referee
-                                    table
-                                        tbody
-                                            tr
-                                                td.form_headers: label(for="refereeName") Name :
-                                                td: input.form-control#refereeName(type="text", name="refereeName", autocomplete="off",required,pattern="^[a-zA-Z ]*$")
-                                            tr
-                                                td.form_headers: label(for="refereeDob") Date of Birth :
-                                                td: input.form-control#refereeDob(type="date", name="refereeDob",autocomplete="off",required)
-                                            tr
-                                                td.form_headers: label(for="referreOccupation") Occupation :
-                                                td: input.form-control#refereeOccupation(type="text", name="refereeOccupation",autocomplete="off",required)
-                                            tr
-                                                td.form_headers: label(for="refereeContact") Contact :
-                                                td: input.form-control#refereeContact(type="tel", name="refereeContact",autocomplete="off",required, minlength="10", maxlength="10",pattern="^07[0-9]{8}$")
-                        tr
-                            td: button.form-control.add_customer_btns(type="submit",onclick="checkFormValidity()") SUBMIT
-                            td: button.form-control.add_customer_btns(type="reset") CANCEL
+            .navigation: a(href="/sales/customerslist"): i.fas.fa-chevron-circle-left.back_icon Back
+            .row.no-gutters
+                .col-sm-3
+                .col-sm-9
+                    h3 Add customers
+                    form#userform(action="/sales/customers", method="post", enctype="multipart/form-data")
+                        table
+                            tbody
+                                tr
+                                    td
+                                        fieldset
+                                            legend Personal Information
+                                            table
+                                                tbody
+                                                    tr
+                                                        td.form_headers: label(for="names") Full Names :
+                                                        td: input.form-control#names(type="text", name="names", autocomplete="off", required, pattern="^[a-zA-Z ]*$", title="Only alphabets required for the name")
+                                                    tr
+                                                        td.form_headers: label(for="username") Username :
+                                                        td: input.form-control#username(type="text", name="username",autocomplete="off",required,pattern="[A-Za-z0-9]+",title="username requires letters and numbers only, no punctuation or special characters")
+                                                    tr
+                                                        td.form_headers: label(for="phoneNumber") Phone Number :
+                                                        td: input.form-control#phoneNumber(type="tel", name="phoneNumber",autocomplete="off",required, minlength="10", maxlength="10",pattern="^07[0-9]{8}$", title="Format is 07********")
+                                                    tr
+                                                        td.form_headers: label(for="dateOfBirth") Date of Birth :
+                                                        td: input.form-control#dateOfBirth(type="date", name="dateOfBirth",autocomplete="off",required)
+                                tr
+                                    td
+                                        fieldset
+                                            legend Verification
+                                            table
+                                                tbody
+                                                    tr
+                                                        td.form_headers: label(for="NIN") National ID Number (NIN) :
+                                                        td: input.form-control#NIN(type="text", name="NIN", autocomplete="off", minlength="13",maxlength="13", pattern="^[a-zA-Z]{3}[a-zA-Z0-9]+",required, title="NIN should begin with 3 alpha characters")
+                                                    tr
+                                                        td.form_headers: label(for="nationality") Nationality :
+                                                        td: input.form-control#nationality(type="text", name="nationality", autocomplete="off",required)
+                                                    tr
+                                                        td.form_headers: label(for="maritalStatus") Marital Status :
+                                                        td: input.form-control#maritalStatus(type="text", name="maritalStatus", autocomplete="off")
+                                                    tr
+                                                        td.form_headers: label(for="documents") Verification Documents :
+                                                        td
+                                                            .form-check.form-check-inline
+                                                                input.form-check-input#provided(type="radio", name="documents",value="true")
+                                                                label(for="provided") Provided
+                                                            .form-check.form-check-inline                                             
+                                                                input.form-check-input#notprovided(type="radio", name="documents", value="false", checked)
+                                                                label(for="notprovided") Not Provided
+                                                    tr
+                                                        td.form_headers: label(for="") Upload the documents (PDFs only):
+                                                        td: input.form-control#verifiedDocs(type="file", name="verifiedDocs", required, multiple, accept="application/pdf")
+                                                    tr
+                                                        td.form_headers: label(for="stageName") Stage Name :
+                                                        td: input.form-control#stageName(type="text", name="stageName", autocomplete="off",required)
+                                                    tr
+                                                        td.form_headers: label(for="lcOne") LC One :
+                                                        td: input.form-control#lcOne(type="text", name="lcOne", autocomplete="off",required)
+                                                    tr
+                                                        td.form_headers: label(for="lcThree") LC Three :
+                                                        td: input.form-control#lcThree(type="text", name="lcThree", autocomplete="off",required)
+                                tr
+                                    td
+                                        fieldset
+                                            legend Vehicle Details
+                                            table
+                                                tbody
+                                                    tr
+                                                        td.form_headers: label(for="vehicleType") Vehicle :
+                                                        td
+                                                            select.form-control#vehicleType(name="vehicleType", required)
+                                                    tr
+                                                        td.form_headers: label(for="downPayment") Down Payment :
+                                                        td#downpaymentcell
+                                tr
+                                    td
+                                        fieldset
+                                            legend Referee
+                                            table
+                                                tbody
+                                                    tr
+                                                        td.form_headers: label(for="refereeName") Name :
+                                                        td: input.form-control#refereeName(type="text", name="refereeName", autocomplete="off",required,pattern="^[a-zA-Z ]*$")
+                                                    tr
+                                                        td.form_headers: label(for="refereeDob") Date of Birth :
+                                                        td: input.form-control#refereeDob(type="date", name="refereeDob",autocomplete="off",required)
+                                                    tr
+                                                        td.form_headers: label(for="referreOccupation") Occupation :
+                                                        td: input.form-control#refereeOccupation(type="text", name="refereeOccupation",autocomplete="off",required)
+                                                    tr
+                                                        td.form_headers: label(for="refereeContact") Contact :
+                                                        td: input.form-control#refereeContact(type="tel", name="refereeContact",autocomplete="off",required, minlength="10", maxlength="10",pattern="^07[0-9]{8}$")
+                                tr
+                                    td: button.form-control.add_customer_btns(type="submit",onclick="checkFormValidity()") SUBMIT
+                                    td: button.form-control.add_customer_btns(type="reset") CANCEL
         include components/footer
         script(src="/static/js/bootstrap/jquery.js")
         script(src="/static/js/bootstrap/bootstrap.js")

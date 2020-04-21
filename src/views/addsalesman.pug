@@ -7,54 +7,58 @@ html
     body
         +banja_header(names,home,false)
         .banja_content
-            h3 Add Salesmen
-            form(action="/admin/sales", method="post")
-                table
-                    tbody
-                        tr
-                            td
-                                fieldset
-                                    legend Personal Information
-                                    table
-                                        tbody
-                                            tr
-                                                td.form_headers Full Names :
-                                                td: input#names(type="text", name="names", autocomplete="off", required)
-                                            tr
-                                                td.form_headers Username :
-                                                td: input#username(type="text", name="username",autocomplete="off",required)
-                                            tr
-                                                td.form_headers Phone Number :
-                                                td: input#phoneNumber(type="tel", name="phoneNumber",autocomplete="off",required)
-                                            tr
-                                                td.form_headers Date of Birth :
-                                                td: input#dateOfBirth(type="date", name="dateOfBirth",autocomplete="off",required)
-                        tr
-                            td
-                                fieldset
-                                    legend Details
-                                    table
-                                        tbody
-                                            tr
-                                                td.form_headers Unique ID :
-                                                td: input#ids(type="text", name="ids", autocomplete="off", minlength="5" , maxlength="35", required)
-                                            tr
-                                                td.form_headers Supervisor :
-                                                td
-                                                    select#supervisor(name="supervisor",required)
-                                                        option(value="none") Choose a supervisor
-                                                        each supervisor in supervisors
-                                                            option(value=supervisor.user.names)=supervisor.user.names
+            .navigation: a(href="/admin/saleslist"): i.fas.fa-chevron-circle-left.back_icon Back
+            .row.no-gutters
+                .col-sm-3
+                .col-sm-9
+                    h3 Add Sales Executives
+                    form#userform(action="/admin/sales", method="post")
+                        table
+                            tbody
+                                tr
+                                    td
+                                        fieldset
+                                            legend Personal Information
+                                            table
+                                                tbody
+                                                    tr
+                                                        td.form_headers Full Names :
+                                                        td: input.form-control#names(type="text", name="names", autocomplete="off", required,pattern="^[a-zA-Z ]*$", title="Only alphabets required for the name")
+                                                    tr
+                                                        td.form_headers Username :
+                                                        td: input.form-control#username(type="text", name="username",autocomplete="off",required,pattern="[A-Za-z0-9]+",title="username requires letters and numbers only, no punctuation or special characters")
+                                                    tr
+                                                        td.form_headers Phone Number :
+                                                        td: input.form-control#phoneNumber(type="tel", name="phoneNumber",autocomplete="off",required, minlength="10", maxlength="10",pattern="^07[0-9]{8}$", title="Format is 07********")
+                                                    tr
+                                                        td.form_headers Date of Birth :
+                                                        td: input.form-control#dateOfBirth(type="date", name="dateOfBirth",autocomplete="off",required, title="Enter your date of birth")
+                                tr
+                                    td
+                                        fieldset
+                                            legend Details
+                                            table
+                                                tbody
+                                                    tr
+                                                        td.form_headers Unique ID :
+                                                        td: input.form-control#ids(type="text", name="ids", autocomplete="off", minlength="5" , maxlength="35", required, title="This is the unique ID for each sales executive")
+                                                    tr
+                                                        td.form_headers Supervisor :
+                                                        td
+                                                            select.form-control#supervisor(name="supervisor",required, title="Select a supervisor from the list")
+                                                                option(value="none") Choose a supervisor
+                                                                each supervisor in supervisors
+                                                                    option(value=supervisor.user.names)=supervisor.user.names
 
-                                            tr
-                                                td.form_headers Number of working days :
-                                                td: input#numberOfWorkingDays(type="number", name="numberOfWorkingDays", autocomplete="off",required)
-                                            tr
-                                                td.form_headers Email (optional) :
-                                                td: input#email(type="email", name="email", autocomplete="off")
-                        tr
-                            td: input.add_salesman_btns(type="submit", value="SUBMIT")
-                            td: input.add_salesman_btns(type="reset", value="CANCEL")
+                                                    tr
+                                                        td.form_headers Number of working days :
+                                                        td: input.form-control#numberOfWorkingDays(type="number", name="numberOfWorkingDays", autocomplete="off",required, pattern="{1,7}", min="1", max="7", title="These are number of working days in a week")
+                                                    tr
+                                                        td.form_headers Email (optional) :
+                                                        td: input.form-control#email(type="email", name="email", autocomplete="off", title="Your email is not really required")
+                                tr
+                                    td: button.form-control.add_salesman_btns(type="submit",onclick="checkFormValidity()") SUBMIT
+                                    td: button.form-control.add_salesman_btns(type="reset") CANCEL
 
         include components/footer
         script(src="/static/js/bootstrap/jquery.js")

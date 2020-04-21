@@ -7,90 +7,94 @@ html
     body
         +banja_header(names, home, false)
         .banja_content
-            h3 Customer
-            -
-                let user_data = JSON.parse(rolesman)
-                let { user : {_id:userID,names:personname,username,phoneNumber,dateOfBirth },NIN,nationality,maritalStatus,documents,stageName,lcOne,lcThree,vehicleType,refereeName,refereeDob,refereeOccupation,refereeContact,customerID,downPayment, _id} =user_data
-            table
-                tbody
-                    tr
-                        td
-                            fieldset
-                                legend Personal Information
-                                table
-                                    tbody
-                                        tr
-                                            td.form_headers Full Names :
-                                            td=personname
-                                        tr
-                                            td.form_headers Username :
-                                            td=username
-                                        tr
-                                            td.form_headers Phone Number :
-                                            td=phoneNumber
-                                        tr
-                                            td.form_headers Date of Birth :
-                                            td=dateOfBirth
-                                        tr
-                                            td.form_headers Customer ID:
-                                            td=customerID
-                    tr
-                        td
-                            fieldset
-                                legend Verification
-                                table
-                                    tbody
-                                        tr
-                                            td.form_headers National ID Number (NIN) :
-                                            td=NIN
-                                        tr
-                                            td.form_headers Nationality :
-                                            td=nationality
-                                        tr
-                                            td.form_headers Marital Status :
-                                            td=maritalStatus
-                                        tr
-                                            td.form_headers Verification Documents :
-                                            td                                
-                                        tr
-                                            td.form_headers Stage Name :
-                                            td=stageName
-                                        tr
-                                            td.form_headers LC One :
-                                            td=lcOne
-                                        tr
-                                            td.form_headers LC Three :
-                                            td=lcThree
-                    tr
-                        td
-                            fieldset
-                                legend Vehicle Details
-                                table
-                                    tbody
-                                        tr
-                                            td.form_headers Vehicle :
-                                            td=vehicleType    
-                                        tr
-                                            td.form_headers Amount Paid :
-                                            td=downPayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                    tr
-                        td
-                            fieldset
-                                legend Referee
-                                table
-                                    tbody
-                                        tr
-                                            td.form_headers Name :
-                                            td=refereeName
-                                        tr
-                                            td.form_headers Date of Birth :
-                                            td=refereeDob
-                                        tr
-                                            td.form_headers Occupation :
-                                            td=refereeOccupation
-                                        tr
-                                            td.form_headers Contact :
-                                            td=refereeContact
+            .navigation: a(href="/sales/customerslist"): i.fas.fa-chevron-circle-left.back_icon Back
+            .row.no-gutters
+                .col-sm-3
+                .col-sm-9
+                    h3 View customer
+                    -
+                        let user_data = JSON.parse(rolesman)
+                        let { user : {_id:userID,names:personname,username,phoneNumber,dateOfBirth },NIN,nationality,maritalStatus,documents,stageName,lcOne,lcThree,vehicleType,refereeName,refereeDob,refereeOccupation,refereeContact,customerID,downPayment, _id} =user_data
+                    table
+                        tbody
+                            tr
+                                td
+                                    fieldset
+                                        legend Personal Information
+                                        table
+                                            tbody
+                                                tr
+                                                    td.form_headers Full Names :
+                                                    td=personname
+                                                tr
+                                                    td.form_headers Username :
+                                                    td=username
+                                                tr
+                                                    td.form_headers Phone Number :
+                                                    td=phoneNumber
+                                                tr
+                                                    td.form_headers Date of Birth :
+                                                    td=dateOfBirth
+                                                tr
+                                                    td.form_headers Customer ID:
+                                                    td=customerID
+                            tr
+                                td
+                                    fieldset
+                                        legend Verification
+                                        table
+                                            tbody
+                                                tr
+                                                    td.form_headers National ID Number (NIN) :
+                                                    td=NIN
+                                                tr
+                                                    td.form_headers Nationality :
+                                                    td=nationality
+                                                tr
+                                                    td.form_headers Marital Status :
+                                                    td=maritalStatus
+                                                tr
+                                                    td.form_headers Verification Documents :
+                                                    td                                
+                                                tr
+                                                    td.form_headers Stage Name :
+                                                    td=stageName
+                                                tr
+                                                    td.form_headers LC One :
+                                                    td=lcOne
+                                                tr
+                                                    td.form_headers LC Three :
+                                                    td=lcThree
+                            tr
+                                td
+                                    fieldset
+                                        legend Vehicle Details
+                                        table
+                                            tbody
+                                                tr
+                                                    td.form_headers Vehicle :
+                                                    td=vehicleType    
+                                                tr
+                                                    td.form_headers Amount Paid :
+                                                    td=downPayment.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+                            tr(style="margin-bottom: 1rem;")
+                                td
+                                    fieldset
+                                        legend Referee
+                                        table
+                                            tbody
+                                                tr
+                                                    td.form_headers Name :
+                                                    td=refereeName
+                                                tr
+                                                    td.form_headers Date of Birth :
+                                                    td=refereeDob
+                                                tr
+                                                    td.form_headers Occupation :
+                                                    td=refereeOccupation
+                                                tr
+                                                    td.form_headers Contact :
+                                                    td=refereeContact
         include components/footer
         script(src="/static/js/bootstrap/jquery.js")
         script(src="/static/js/bootstrap/bootstrap.js")
