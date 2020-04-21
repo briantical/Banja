@@ -10,6 +10,16 @@ html
             .navigation: a(href="/sales/customerslist"): i.fas.fa-chevron-circle-left.back_icon Back
             .row.no-gutters
                 .col-sm-3
+                    .before_start
+                        h6 Before you proceed
+                        p Make sure of the following :
+                        ol
+                            li NiN should be 13 characters, starts with 3 alphabets.
+                            li Names are supposed to be alphabets only.
+                            li Phone number should not be less than 10 characters .
+                            li All the fields are required apart from Marital status.
+                            li A cancel button should be used to reset the form.
+                            li Hover above the inputs to show format details.
                 .col-sm-9
                     h3 Add customers
                     form#userform(action="/sales/customers", method="post", enctype="multipart/form-data")

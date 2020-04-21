@@ -10,6 +10,16 @@ html
             .navigation: a(href="/admin/saleslist"): i.fas.fa-chevron-circle-left.back_icon Back
             .row.no-gutters
                 .col-sm-3
+                    .before_start
+                        h6 Before you proceed
+                        p Make sure of the following :
+                        ol
+                            li Ids are between 5 to 35 characters and it is required.
+                            li All supervisors are registered as a sales executives.
+                            li Names are supposed to be alphabets only.
+                            li All the fields are required apart from email.
+                            li A cancel button should be used to reset the form.
+                            li Hover above the inputs to show format details.
                 .col-sm-9
                     h3 Add Sales Executives
                     form#userform(action="/admin/sales", method="post")

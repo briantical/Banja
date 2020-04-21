@@ -339,3 +339,11 @@ input:valid {
 td {
   padding: 0.3rem 0rem;
 }
+
+h3 {
+  color: rgb(0, 97, 170);
+}
+
+legend {
+  text-decoration: underline;
+}
